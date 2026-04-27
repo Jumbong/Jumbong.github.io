@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Exercices sur les variables aléatoires discrètes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../flavicon.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../flavicon.jpeg" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../ensai1A.html">
+ <span class="dropdown-text">TD Ensai 1A</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">Autres</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#variables-aléatoires-discrètes" id="toc-variables-aléatoires-discrètes" class="nav-link active" data-scroll-target="#variables-aléatoires-discrètes">4. Variables aléatoires discrètes</a>
+  <ul class="collapse">
+  <li><a href="#exercice-1" id="toc-exercice-1" class="nav-link" data-scroll-target="#exercice-1">Exercice 1</a></li>
+  <li><a href="#correction-exercice-1" id="toc-correction-exercice-1" class="nav-link" data-scroll-target="#correction-exercice-1">Correction Exercice 1</a></li>
+  <li><a href="#exercice-2" id="toc-exercice-2" class="nav-link" data-scroll-target="#exercice-2">Exercice 2</a></li>
+  <li><a href="#correction-exercice-2" id="toc-correction-exercice-2" class="nav-link" data-scroll-target="#correction-exercice-2">Correction — Exercice 2</a></li>
+  <li><a href="#exercice-3" id="toc-exercice-3" class="nav-link" data-scroll-target="#exercice-3">Exercice 3</a></li>
+  <li><a href="#correction-exercice-3" id="toc-correction-exercice-3" class="nav-link" data-scroll-target="#correction-exercice-3">Correction — Exercice 3</a>
+  <ul class="collapse">
+  <li><a href="#rappel-fonctions-génératrices-des-moments" id="toc-rappel-fonctions-génératrices-des-moments" class="nav-link" data-scroll-target="#rappel-fonctions-génératrices-des-moments">Rappel : fonctions génératrices des moments</a></li>
+  <li><a href="#identification-des-lois" id="toc-identification-des-lois" class="nav-link" data-scroll-target="#identification-des-lois">Identification des lois</a></li>
+  </ul></li>
+  <li><a href="#exercice-4" id="toc-exercice-4" class="nav-link" data-scroll-target="#exercice-4">Exercice 4</a></li>
+  <li><a href="#correction-exercice-4" id="toc-correction-exercice-4" class="nav-link" data-scroll-target="#correction-exercice-4">Correction — Exercice 4</a></li>
+  <li><a href="#exercice-5" id="toc-exercice-5" class="nav-link" data-scroll-target="#exercice-5">Exercice 5</a></li>
+  <li><a href="#correction-exercice-5" id="toc-correction-exercice-5" class="nav-link" data-scroll-target="#correction-exercice-5">Correction — Exercice 5</a>
+  <ul class="collapse">
+  <li><a href="#résultat-final" id="toc-résultat-final" class="nav-link" data-scroll-target="#résultat-final">Résultat final :</a></li>
+  <li><a href="#calcul-de-lespérance-de-x" id="toc-calcul-de-lespérance-de-x" class="nav-link" data-scroll-target="#calcul-de-lespérance-de-x">2) Calcul de l’espérance de <span class="math inline">\(X\)</span></a></li>
+  <li><a href="#détermination-de-lambda-pour-une-espérance-de-3" id="toc-détermination-de-lambda-pour-une-espérance-de-3" class="nav-link" data-scroll-target="#détermination-de-lambda-pour-une-espérance-de-3">Détermination de <span class="math inline">\(\lambda\)</span> pour une espérance de 3</a></li>
+  </ul></li>
+  <li><a href="#exercice-6" id="toc-exercice-6" class="nav-link" data-scroll-target="#exercice-6">Exercice 6</a></li>
+  <li><a href="#correction-exercice-6" id="toc-correction-exercice-6" class="nav-link" data-scroll-target="#correction-exercice-6">Correction — Exercice 6</a></li>
+  <li><a href="#exercice-7" id="toc-exercice-7" class="nav-link" data-scroll-target="#exercice-7">Exercice 7</a>
+  <ul class="collapse">
+  <li><a href="#correction-exercice-7" id="toc-correction-exercice-7" class="nav-link" data-scroll-target="#correction-exercice-7">Correction Exercice 7</a></li>
+  </ul></li>
+  <li><a href="#exercice-8" id="toc-exercice-8" class="nav-link" data-scroll-target="#exercice-8">Exercice 8</a></li>
+  <li><a href="#correction-exercice-8" id="toc-correction-exercice-8" class="nav-link" data-scroll-target="#correction-exercice-8">Correction — Exercice 8</a>
+  <ul class="collapse">
+  <li><a href="#calcul-de-mathbbex3" id="toc-calcul-de-mathbbex3" class="nav-link" data-scroll-target="#calcul-de-mathbbex3">Calcul de <span class="math inline">\(\mathbb{E}(X^3)\)</span></a></li>
+  </ul></li>
+  <li><a href="#exercice-9" id="toc-exercice-9" class="nav-link" data-scroll-target="#exercice-9">Exercice 9</a></li>
+  <li><a href="#correction-exercice-9" id="toc-correction-exercice-9" class="nav-link" data-scroll-target="#correction-exercice-9">Correction Exercice 9</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercices sur les variables aléatoires discrètes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="variables-aléatoires-discrètes" class="level1">
+<h1>4. Variables aléatoires discrètes</h1>
+<section id="exercice-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-1">Exercice 1</h2>
+<p>Dans chacune des situations, identifier si <span class="math inline">\(X\)</span> suit une loi binomiale. Si oui, donner les paramètres <span class="math inline">\(n\)</span> et <span class="math inline">\(p\)</span> correspondants. Sinon, expliquer pourquoi et proposer une modélisation alternative :</p>
+<ul>
+<li><p>Chaque jour, Dean va déjeuner et il y a 25% de chances qu’il prenne une pizza. Soit <span class="math inline">\(X\)</span> le nombre de fois où il a pris une pizza la semaine dernière.</p></li>
+<li><p>Jessica joue au basketball, et elle a 60% de chances de réussir un lancer franc. Soit <span class="math inline">\(X\)</span> le nombre de lancers francs réussis pendant le dernier match.</p></li>
+<li><p>Une boîte contient 300 bonbons, dont 100 carambars et 200 chocolats. Sam prend un échantillon de 10 bonbons dans la boîte. Soit <span class="math inline">\(X\)</span> le nombre de carambars dans son échantillon.</p></li>
+<li><p>Marie lit un livre de 600 pages. Sur les pages paires, il y a 1% de chances d’avoir une faute d’orthographe. Sur les pages impaires, il y a 2% de chances d’avoir une faute d’orthographe. Soit <span class="math inline">\(X\)</span> le nombre total de fautes d’orthographe dans le livre.</p></li>
+<li><p>John lit un livre de 600 pages. Sur chaque page, le nombre de fautes d’orthographe est distribué selon une loi de Bernouilli de paramètre <span class="math inline">\(0.01\)</span>. Soit <span class="math inline">\(X\)</span> le nombre total de fautes d’orthographe dans le livre.</p></li>
+</ul>
+</section>
+<section id="correction-exercice-1" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-1">Correction Exercice 1</h2>
+<p>Dans chaque situation, on indique si <span class="math inline">\(X\)</span> suit une loi binomiale. Si oui, on précise les paramètres <span class="math inline">\(n\)</span> et <span class="math inline">\(p\)</span>. Sinon, on propose une modélisation alternative.</p>
+<hr>
+<ol type="1">
+<li><strong>Dean et les pizzas</strong></li>
+</ol>
+<ul>
+<li>Chaque jour, Dean prend une pizza avec probabilité <span class="math inline">\(p = 0{,}25\)</span>, pendant une semaine (<span class="math inline">\(n = 7\)</span> jours).</li>
+<li>Ensuite, il faut se poser la question : la décision de prendre une pizza un jour est-elle indépendante des autres jours ? Si oui, alors :</li>
+<li>Le nombre de jours <span class="math inline">\(X\)</span> où il prend une pizza suit donc une loi binomiale :</li>
+</ul>
+<p><span class="math display">\[X \sim \mathcal{B}(n = 7,\; p = 0{,}25).\]</span></p>
+<hr>
+<ol start="2" type="1">
+<li><strong>Jessica et les lancers francs</strong></li>
+</ol>
+<ul>
+<li>Jessica réussit un lancer franc avec probabilité <span class="math inline">\(p = 0{,}6\)</span>, mais le nombre de lancers tentés pendant le match <strong>n’est pas fixé à l’avance</strong>.</li>
+<li>Il ne s’agit donc pas d’une loi binomiale (condition nécessaire : nombre d’essais fixé). Dans une modélisation binomiale, le nombre d’essais <span class="math inline">\(n\)</span> doit être fixé et connu à l’avance.</li>
+</ul>
+<p>Une modélisation possible est :</p>
+<ul>
+<li><p>On note <span class="math inline">\(N\)</span> le nombre de lancers francs tentés pendant le dernier match. Il y a plusieurs possibilités : Soit <span class="math inline">\(N\)</span> est une constante connue, soit <span class="math inline">\(N\)</span> est une variable aléatoire (par exemple, on peut modéliser <span class="math inline">\(N\)</span> par une loi de Poisson.). Ensuite, on considère le nombre de lancers réussis <span class="math inline">\(X\)</span> conditionnellement à <span class="math inline">\(N\)</span>.</p></li>
+<li><p>Conditionnellement à <span class="math inline">\(N\)</span>, le nombre de lancers réussis suit une loi binomiale :</p></li>
+</ul>
+<p><span class="math display">\[X \mid N \sim \mathcal{B}(N,\; 0{,}6).\]</span></p>
+<p>si les lancers sont indépendants.</p>
+<hr>
+<ol start="3" type="1">
+<li><strong>Boîte de bonbons (carambars/chocolats)</strong></li>
+</ol>
+<ul>
+<li>La boîte contient <span class="math inline">\(300\)</span> bonbons dont <span class="math inline">\(100\)</span> carambars et <span class="math inline">\(200\)</span> chocolats.</li>
+<li>Sam tire un échantillon de <span class="math inline">\(n = 10\)</span> bonbons <strong>sans remise</strong>.</li>
+<li>Les tirages ne sont pas indépendants (sans remise), donc <span class="math inline">\(X\)</span> <strong>ne suit pas</strong> une loi binomiale.</li>
+</ul>
+<p>La loi adaptée est l’hypergéométrique :</p>
+<ul>
+<li>Taille de la population : <span class="math inline">\(N = 300\)</span>.</li>
+<li>Nombre de “succès” (carambars) : <span class="math inline">\(K = 100\)</span>.</li>
+<li>Taille de l’échantillon : <span class="math inline">\(n = 10\)</span>.</li>
+</ul>
+<p>On a alors :</p>
+<p><span class="math display">\[X \sim \mathcal{H}(N = 300,\; K = 100,\; n = 10).\]</span></p>
+<hr>
+<ol start="4" type="1">
+<li><strong>Marie et les fautes d’orthographe (1 % / 2 %)</strong></li>
+</ol>
+<ul>
+<li>Le livre a <span class="math inline">\(600\)</span> pages.</li>
+<li>Sur les pages paires (300 pages), probabilité de faute <span class="math inline">\(p_1 = 0{,}01\)</span>.</li>
+<li>Sur les pages impaires (300 pages), probabilité de faute <span class="math inline">\(p_2 = 0{,}02\)</span>.</li>
+<li>La probabilité de “succès” (faute) <strong>n’est pas la même</strong> sur tous les essais (pages), donc <span class="math inline">\(X\)</span> <strong>ne suit pas</strong> une loi binomiale.</li>
+</ul>
+<p>Une modélisation naturelle est de décomposer :</p>
+<ul>
+<li>On suppose l’indépendance entre les pages.</li>
+<li><span class="math inline">\(X_{\text{paires}}\)</span> : nombre de fautes sur les pages paires,</li>
+<li><span class="math inline">\(X_{\text{impaires}}\)</span> : nombre de fautes sur les pages impaires.</li>
+</ul>
+<p>On a :</p>
+<p><span class="math display">\[
+X_{\text{paires}} \sim \mathcal{B}(300,\; 0{,}01), \qquad
+X_{\text{impaires}} \sim \mathcal{B}(300,\; 0{,}02),
+\]</span></p>
+<p>et</p>
+<p><span class="math display">\[
+X = X_{\text{paires}} + X_{\text{impaires}}.
+\]</span></p>
+<hr>
+<ol start="5" type="1">
+<li><strong>John et les fautes d’orthographe (Bernoulli 0.01)</strong></li>
+</ol>
+<ul>
+<li>Le livre a <span class="math inline">\(600\)</span> pages.</li>
+<li>Sur chaque page, le nombre de fautes suit une loi de Bernoulli de paramètre <span class="math inline">\(p = 0{,}01\)</span> (on suppose indépendance entre pages).</li>
+<li>Cette fois, la probabilité de faute est la même pour toutes les pages, et le nombre total de pages <span class="math inline">\(n = 600\)</span> est fixé.</li>
+</ul>
+<p>Ainsi, <span class="math inline">\(X\)</span> suit une loi binomiale :</p>
+<p><span class="math display">\[X \sim \mathcal{B}(n = 600,\; p = 0{,}01).\]</span></p>
+</section>
+<section id="exercice-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-2">Exercice 2</h2>
+<p>Soit <span class="math inline">\(X_1, \dots, X_n\)</span> une suite de variables aléatoires indépendantes telles que, pour tout <span class="math inline">\(k = 1, \dots, n\)</span>,</p>
+<p><span class="math display">\[\mathbb{P}(X = \pm 1) = \frac{1}{2}.\]</span></p>
+<p>Soit <span class="math display">\[S = \sum_{i=1}^n X_i.\]</span> On parle de <strong>marche aléatoire symétrique</strong>, où le point de départ est <span class="math inline">\(0\)</span> avec un déplacement aléatoire à gauche ou à droite à chaque temps.</p>
+<ol type="1">
+<li>Calculer <span class="math inline">\(E(S)\)</span> et <span class="math inline">\(V(S)\)</span>.</li>
+</ol>
+<p>Nous supposons maintenant que</p>
+<p><span class="math display">\[\mathbb{P}(X = 1) = p \quad \text{et} \quad \mathbb{P}(X = -1) = 1 - p.\]</span></p>
+<p>Si <span class="math inline">\(p &gt; \dfrac{1}{2}\)</span>, on parle de <strong>marche aléatoire à dérive positive</strong>.</p>
+<ol start="2" type="1">
+<li>Montrer qu’on peut réécrire <span class="math inline">\(X = aY + b\)</span>, avec <span class="math inline">\(Y \sim B(p)\)</span>, et <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> deux constantes à déterminer.<br>
+</li>
+<li>En déduire <span class="math inline">\(E(S)\)</span> et <span class="math inline">\(V(S)\)</span>.</li>
+</ol>
+</section>
+<section id="correction-exercice-2" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-2">Correction — Exercice 2</h2>
+<p>On considère une suite de variables aléatoires indépendantes <span class="math inline">\(X_1, \dots, X_n\)</span> telles que <span class="math display">\[\mathbb{P}(X = \pm 1) = \frac{1}{2}.\]</span></p>
+<p>On pose : <span class="math display">\[S = \sum_{i=1}^n X_i.\]</span></p>
+<hr>
+<section id="calculer-es-et-vs-dans-le-cas-symétrique" class="level4">
+<h4 class="anchored" data-anchor-id="calculer-es-et-vs-dans-le-cas-symétrique">1) Calculer <span class="math inline">\(E(S)\)</span> et <span class="math inline">\(V(S)\)</span> dans le cas symétrique</h4>
+<p>Pour chaque <span class="math inline">\(X_i\)</span> :</p>
+<ul>
+<li><p><span class="math inline">\(\mathbb{E}(X_i) = 1 \cdot \frac{1}{2} + (-1) \cdot \frac{1}{2} = 0\)</span>,</p></li>
+<li><p><span class="math inline">\(\mathbb{E}(X_i^2) = 1^2 = 1\)</span> d’où <span class="math inline">\(\operatorname{Var}(X_i) = \mathbb{E}(X_i^2) - \mathbb{E}(X_i)^2 = 1\)</span>.</p></li>
+</ul>
+<p>Par linéarité de l’espérance : <span class="math display">\[\mathbb{E}(S) = \sum_{i=1}^n \mathbb{E}(X_i) = 0,\]</span></p>
+<p>Comme les <span class="math inline">\(X_i\)</span> sont indépendantes : <span class="math display">\[\operatorname{Var}(S) = \sum_{i=1}^n \operatorname{Var}(X_i) = n.\]</span></p>
+<hr>
+<p>Nous supposons maintenant que <span class="math display">\[\mathbb{P}(X = 1) = p \quad \text{et} \quad \mathbb{P}(X = -1) = 1 - p,\]</span> avec <span class="math inline">\(p &gt; \frac{1}{2}\)</span> (marche aléatoire à dérive positive).</p>
+<hr>
+</section>
+<section id="montrer-que-lon-peut-réécrire-x-ay-b-avec-y-sim-bp" class="level4">
+<h4 class="anchored" data-anchor-id="montrer-que-lon-peut-réécrire-x-ay-b-avec-y-sim-bp">2) Montrer que l’on peut réécrire <span class="math inline">\(X = aY + b\)</span>, avec <span class="math inline">\(Y \sim B(p)\)</span></h4>
+<p>Il faut jouer ici avec le support des variables aléatoires. L’idée est de partir d’une variable de Bernoulli <span class="math inline">\(Y\)</span> qui prend les valeurs <span class="math inline">\(0\)</span> et <span class="math inline">\(1\)</span>, et de la transformer linéairement pour obtenir une variable <span class="math inline">\(X\)</span> qui prend les valeurs <span class="math inline">\(-1\)</span> et <span class="math inline">\(1\)</span>. Comme <span class="math inline">\(P(X = 1) = p\)</span> et <span class="math inline">\(P(X = -1) = 1 - p\)</span>, on peut définir <span class="math inline">\(Y\)</span> comme une variable de Bernoulli telle que <span class="math inline">\(P(Y = 1) = p\)</span> et <span class="math inline">\(P(Y = 0) = 1 - p\)</span>.</p>
+<p>On cherche <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> tels que : - si <span class="math inline">\(Y = 1\)</span>, alors <span class="math inline">\(X = 1\)</span>, - si <span class="math inline">\(Y = 0\)</span>, alors <span class="math inline">\(X = -1\)</span>.</p>
+<p>On résout : <span class="math display">\[
+\begin{cases}
+a \cdot 1 + b = 1,\\
+a \cdot 0 + b = -1.
+\end{cases}
+\]</span></p>
+<p>D’où <span class="math inline">\(b = -1\)</span> et <span class="math inline">\(a = 2\)</span>.</p>
+<p>Ainsi : <span class="math display">\[X = 2Y - 1 \quad \text{avec} \quad Y \sim \text{Bernoulli}(p).\]</span></p>
+<hr>
+</section>
+<section id="en-déduire-es-et-vs-dans-le-cas-général" class="level4">
+<h4 class="anchored" data-anchor-id="en-déduire-es-et-vs-dans-le-cas-général">3) En déduire <span class="math inline">\(E(S)\)</span> et <span class="math inline">\(V(S)\)</span> dans le cas général</h4>
+<p>Comme <span class="math inline">\(S = \sum_{i=1}^n X_i\)</span> et <span class="math inline">\(X_i = 2Y_i - 1\)</span> avec <span class="math inline">\(Y_i \sim B(p)\)</span> indépendantes :</p>
+<p>Par linéarité de l’espérance :</p>
+<p><span class="math display">\[
+\mathbb{E}(X_i) = \mathbb{E}{(2Y_i - 1)} =
+2\,\mathbb{E}(Y_i) - 1 = 2p - 1.
+\]</span></p>
+<p>Calculons la variance :</p>
+<p>On sait que pour toute variable aléatoire <span class="math inline">\(X = aY + b\)</span>, on a <span class="math inline">\(\operatorname{Var}(X) = a^2\,\operatorname{Var}(Y)\)</span>. Donc : <span class="math display">\[
+\operatorname{Var}(X_i) = \operatorname{Var}(2Y_i - 1) = 2^2\,\operatorname{Var}(Y_i) =
+   4\,\operatorname{Var}(Y_i) = 4\,p(1 - p).
+\]</span> Donc :</p>
+<p><span class="math display">\[
+\mathbb{E}(S) = \sum_{i=1}^n \mathbb{E}(X_i) = n(2p - 1),
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(S) = \sum_{i=1}^n \operatorname{Var}(X_i) = 4n\,p(1 - p).
+\]</span></p>
+<hr>
+</section>
+<section id="résumé-final" class="level4">
+<h4 class="anchored" data-anchor-id="résumé-final">Résumé final</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type de marche</th>
+<th><span class="math inline">\(\mathbb{E}(S)\)</span></th>
+<th><span class="math inline">\(\operatorname{Var}(S)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Symétrique (<span class="math inline">\(p = \tfrac12\)</span>)</td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(n\)</span></td>
+</tr>
+<tr class="even">
+<td>Dérive positive (<span class="math inline">\(p &gt; \tfrac12\)</span>)</td>
+<td><span class="math inline">\(n(2p - 1)\)</span></td>
+<td><span class="math inline">\(4n\,p(1 - p)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="exercice-3" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-3">Exercice 3</h2>
+<p>Identifier les lois des variables aléatoires suivantes, en se basant sur leur fonction génératrice des moments :</p>
+<ol type="1">
+<li><p><span class="math inline">\(M_X(t) = 0.8 e^t + 0.2\)</span></p></li>
+<li><p><span class="math inline">\(M_Y(t) = \dfrac{0.1 e^t}{1 - 0.9 e^t}\)</span></p></li>
+<li><p><span class="math inline">\(M_Z(t) = (0.3 e^t + 0.7)^{14}\)</span></p></li>
+</ol>
+</section>
+<section id="correction-exercice-3" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-3">Correction — Exercice 3</h2>
+<section id="rappel-fonctions-génératrices-des-moments" class="level3">
+<h3 class="anchored" data-anchor-id="rappel-fonctions-génératrices-des-moments">Rappel : fonctions génératrices des moments</h3>
+<ol type="1">
+<li><strong>Loi de Bernoulli de paramètre <span class="math inline">\(p\)</span></strong></li>
+</ol>
+<p>On a <span class="math display">\[
+\mathbb{P}(X = 1) = p, \qquad \mathbb{P}(X = 0) = 1 - p.
+\]</span></p>
+<p>Alors la fonction génératrice des moments est : <span class="math display">\[
+M_X(t) = \mathbb{E}(e^{tX})
+= (1-p) e^{t \cdot 0} + p e^{t \cdot 1}
+= (1 - p) + p e^t.
+\]</span></p>
+<ol start="2" type="1">
+<li><strong>Loi géométrique de paramètre <span class="math inline">\(p\)</span> sur <span class="math inline">\(\{1,2,\dots\}\)</span></strong></li>
+</ol>
+<p>On prend la convention <span class="math display">\[
+\mathbb{P}(Y = k) = (1 - p)^{k-1} p, \quad k \ge 1.
+\]</span></p>
+<p>Alors <span class="math display">\[
+M_Y(t) = \mathbb{E}(e^{tY})
+= \sum_{k=1}^{\infty} e^{tk} (1-p)^{k-1} p
+= p e^t \sum_{k=0}^{\infty} \big((1-p)e^t\big)^k.
+\]</span></p>
+<p>Pour <span class="math inline">\(| (1-p)e^t | &lt; 1\)</span>, c’est une série géométrique : <span class="math display">\[
+\sum_{k=0}^{\infty} r^k = \frac{1}{1-r}.
+\]</span></p>
+<p>Donc <span class="math display">\[
+M_Y(t) = \frac{p e^t}{1 - (1-p) e^t}.
+\]</span></p>
+<ol start="3" type="1">
+<li><strong>Loi binomiale <span class="math inline">\(\mathcal{B}(n,p)\)</span></strong></li>
+</ol>
+<p>Soit <span class="math inline">\(Z \sim \mathcal{B}(n,p)\)</span>. On peut écrire <span class="math display">\[
+Z = X_1 + \cdots + X_n,
+\]</span> où les <span class="math inline">\(X_i\)</span> sont indépendantes et suivent toutes une Bernoulli<span class="math inline">\((p)\)</span>.</p>
+<p>On sait que, pour une Bernoulli<span class="math inline">\((p)\)</span>, <span class="math display">\[
+M_{X_i}(t) = (1-p) + p e^t.
+\]</span></p>
+<p>Par indépendance, <span class="math display">\[
+M_Z(t) = \mathbb{E}(e^{tZ})
+= \mathbb{E}\big(e^{t(X_1 + \cdots + X_n)}\big)
+= \prod_{i=1}^n \mathbb{E}(e^{tX_i})
+= \big((1-p) + p e^t\big)^n.
+\]</span></p>
+<hr>
+</section>
+<section id="identification-des-lois" class="level3">
+<h3 class="anchored" data-anchor-id="identification-des-lois">Identification des lois</h3>
+<ol type="1">
+<li>On a <span class="math display">\[
+M_X(t) = 0.8 e^t + 0.2 = 0.2 + 0.8 e^t.
+\]</span></li>
+</ol>
+<p>En comparant avec <span class="math inline">\((1-p) + p e^t\)</span>, on obtient <span class="math inline">\(p = 0.8\)</span>.</p>
+<blockquote class="blockquote">
+<p>Donc <span class="math inline">\(X\)</span> suit une loi de Bernoulli de paramètre <span class="math inline">\(0.8\)</span> : <span class="math display">\[
+X \sim \text{Bernoulli}(0.8).
+\]</span></p>
+</blockquote>
+<ol start="2" type="1">
+<li>On a <span class="math display">\[
+M_Y(t) = \dfrac{0.1 e^t}{1 - 0.9 e^t}.
+\]</span></li>
+</ol>
+<p>En comparant avec <span class="math display">\[
+M_Y(t) = \frac{p e^t}{1 - (1-p) e^t},
+\]</span> on lit <span class="math inline">\(p = 0.1\)</span> et <span class="math inline">\(1-p = 0.9\)</span>.</p>
+<blockquote class="blockquote">
+<p>Donc <span class="math inline">\(Y\)</span> suit une loi géométrique de paramètre <span class="math inline">\(p = 0.1\)</span> (sur <span class="math inline">\(\{1,2,\dots\}\)</span>) : <span class="math display">\[
+Y \sim \text{Géométrique}(p = 0.1).
+\]</span></p>
+</blockquote>
+<ol start="3" type="1">
+<li>On a <span class="math display">\[
+M_Z(t) = (0.3 e^t + 0.7)^{14}
+= \big( (1 - 0.3) + 0.3 e^t \big)^{14}.
+\]</span></li>
+</ol>
+<p>En comparant avec <span class="math display">\[
+M_Z(t) = \big( (1-p) + p e^t \big)^n,
+\]</span> on obtient <span class="math inline">\(p = 0.3\)</span> et <span class="math inline">\(n = 14\)</span>.</p>
+<blockquote class="blockquote">
+<p>Donc <span class="math inline">\(Z\)</span> suit une loi binomiale <span class="math inline">\(\mathcal{B}(14, 0.3)\)</span> : <span class="math display">\[
+Z \sim \mathcal{B}(n = 14, p = 0.3).
+\]</span></p>
+</blockquote>
+</section>
+</section>
+<section id="exercice-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-4">Exercice 4</h2>
+<p>Soit <span class="math inline">\(X\)</span> une variable aléatoire telle que <span class="math display">\[\mathbb{P}(X = k) = \frac{k}{10} \quad \text{pour } k = 1, 2, 3, 4.\]</span></p>
+<p>Soit <span class="math inline">\(Y\)</span> une variable aléatoire indépendante de <span class="math inline">\(X\)</span>, et suivant la même distribution.</p>
+<p>Calculer la loi de probabilité de <span class="math inline">\(X + Y\)</span>.</p>
+</section>
+<section id="correction-exercice-4" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-4">Correction — Exercice 4</h2>
+<p>On a <span class="math display">\[
+\mathbb{P}(X = k) = \frac{k}{10}, \quad k = 1,2,3,4,
+\]</span> et <span class="math inline">\(Y\)</span> est indépendante de <span class="math inline">\(X\)</span> et de même loi.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Y = 1</th>
+<th>Y = 2</th>
+<th>Y = 3</th>
+<th>Y = 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X = 1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>X = 2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>X = 3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>X = 4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>La variable <span class="math inline">\(S = X + Y\)</span> prend des valeurs entières de <span class="math inline">\(2\)</span> à <span class="math inline">\(8\)</span>.</p>
+<p>La variable aléatoire <span class="math inline">\(X + Y\)</span> prend ses valeurs dans <span class="math inline">\(\{2, \dots, 8\}\)</span>.</p>
+<p>Pour <span class="math inline">\(k \in \{2, \dots, 8\}\)</span>, nous avons en utilisant la formule des probabilités totales :</p>
+<p><span class="math display">\[
+\mathbb{P}(X + Y = k)
+= \sum_{l=1}^{4} \mathbb{P}(X + Y = k \mid Y = l)\,\mathbb{P}(Y = l)
+\]</span></p>
+<p><span class="math display">\[
+= \sum_{l=1}^{4} \mathbb{P}(Y = k - l \mid Y = l)\,\mathbb{P}(Y = l)
+\]</span></p>
+<p><span class="math display">\[
+= \sum_{l=1}^{4} \mathbb{P}(X = k - l)\,\mathbb{P}(Y = l) \quad \text{car $X$ et $Y$ sont indépendantes.}
+\]</span></p>
+<p>où la somme porte sur les <span class="math inline">\(k\)</span> tels que <span class="math inline">\(1 \le k \le 4\)</span> et <span class="math inline">\(1 \le k- l \le 4\)</span>.</p>
+<p>On note <span class="math display">\[
+p_1 = 0.1,\quad p_2 = 0.2,\quad p_3 = 0.3,\quad p_4 = 0.4.
+\]</span></p>
+<p>On calcule alors, cas par cas :</p>
+<ul>
+<li><p>Pour <span class="math inline">\(k = 2\)</span><br>
+<span class="math display">\[(X,Y) = (1,1) \quad\Rightarrow\quad \mathbb{P}(S=2) = p_1 p_1 = 0.1\times 0.1 = 0.01.\]</span></p></li>
+<li><p>Pour <span class="math inline">\(k = 3\)</span><br>
+<span class="math display">\[(X,Y) = (1,2),(2,1)\]</span> <span class="math display">\[
+\mathbb{P}(S=3) = p_1 p_2 + p_2 p_1 = 0.1\times 0.2 + 0.2\times 0.1 = 0.04.
+\]</span></p></li>
+<li><p>Pour <span class="math inline">\(s = 4\)</span><br>
+<span class="math display">\[(X,Y) = (1,3),(2,2),(3,1)\]</span> <span class="math display">\[
+\mathbb{P}(S=4) = p_1 p_3 + p_2 p_2 + p_3 p_1
+= 0.1\times 0.3 + 0.2\times 0.2 + 0.3\times 0.1
+= 0.10.
+\]</span></p></li>
+<li><p>Pour <span class="math inline">\(k = 5\)</span><br>
+<span class="math display">\[(X,Y) = (1,4),(2,3),(3,2),(4,1)\]</span> <span class="math display">\[
+\mathbb{P}(S=5) = p_1 p_4 + p_2 p_3 + p_3 p_2 + p_4 p_1
+= 0.04 + 0.06 + 0.06 + 0.04 = 0.20.
+\]</span></p></li>
+<li><p>Pour <span class="math inline">\(k = 6\)</span><br>
+<span class="math display">\[(X,Y) = (2,4),(3,3),(4,2)\]</span> <span class="math display">\[
+\mathbb{P}(S=6) = p_2 p_4 + p_3 p_3 + p_4 p_2
+= 0.2\times 0.4 + 0.3\times 0.3 + 0.4\times 0.2
+= 0.08 + 0.09 + 0.08 = 0.25.
+\]</span></p></li>
+<li><p>Pour <span class="math inline">\(k = 7\)</span><br>
+<span class="math display">\[(X,Y) = (3,4),(4,3)\]</span> <span class="math display">\[
+\mathbb{P}(S=7) = p_3 p_4 + p_4 p_3
+= 0.3\times 0.4 + 0.4\times 0.3
+= 0.24.
+\]</span></p></li>
+<li><p>Pour <span class="math inline">\(k = 8\)</span><br>
+<span class="math display">\[(X,Y) = (4,4) \quad\Rightarrow\quad \mathbb{P}(S=8) = p_4 p_4 = 0.4\times 0.4 = 0.16.\]</span></p></li>
+</ul>
+<p>On obtient donc la loi de <span class="math inline">\(S = X+Y\)</span> :</p>
+<p><span class="math display">\[
+\begin{array}{c|ccccccc}
+s      &amp; 2    &amp; 3    &amp; 4    &amp; 5    &amp; 6    &amp; 7    &amp; 8    \\ \hline
+\mathbb{P}(S=s) &amp; 0.01 &amp; 0.04 &amp; 0.10 &amp; 0.20 &amp; 0.25 &amp; 0.24 &amp; 0.16
+\end{array}
+\]</span></p>
+<p>(On vérifie que la somme vaut bien <span class="math inline">\(1\)</span>: <span class="math inline">\(0.01 + 0.04 + 0.10 + 0.20 + 0.25 + 0.24 + 0.16 = 1\)</span>.)</p>
+</section>
+<section id="exercice-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-5">Exercice 5</h2>
+<p>Un statisticien a modélisé le nombre de mots d’une recherche sur internet en utilisant une loi de Poisson. Supposons que la longueur moyenne est de 3 mots, et soit <span class="math inline">\(X\)</span> le nombre de mots d’une recherche. Comme une recherche ne peut pas être vide, nous utilisons une modélisation par une loi de probabilité restreinte définie par</p>
+<p><span class="math display">\[\mathbb{P}(X = k) = \mathbb{P}(Y = k \mid Y \neq 0) \quad \text{où } Y \sim \text{Pois}(\lambda).\]</span></p>
+<ol type="1">
+<li>Trouver la loi de <span class="math inline">\(X\)</span>.<br>
+</li>
+<li>Donner la valeur de <span class="math inline">\(\lambda\)</span> correspondant à une longueur moyenne de 3 mots.<br>
+</li>
+<li>Quelle est la probabilité d’avoir une recherche de 6 mots ou plus ?</li>
+</ol>
+</section>
+<section id="correction-exercice-5" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-5">Correction — Exercice 5</h2>
+<ol type="1">
+<li>Trouver la loi de <span class="math inline">\(X\)</span></li>
+</ol>
+<p>Pour déterminer la loi d’une variable aléatoire <span class="math inline">\(X\)</span> , il faut d’abord définir son support, c’est-à-dire l’ensemble des valeurs que <span class="math inline">\(X\)</span> peut prendre avec une probabilité non nulle. Dans ce cas, le support de <span class="math inline">\(X\)</span> est l’ensemble des entiers naturels positifs, car une recherche ne peut pas être vide.</p>
+<p>Nous notons le support de <span class="math inline">\(X\)</span> par <span class="math inline">\(\Omega_X = \{1, 2, 3, \ldots\}\)</span> = <span class="math inline">\(\mathbb{N}^*\)</span>.</p>
+<p>Une fois le support identifié, nous pouvons calculer la probabilité associée à chaque valeur du support de <span class="math inline">\(X\)</span>.</p>
+<p>Rappelons nous que l’ensemble <span class="math inline">\({X \in A} = {w \in \Omega : X(w) \in A} = X^-1(A)\)</span>. Pour tout <span class="math inline">\(k \in \Omega_X\)</span>, nous avons :</p>
+<p><span class="math inline">\({X = k} = {w \in \Omega : X(w) = k} = X^{-1}(\{k\})\)</span>. où <span class="math inline">\(\Omega\)</span> est l’ensemble des issues possibles de l’expérience aléatoire.</p>
+<p>Donc, pour tout <span class="math inline">\(k \in \Omega_X\)</span>, nous avons :</p>
+<p>On part de la définition de <span class="math inline">\(X\)</span> comme loi de Poisson <strong>conditionnée à être non nulle</strong> :</p>
+<ol type="1">
+<li><p><strong>Définition de <span class="math inline">\(X\)</span> comme loi restreinte :</strong> <span class="math display">\[
+\mathbb{P}(X = k)
+= \mathbb{P}(Y = k \mid Y \neq 0).
+\]</span> C’est donné dans l’énoncé : <span class="math inline">\(X\)</span> est la loi de <span class="math inline">\(Y\)</span> sachant que <span class="math inline">\(Y\)</span> ne vaut pas 0.</p></li>
+<li><p><strong>Formule de probabilité conditionnelle :</strong> <span class="math display">\[
+\mathbb{P}(Y = k \mid Y \neq 0)
+= \frac{\mathbb{P}(Y = k \cap Y \neq 0)}{\mathbb{P}(Y \neq 0)}.
+\]</span> Par définition :<br>
+<span class="math inline">\(\displaystyle \mathbb{P}(A \mid B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}\)</span>.</p></li>
+<li><p><strong>Simplification de l’intersection :</strong> <span class="math display">\[
+\mathbb{P}(Y = k \cap Y \neq 0) = \mathbb{P}(Y = k)
+\]</span> car si <span class="math inline">\(k \ge 1\)</span>, alors l’événement « <span class="math inline">\(Y = k\)</span> » implique automatiquement « <span class="math inline">\(Y \neq 0\)</span> ».<br>
+Donc l’intersection ne change rien.</p></li>
+<li><p><strong>Remplacement du dénominateur :</strong> <span class="math display">\[
+\mathbb{P}(Y \neq 0) = 1 - \mathbb{P}(Y = 0).
+\]</span> C’est la propriété générale :<br>
+<span class="math inline">\(\displaystyle \mathbb{P}(B^c) = 1 - \mathbb{P}(B)\)</span>.</p></li>
+<li><p><strong>Utilisation de la formule de la loi de Poisson :</strong> <span class="math display">\[
+\mathbb{P}(Y = k) = e^{-\lambda} \frac{\lambda^k}{k!},
+\qquad
+\mathbb{P}(Y = 0) = e^{-\lambda}.
+\]</span></p></li>
+<li><p><strong>Substitution dans la formule :</strong> <span class="math display">\[
+\mathbb{P}(X = k)
+= \frac{e^{-\lambda} \frac{\lambda^k}{k!}}{1 - e^{-\lambda}}.
+\]</span></p></li>
+</ol>
+<section id="résultat-final" class="level3">
+<h3 class="anchored" data-anchor-id="résultat-final">Résultat final :</h3>
+<p><span class="math display">\[
+\boxed{\mathbb{P}(X = k) = \frac{e^{-\lambda} }{1 - e^{-\lambda}} \cdot \frac{\lambda^k}{k!}, \quad k = 1, 2, 3, \ldots}
+\]</span></p>
+</section>
+<section id="calcul-de-lespérance-de-x" class="level3">
+<h3 class="anchored" data-anchor-id="calcul-de-lespérance-de-x">2) Calcul de l’espérance de <span class="math inline">\(X\)</span></h3>
+<p>Nous avons la loi : <span class="math display">\[
+\mathbb{P}(X = k)
+= \frac{e^{-\lambda} \lambda^k}{k!\,(1 - e^{-\lambda})}, \qquad k \ge 1.
+\]</span></p>
+<p>L’espérance vaut en utilisant le théorème de transfert : <span class="math display">\[
+\mathbb{E}(X)
+= \sum_{k=1}^{+\infty} k \, \mathbb{P}(X = k)
+= \sum_{k=1}^{\infty} k \, \frac{e^{-\lambda} \lambda^k}{k!\,(1 - e^{-\lambda})}.
+\]</span></p>
+<p><strong>On factorise les constantes</strong> : <span class="math display">\[
+\mathbb{E}(X)
+= \frac{e^{-\lambda}}{1 - e^{-\lambda}}
+   \sum_{k=1}^{\infty} k \frac{\lambda^{k}}{k!}.
+\]</span></p>
+<hr>
+<p>Justification du passage suivant</p>
+<p>On réécrit : <span class="math display">\[
+k\frac{\lambda^{k}}{k!}
+= \lambda \frac{\lambda^{k-1}}{(k-1)!}.
+\]</span></p>
+<p>En effet : <span class="math display">\[
+\frac{k}{k!} = \frac{1}{(k-1)!}.
+\]</span></p>
+<p>Donc : <span class="math display">\[
+\sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}
+= \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}.
+\]</span></p>
+<p>On effectue le <strong>changement d’indice</strong> <span class="math inline">\(j = k - 1\)</span> :</p>
+<ul>
+<li>quand <span class="math inline">\(k = 1\)</span>, <span class="math inline">\(j = 0\)</span>,</li>
+<li>quand <span class="math inline">\(k \to \infty\)</span>, <span class="math inline">\(j \to \infty\)</span>.</li>
+</ul>
+<p>D’où : <span class="math display">\[
+\sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}
+= \sum_{j=0}^{\infty} \frac{\lambda^{j}}{j!}.
+\]</span></p>
+<p>Or cette somme est la <strong>série de Taylor de l’exponentielle</strong> : <span class="math display">\[
+\sum_{j=0}^{\infty} \frac{\lambda^{j}}{j!} = e^{\lambda}.
+\]</span></p>
+<p>On revient à l’expression de l’espérance</p>
+<p>On obtient donc : <span class="math display">\[
+\mathbb{E}(X)
+= \frac{e^{-\lambda}}{1 - e^{-\lambda}} \cdot \lambda e^{\lambda}.
+\]</span> Puis en simplifiant ( e^{-} e^{} = 1 ) : <span class="math display">\[    
+\boxed{
+\mathbb{E}(X) = \frac{\lambda}{1 - e^{-\lambda}}.
+}
+\]</span></p>
+<hr>
+</section>
+<section id="détermination-de-lambda-pour-une-espérance-de-3" class="level3">
+<h3 class="anchored" data-anchor-id="détermination-de-lambda-pour-une-espérance-de-3">Détermination de <span class="math inline">\(\lambda\)</span> pour une espérance de 3</h3>
+<p>En résolvant : <span class="math display">\[
+\frac{\lambda}{1 - e^{-\lambda}} = 3,
+\]</span></p>
+<div id="6975ebd6" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Utilisons Newton-Raphson pour résoudre l'équation</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> newton</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Définir la fonction</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> equation(lmbda):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lmbda <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span>lmbda)) <span class="op">-</span> <span class="dv">3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Résoudre avec Newton-Raphson</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>lambda_solution <span class="op">=</span> newton(equation, x0<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lambda_solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>2.8214393721220787</code></pre>
+</div>
+</div>
+<p>on obtient numériquement : <span class="math display">\[
+\boxed{\lambda \approx 2.82}.
+\]</span></p>
+<ol start="3" type="1">
+<li>Probabilité d’avoir une recherche de 6 mots ou plus</li>
+</ol>
+<p>On cherche : <span class="math display">\[
+\mathbb{P}(X \ge 6).
+\]</span></p>
+<p>Or : <span class="math display">\[
+\mathbb{P}(X \ge 6) = 1 - \mathbb{P}(X \le 5).
+\]</span></p>
+<p>Et comme (X) est la loi de Poisson tronquée : <span class="math display">\[
+\mathbb{P}(X \le 5)
+= \sum_{k=1}^{5} \mathbb{P}(X = k)
+= \sum_{k=1}^{5}
+\frac{e^{-\lambda} \lambda^k}{k!\,(1 - e^{-\lambda})}.
+\]</span></p>
+<p>On factorise pour simplifier : <span class="math display">\[  
+\mathbb{P}(X \le 5)
+= \frac{e^{-\lambda}}{1 - e^{-\lambda}}
+\sum_{k=1}^{5} \frac{\lambda^k}{k!}.
+\]</span></p>
+<p>Donc :</p>
+<p><span class="math display">\[
+\boxed{
+\mathbb{P}(X \ge 6)
+= 1 -
+\frac{e^{-\lambda}}{1 - e^{-\lambda}}
+\sum_{k=1}^{5} \frac{\lambda^k}{k!}
+}.
+\]</span></p>
+<hr>
+<p>Avec <span class="math inline">\(\lambda \approx 2.82\)</span>, on calcule :</p>
+<p>Le calcul numérique donne : <span class="math display">\[
+\boxed{\mathbb{P}(X \ge 6) \approx 0.07}
+\]</span></p>
+<p>soit <strong>environ 7%</strong>.</p>
+</section>
+</section>
+<section id="exercice-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-6">Exercice 6</h2>
+<p>La loi de probabilité jointe de deux variables <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> est définie par</p>
+<p><span class="math display">\[
+\mathbb{P}(X = x, Y = y)
+= \frac{1}{e^{2} \, y! \, (x - y)!}
+\qquad \text{pour } x \in \mathbb{N} \text{ et } y = 0, \ldots, x.
+\]</span></p>
+<ol type="1">
+<li>Trouver la loi de probabilité de <span class="math inline">\(X\)</span>.<br>
+</li>
+<li>En déduire la loi de probabilité de <span class="math inline">\(Y\)</span> sachant que <span class="math inline">\(X = x\)</span>.</li>
+</ol>
+</section>
+<section id="correction-exercice-6" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-6">Correction — Exercice 6</h2>
+<p>Avant de résoudre l’exercice, rappelons les formules de pascal :</p>
+<p><span class="math display">\[
+\binom{x}{y} = \frac{x!}{y! (x-y)!},
+\]</span> et <span class="math display">\[
+(a + b)^x = \sum_{y=0}^{x} \binom{x}{y} a^y b^{x-y}.
+\]</span></p>
+<p>Pour a = 1 et b = 1, on obtient : <span class="math display">\[
+2^x = \sum_{y=0}^{x} \binom{x}{y}.
+\]</span></p>
+<ol type="1">
+<li>Trouver la loi de probabilité de <span class="math inline">\(X\)</span></li>
+</ol>
+<p>Le support de X est <span class="math inline">\(\mathbb{N}\)</span>.</p>
+<p>Pour tout <span class="math inline">\(x \in \mathbb{N}\)</span>, on utilise la formule des probabilités totales : <span class="math display">\[
+\mathbb{P}(X = x)
+= \mathbb{P}(X = x, \Omega)
+= \mathbb{P}(X = x, \bigcup_{y=0}^{x} \{Y = y\})
+= \sum_{y=0}^{x} \mathbb{P}(X = x, Y = y).
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\Omega\)</span> est l’événement certain.</li>
+<li>Les événements {Y=0}, , {Y=x} sont disjoints et forment une partition des valeurs possibles de Y quand X=x.</li>
+<li>La formule générale de probabilité totale dit : <span class="math display">\[
+\mathbb{P}(A) = \sum_i \mathbb{P}(A \cap B_i)
+\quad \text{si les } B_i \text{ forment une partition}.
+\]</span></li>
+</ul>
+<p>En théorie de probabilité, on écrit souvent <span class="math inline">\(P(A, B)\)</span> pour <span class="math inline">\(P(A \cap B)\)</span>.</p>
+<p>On remplace par la loi jointe donnée : <span class="math display">\[
+\mathbb{P}(X = x)
+= \sum_{y=0}^{x} \frac{1}{e^{2} \, y! \, (x - y)!}.
+\]</span></p>
+<p>On factorise : <span class="math display">\[
+\mathbb{P}(X = x)
+= \frac{1}{e^{2}} \sum_{y=0}^{x} \frac{1}{y! \, (x - y)!}.
+\]</span></p>
+<p>On utilise la formule de pascal pour réécrire la somme : On utilise l’identité : <span class="math display">\[
+\binom{x}{y} = \frac{x!}{y! (x-y)!}.
+\]</span></p>
+<p>D’où : <span class="math display">\[
+\frac{1}{y!(x-y)!} = \frac{1}{x!}\binom{x}{y}.
+\]</span></p>
+<p>Ainsi : <span class="math display">\[
+\sum_{y=0}^{x} \frac{1}{y!(x-y)!}
+= \frac{1}{x!} \sum_{y=0}^{x} \binom{x}{y}.
+\]</span></p>
+<p>Or : <span class="math display">\[
+\sum_{y=0}^{x} \binom{x}{y} = 2^x,
+\]</span> car c’est le développement de ((1+1)^x).</p>
+<p>On obtient donc : On obtient : <span class="math display">\[
+\mathbb{P}(X = x)
+= \frac{1}{e^{2}} \cdot \frac{2^x}{x!}
+= e^{-2} \frac{2^x}{x!}.
+\]</span></p>
+<p>Nous reconnaissons la loi de Poisson de paramètre <span class="math inline">\(\lambda = 2\)</span>.</p>
+<p><span class="math display">\[
+\boxed{X \sim \text{Poisson}(2)}.
+\]</span></p>
+<ol start="2" type="1">
+<li>Soient <span class="math inline">\(x, y \in \mathbb{N}\)</span>. Nous avons</li>
+</ol>
+<p><span class="math display">\[
+\mathbb{P}(Y = y \mid X = x)
+= \frac{\mathbb{P}(X = x, Y = y)}{\mathbb{P}(X = x)},
+\]</span></p>
+<p>et cette probabilité est nulle si <span class="math inline">\(y &gt; x\)</span>.<br>
+Si <span class="math inline">\(y \le x\)</span>, nous avons :</p>
+<p><span class="math display">\[
+\mathbb{P}(Y = y \mid X = x)
+= \frac{1}{e^{2} y! (x - y)!} \times \frac{e^{2} x!}{2^{x}}
+\]</span></p>
+<p><span class="math display">\[
+= \binom{x}{y} \left(\frac{1}{2}\right)^{y} \left(\frac{1}{2}\right)^{x - y}.
+\]</span></p>
+<p>Nous reconnaissons la densité d’une loi binomiale de paramètres <span class="math inline">\(m = x\)</span> et<br>
+<span class="math inline">\(p = \frac{1}{2}\)</span>.</p>
+<p>Donc : <span class="math display">\[
+\boxed{Y \mid X = x \sim \mathcal{B}\left(x, \frac{1}{2}\right)}.
+\]</span></p>
+</section>
+<section id="exercice-7" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-7">Exercice 7</h2>
+<p>Soient <span class="math inline">\(X_1, \ldots, X_n\)</span> une suite de variables aléatoires i.i.d. suivant une loi <span class="math inline">\(\mathcal{L}\)</span>. Nous supposons que les paramètres de la loi <span class="math inline">\(\mathcal{L}\)</span> sont entièrement caractérisés par les moments <span class="math inline">\(\mu_1 \equiv \mathbb{E}(X), \ldots, \mu_k \equiv \mathbb{E}(X^k)\)</span>. La <em>méthode des moments</em> consiste à estimer les paramètres de la loi <span class="math inline">\(\mathcal{L}\)</span> en remplaçant les moments inconnus par leur estimateur empirique</p>
+<p><span class="math display">\[
+\hat{\mu}_k = \frac{1}{n} \sum_{i=1}^n (X_i)^k.
+\]</span></p>
+<p>Nous supposons que les variables aléatoires <span class="math inline">\(X_1, \ldots, X_n\)</span> suivent une loi de Bernoulli de paramètre <span class="math inline">\(p\)</span>.</p>
+<ol type="1">
+<li>Exprimer <span class="math inline">\(p\)</span> en fonction du premier moment de <span class="math inline">\(X\)</span>.<br>
+</li>
+<li>En déduire une estimation de <span class="math inline">\(p\)</span> basée sur l’échantillon.</li>
+</ol>
+<p>Nous supposons que les variables aléatoires <span class="math inline">\(X_1, \ldots, X_n\)</span> suivent une loi binomiale de paramètres <span class="math inline">\(m\)</span> et <span class="math inline">\(p\)</span>.</p>
+<ol start="3" type="1">
+<li>Exprimer <span class="math inline">\(m\)</span> et <span class="math inline">\(p\)</span> en fonction des deux premiers moments de <span class="math inline">\(X\)</span>.<br>
+</li>
+<li>En déduire une estimation de <span class="math inline">\(m\)</span> et de <span class="math inline">\(p\)</span> basée sur l’échantillon.</li>
+</ol>
+<section id="correction-exercice-7" class="level3">
+<h3 class="anchored" data-anchor-id="correction-exercice-7">Correction Exercice 7</h3>
+<ol type="1">
+<li><p>Nous avons<br>
+<span class="math display">\[
+p = \mathbb{E}(X) = \mu_1.
+\]</span></p></li>
+<li><p>Le paramètre (p) est donc estimé par <span class="math display">\[
+\hat{p} = \hat{\mu}_1 = \frac{1}{n} \sum_{i=1}^n X_i.
+\]</span></p></li>
+</ol>
+<p>Notons que dans ce cas précis, il s’agit d’un estimateur sans biais.</p>
+<hr>
+<ol start="3" type="1">
+<li>Nous avons, pour une loi binomiale ((m,p)) : <span class="math display">\[
+\mathbb{E}(X) = mp
+\qquad\text{et}\qquad
+\operatorname{Var}(X) = \mathbb{E}(X^2) - \{\mathbb{E}(X)\}^2 = mp(1 - p).
+\]</span></li>
+</ol>
+<p>Nous en déduisons que <span class="math display">\[
+1 - p = \frac{\mu_2}{\mu_1} - \mu_1,
+\]</span></p>
+<p>puis <span class="math display">\[
+p = 1 - \frac{\mu_2}{\mu_1} + \mu_1,
+\]</span></p>
+<p>et <span class="math display">\[
+m = \frac{\mu_1}{1 - \frac{\mu_2}{\mu_1} + \mu_1}.
+\]</span></p>
+<hr>
+<ol start="4" type="1">
+<li>Nous obtenons les estimateurs par la méthode des moments :</li>
+</ol>
+<p><span class="math display">\[
+\hat{p} = 1 - \frac{\hat{\mu}_2}{\hat{\mu}_1} + \hat{\mu}_1,
+\]</span></p>
+<p><span class="math display">\[
+\hat{m} =
+\frac{\hat{\mu}_1}{1 - \frac{\hat{\mu}_2}{\hat{\mu}_1} + \hat{\mu}_1}.
+\]</span></p>
+<p>À noter que ces estimateurs n’ont pas de raison particulière d’être sans biais.</p>
+</section>
+</section>
+<section id="exercice-8" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-8">Exercice 8</h2>
+<p>Soit <span class="math inline">\(X \sim \text{Pois}(\lambda)\)</span>.</p>
+<ol type="1">
+<li><p>Donner la fonction génératrice des moments de <span class="math inline">\(X\)</span> et sa fonction caractéristique.</p></li>
+<li><p>Calculer <span class="math inline">\(\mathbb{E}(X^3)\)</span>.<br>
+</p></li>
+<li><p>Calculer la probabilité que <span class="math inline">\(X\)</span> soit impair.<br>
+Utiliser un développement en série entière de <span class="math inline">\(e^\lambda\)</span> et <span class="math inline">\(e^{-\lambda}\)</span>.</p></li>
+<li><p>Calculer <span class="math inline">\(\mathbb{E}(X!)\)</span>.</p></li>
+</ol>
+</section>
+<section id="correction-exercice-8" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-8">Correction — Exercice 8</h2>
+<p>Avant de commencer, rappelons que :</p>
+<p>{X impair} qui s’écrit en latex <span class="math inline">\(X \text{ impair}\)</span> est l’ensemble des issues où la variable aléatoire <span class="math inline">\(X\)</span> prend des valeurs impaires. Cet ensemble peut être représenté comme l’union des événements disjoints {X = 1}, {X = 3}, {X = 5}, etc.</p>
+<p>On peut donc écrire :</p>
+<p>L’événement <span class="math inline">\(X\)</span> est impair s’écrit :</p>
+<p><span class="math display">\[
+\{X \text{ impair}\}
+= \{\omega \in \Omega : X(\omega) \text{ est impair}\}
+\]</span></p>
+<p>Par définition d’un entier impair :</p>
+<p><span class="math display">\[  
+\{X \text{ impair}\}
+= \{\omega : X(\omega) = 1\}
+  \cup \{\omega : X(\omega) = 3\}
+  \cup \{\omega : X(\omega) = 5\}
+  \cup \cdots
+\]</span></p>
+<p>C’est-à-dire :</p>
+<p><span class="math display">\[
+\{X \text{ impair}\}
+= \{\omega \in \Omega : \exists\, k \in \mathbb{N}, \; X(\omega) = 2k + 1\}.
+\]</span></p>
+<p>En notation abrégée :</p>
+<p><span class="math display">\[
+\{X \text{ impair}\}
+= \{X = 1\} \cup \{X = 3\} \cup \{X = 5\} \cup \cdots
+\]</span></p>
+<p>et de manière compacte :</p>
+<p><span class="math display">\[
+\boxed{
+\{X \text{ impair}\}
+= \bigcup_{k=0}^{\infty} \{X = 2k + 1\}.
+}
+\]</span></p>
+<ol type="1">
+<li>Fonction génératrice des moments et fonction caractéristique</li>
+</ol>
+<p><span class="math inline">\(\textbf{1)}\)</span> Soit <span class="math inline">\(t &gt; 0\)</span>. Nous avons</p>
+<p><span class="math display">\[
+M_X(t)
+= \mathbb{E}\{\exp(tX)\}
+= e^{-\lambda} \sum_{k=0}^{+\infty} \exp(tk)\, \frac{\lambda^k}{k!}
+\]</span></p>
+<p><span class="math display">\[
+= e^{-\lambda} \sum_{k=0}^{+\infty} \frac{\{\lambda \exp(t)\}^k}{k!}
+= e^{-\lambda} \times \exp\{\lambda \exp(t)\}
+\]</span></p>
+<p><span class="math display">\[
+= \exp\{\lambda(\exp(t) - 1)\}.
+\]</span></p>
+<p>On vérifie au passage que la fonction génératrice des moments est ici bien définie pour tout <span class="math inline">\(t \in \mathbb{R}\)</span>.</p>
+<p>La fonction caractéristique se calcule de façon analogue :</p>
+<p><span class="math display">\[
+\varphi_X(t)
+= \mathbb{E}\{\exp(itX)\}
+= e^{-\lambda} \sum_{k=0}^{+\infty} \exp(itk)\, \frac{\lambda^k}{k!}
+\]</span></p>
+<p><span class="math display">\[
+= e^{-\lambda} \sum_{k=0}^{+\infty} \frac{\{\lambda \exp(it)\}^k}{k!}
+= e^{-\lambda} \times \exp\{\lambda \exp(it)\}
+\]</span></p>
+<p><span class="math display">\[
+= \exp\{\lambda(\exp(it) - 1)\}.
+\]</span></p>
+<ol start="2" type="1">
+<li>Calcul de <span class="math inline">\(\mathbb{E}(X^3)\)</span></li>
+</ol>
+<p>Nous utilisons la fonction génératrice des moments, qui est ici indéfiniment dérivable.</p>
+<p>Rappel : <span class="math display">\[
+M_X(t) = \exp\{\lambda(e^t - 1)\}.
+\]</span></p>
+<p>Nous calculons ses dérivées successives.</p>
+<section id="première-dérivée" class="level4">
+<h4 class="anchored" data-anchor-id="première-dérivée">Première dérivée</h4>
+<p><span class="math display">\[
+M_X'(t)
+= \lambda e^t \exp\{\lambda(e^t - 1)\}.
+\]</span> #### Deuxième dérivée</p>
+<p><span class="math display">\[
+M_X''(t)
+= \left(\lambda e^t + \lambda^2 e^{2t}\right)
+  \exp\{\lambda(e^t - 1)\}.
+\]</span> #### Troisième dérivée</p>
+<p><span class="math display">\[
+M_X^{(3)}(t)
+= \left(\lambda e^t + 3\lambda^2 e^{2t} + \lambda^3 e^{3t}\right)
+  \exp\{\lambda(e^t - 1)\}.
+\]</span> Nous pouvons maintenant obtenir le troisième moment.</p>
+<hr>
+</section>
+<section id="calcul-de-mathbbex3" class="level3">
+<h3 class="anchored" data-anchor-id="calcul-de-mathbbex3">Calcul de <span class="math inline">\(\mathbb{E}(X^3)\)</span></h3>
+<p>Par définition : <span class="math display">\[
+\mathbb{E}(X^3) = M_X^{(3)}(0).
+\]</span></p>
+<p>Comme <span class="math inline">\(e^{0}=1\)</span>, nous obtenons : <span class="math display">\[
+M_X^{(3)}(0)
+= \left(\lambda + 3\lambda^2 + \lambda^3\right)\exp\{0\}
+= \lambda^3 + 3\lambda^2 + \lambda.
+\]</span></p>
+<p><span class="math display">\[
+\boxed{\mathbb{E}(X^3)=\lambda^3 + 3\lambda^2 + \lambda.}
+\]</span></p>
+<ol start="3" type="1">
+<li>Calcul de la probabilité que <span class="math inline">\(X\)</span> soit impair</li>
+</ol>
+<p>Nous avons</p>
+<p><span class="math display">\[
+\mathbb{P}(X \text{ impair})
+= \mathbb{P}\left(\bigcup_{k=0}^{\infty} \{X = 2k + 1\}\right)
+= \sum_{k=0}^{\infty} \mathbb{P}(X = 2k + 1)
+\]</span></p>
+<p><span class="math display">\[
+= \sum_{k=0}^{\infty} e^{-\lambda} \frac{\lambda^{2k + 1}}{(2k + 1)!}
+= e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^{2k + 1}}{(2k + 1)!}.
+\]</span></p>
+<p>D’autre part, <span class="math display">\[
+e^\lambda = \sum_{k=0}^{+\infty} \frac{\lambda^k}{k!}
+= 1 + \lambda + \frac{\lambda^2}{2} + \frac{\lambda^3}{3!} + \frac{\lambda^4}{4!} + \cdots
+\]</span></p>
+<p>et <span class="math display">\[
+e^{-\lambda} = \sum_{k=0}^{+\infty} \frac{(-\lambda)^k}{k!}
+= 1 - \lambda + \frac{\lambda^2}{2} - \frac{\lambda^3}{3!} + \frac{\lambda^4}{4!} + \cdots
+\]</span></p>
+<p>Donc, <span class="math display">\[
+e^\lambda - e^{-\lambda}
+= \sum_{k=0}^{+\infty} \frac{\lambda^k}{k!}
++ \sum_{k=0}^{+\infty} \frac{(-1)^{k+1}\lambda^k}{k!}
+= 2 \sum_{k=0}^{+\infty} \frac{\lambda^{2k+1}}{(2k+1)!}.
+\]</span></p>
+<p>Et finalement, <span class="math display">\[
+\mathbb{P}(X \text{ impair})
+= \frac{e^{-\lambda}(e^\lambda - e^{-\lambda})}{2}
+= \frac{1 - e^{-2\lambda}}{2}.
+\]</span></p>
+<ol start="4" type="1">
+<li>Nous avons</li>
+</ol>
+<p><span class="math display">\[
+E(X!) = \sum_{k=0}^{+\infty} e^{-\lambda} \frac{\lambda^k}{k!} \times k!
+\]</span></p>
+<p><span class="math display">\[
+= e^{-\lambda} \sum_{k=0}^{+\infty} \lambda^k
+=
+\begin{cases}
+\dfrac{e^{-\lambda}}{1 - \lambda}, &amp; \text{si } |\lambda| &lt; 1, \\[6pt]
++\infty, &amp; \text{si } |\lambda| \ge 1.
+\end{cases}
+\]</span></p>
+</section>
+</section>
+<section id="exercice-9" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-9">Exercice 9</h2>
+<p>Soient (X_1, , X_n) une suite de variables aléatoires i.i.d. suivant une loi de Bernoulli de paramètre (p).<br>
+Trouver la loi de (X_1) sachant que (X_1 + + X_n = k).</p>
+<hr>
+</section>
+<section id="correction-exercice-9" class="level2">
+<h2 class="anchored" data-anchor-id="correction-exercice-9">Correction Exercice 9</h2>
+<p>Soit (x {0,1}). Nous avons, en utilisant la formule de Bayes :</p>
+<p><span class="math display">\[
+\mathbb{P}(X_1 = x \mid X_1 + \cdots + X_n = k)
+= \frac{\mathbb{P}(X_1 + \cdots + X_n = k \mid X_1 = x)\mathbb{P}(X_1 = x)}
+{\mathbb{P}(X_1 + \cdots + X_n = k)}.
+\]</span></p>
+<p>Or :</p>
+<p><span class="math display">\[
+\mathbb{P}(X_1 + \cdots + X_n = k) = \binom{n}{k} p^k (1-p)^{\,n-k},
+\]</span></p>
+<p>puisque (X_1 + + X_n (n,p)).</p>
+<hr>
+<p>Ensuite :</p>
+<p><span class="math display">\[
+X_2 + \cdots + X_n \sim \mathcal{B}(n-1,p),
+\]</span></p>
+<p>donc</p>
+<p><span class="math display">\[
+\mathbb{P}(X_2 + \cdots + X_n = k - x)
+= \binom{n-1}{k-x} p^{\,k-x} (1-p)^{\,n-1-k+x}.
+\]</span></p>
+<p>De plus :</p>
+<p><span class="math display">\[
+\mathbb{P}(X_1 = x) = p^x (1-p)^{\,1-x}.
+\]</span></p>
+<hr>
+<p>Nous obtenons finalement :</p>
+<p><span class="math display">\[
+\mathbb{P}(X_1 = x \mid X_1 + \cdots + X_n = k)
+= \frac{\binom{n-1}{k-x} p^{\,k-x}(1-p)^{\,n-1-k+x} \, p^x (1-p)^{\,1-x}}
+{\binom{n}{k} p^k (1-p)^{\,n-k}}.
+\]</span></p>
+<p>En simplifiant, on trouve :</p>
+<p><span class="math display">\[
+\mathbb{P}(X_1 = x \mid X_1 + \cdots + X_n = k)
+= \frac{\binom{n-1}{k-x}}{\binom{n}{k}}.
+\]</span></p>
+<p>On calcule les deux cas : - Si <span class="math inline">\(x = 0\)</span> : <span class="math display">\[
+  \mathbb{P}(X_1 = 0 \mid X_1 + \cdots + X_n = k)
+  = \frac{\binom{n-1}{k}}{\binom{n}{k}}
+  = \frac{(n-1)! \, k! \, (n-k)!}{(n-k)! \, (n)! \, k!}
+  = \frac{n-k}{n}.
+  \]</span> - Si <span class="math inline">\(x = 1\)</span> : <span class="math display">\[
+  \mathbb{P}(X_1 = 1 \mid X_1 + \cdots + X_n = k)
+  = \frac{\binom{n-1}{k-1}}{\binom{n}{k}}
+  = \frac{(n-1)! \, (k-1)! \, (n-k)!}{(n-k)! \, (n)! \, k!}
+  = \frac{k}{n}.
+  \]</span></p>
+<p>Donc</p>
+<p><span class="math display">\[
+\boxed{X_1 \mid (X_1 + \cdots + X_n = k) \sim \mathcal{B}\left(1, \frac{k}{n}\right)}.
+\]</span></p>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Jumbong\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
