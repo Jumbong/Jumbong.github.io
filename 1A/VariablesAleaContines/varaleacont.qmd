@@ -1,0 +1,2206 @@
+---
+title: "Variables aléatoires continues"
+---
+
+# 5 Variables aléatoires continues
+
+## Exercice 1
+
+Une variable aléatoire $X$ possède la fonction de densité
+
+$$
+f(x) = c x \quad \text{pour } 0 < x < 1.
+$$
+
+1. Trouver la valeur de $c$.  
+2. Calculer $\mathbb{P}(X < 0.5)$.  
+3. Calculer $\mathbb{E}(X)$.  
+4. Calculer la fonction génératrice des moments de $X$.
+
+## Correction — Exercice 1
+
+On considère la densité
+
+$$
+f(x) = c x \quad \text{pour } 0 < x < 1.
+$$
+
+---
+
+1. Détermination de $c$
+
+$f$ est une densité si et seulement si elle vérifie les deux conditions suivantes :
+
+1. $f(x) \ge 0$ pour tout $x \in \mathbb{R}$.  
+   C’est le cas ici si $c \ge 0$.
+2. L’intégrale de $f$ sur $\mathbb{R}$ vaut 1.  
+   Ici, cela revient à :
+
+
+$$
+\int_{-\infty}^{+\infty} f(x) \, dx = 1.
+$$
+
+Calcul :
+
+$$
+\int_{-\infty}^{+\infty} f(x) \, dx
+= \int_0^1 c x \, dx
+= c \left[ \frac{x^2}{2} \right]_0^1
+= \frac{c}{2}.
+$$
+
+Donc :
+
+$$
+\frac{c}{2} = 1 \quad \Longrightarrow \quad c = 2.
+$$
+
+---
+
+2. Calcul de $\mathbb{P}(X < 0.5)$
+
+$$
+\mathbb{P}(X < 0.5) = \int_{-\infty}^{0.5} f(x) \, dx
+= \int_0^{0.5} 2x \, dx.
+$$
+
+$$
+= 2 \left[ \frac{x^2}{2} \right]_0^{0.5}
+= (0.5)^2 = 0.25.
+$$
+
+---
+
+3. Calcul de $\mathbb{E}(X)$
+
+$$
+\mathbb{E}(X) = 
+= \int_{-\infty}^{+\infty} x \, f(x) \, dx
+= \int_0^1 x \cdot 2x \, dx
+= \int_0^1 2x^2 \, dx.
+$$
+
+$$
+\int_0^1 2x^2 \, dx = 2 \left[ \frac{x^3}{3} \right]_0^1 = \frac{2}{3}.
+$$
+
+Donc :
+
+$$
+\mathbb{E}(X) = \frac{2}{3}.
+$$
+
+---
+
+4. Fonction génératrice des moments (MGF)
+
+La fonction génératrice des moments est :
+
+soit $t \in \mathbb{R}$,
+$$
+M_X(t) = \mathbb{E}(e^{tX})
+= \int_{-\infty}^{+\infty} e^{tx} \, f(x) \, dx
+= \int_0^1 2x e^{tx} \, dx.
+$$
+
+On calcule l’intégrale par parties.
+
+Posons :
+
+- $u = x$ donc $du = dx$
+- $dv = e^{tx} dx$ donc $v = \frac{e^{tx}}{t}$
+
+Alors :
+
+Si $t \neq 0$,
+$$
+\int_0^1 x e^{tx} dx
+= \left[ \frac{x e^{tx}}{t} \right]_0^1
+- \int_0^1 \frac{e^{tx}}{t} dx.
+$$
+
+On obtient :
+
+$$
+\int_0^1 x e^{tx} dx
+= \frac{e^{t}}{t}
+- \frac{1}{t} \int_0^1 e^{tx} dx.
+$$
+
+Or :
+
+$$
+\int_0^1 e^{tx} dx
+= \left[ \frac{e^{tx}}{t} \right]_0^1
+= \frac{e^{t} - 1}{t}.
+$$
+
+Donc :
+
+$$
+\int_0^1 x e^{tx} dx
+= \frac{e^{t}}{t}
+- \frac{e^{t} - 1}{t^2}.
+$$
+
+Donc si $t \neq 0$,
+
+$$
+M_X(t) = 2 \left( 
+\frac{e^{t}}{t}
+- \frac{e^{t} - 1}{t^2}
+\right).
+$$
+
+Et si $t = 0$, on a :
+
+$$
+M_X(0) = \mathbb{E}(e^{0}) = \mathbb{E}(1) = 1.
+$$
+
+---
+
+Donc la fonction génératrice des moments est donnée par :
+$$
+\boxed{
+M_X(t) =
+\begin{cases}
+2 \left( 
+\frac{e^{t}}{t}
+- \frac{e^{t} - 1}{t^2}
+\right), & \text{si } t \neq 0, \\[6pt]
+1, & \text{si } t = 0.
+\end{cases}
+}
+$$
+
+## Exercice 2
+
+Soit la fonction définie par  
+$$f(x) = c\,x(1 - x)$$  
+pour $x \in [0,1]$, et $0$ sinon.
+
+1. Pour quelle valeur de $c$ est-ce une densité de probabilité ?
+
+2. Déterminer la fonction de répartition de cette loi et sa médiane.
+
+## Exercice 2 — Correction
+
+On considère la fonction :
+
+$$
+f(x) = c\,x(1-x), \quad x \in [0,1],
+$$
+
+et $f(x)=0$ sinon.
+
+---
+
+1) Pour quelle valeur de $c$ est-ce une densité ?
+
+Pour que $f$ soit une densité, il faut :
+
+$$
+\int_0^1 c\,x(1-x)\,dx = 1.
+$$
+
+Calculons l’intégrale :
+
+$$
+\int_0^1 x(1-x)\,dx
+= \int_0^1 (x - x^2)\,dx
+= \left[\frac{x^2}{2} - \frac{x^3}{3}\right]_0^1
+= \frac12 - \frac13
+= \frac16.
+$$
+
+Donc :
+
+$$
+c \cdot \frac{1}{6} = 1
+\quad \Longrightarrow \quad c = 6.
+$$
+
+---
+
+2) Fonction de répartition $F(x)$
+
+Pour $x < 0$ :
+$$
+F(x) = 0.
+$$
+
+Pour $x \in [0,1]$ :
+$$
+F(x) = \int_0^x 6\,t(1-t)\,dt.
+$$
+
+Calculons :
+
+$$
+\int_0^x 6(t - t^2)\,dt
+= 6\left[ \frac{t^2}{2} - \frac{t^3}{3} \right]_0^x
+= 6\left( \frac{x^2}{2} - \frac{x^3}{3} \right).
+$$
+
+Donc :
+
+$$
+F(x) = 3x^2 - 2x^3.
+$$
+
+ Pour $x > 1$ :
+$$
+F(x) = 1.
+$$
+
+---
+
+Médiane
+
+La médiane $m$ vérifie :
+
+$$
+F(m) = 0.5.
+$$
+
+Donc :
+
+$$
+3m^2 - 2m^3 = \frac12.
+$$
+
+Soit :
+
+$$
+2m^3 - 3m^2 + \frac12 = 0.
+$$
+
+Ceci est équivalent à :
+
+$$
+4m^3 - 6m^2 + 1 = 0.
+$$
+
+C'est une équation polynomiale du troisième degré.
+Une racine m de cette équation se trouve dans l'intervalle [0,1].
+
+Etant donné une telle équation, les racines s'écrivent comme le rapport des diviseurs du terme constant sur les diviseurs du coefficient dominant, qui est 4 dans ce cas.
+Les diviseurs de 1 sont $\pm 1$, et les diviseurs de 4 sont $\pm 1, \pm 2, \pm 4$.
+Donc les racines rationnelles possibles sont $\pm 1, \pm \frac{1}{2}, \pm \frac{1}{4}$.
+
+On doit choisir parmi ces valeurs celles qui sont dans l'intervalle [0,1], c'est-à-dire $1, \frac{1}{2}, \frac{1}{4}$.
+
+En testant ces valeurs dans l'équation, on trouve que la racine dans l'intervalle [0,1] est :
+$$
+m = \frac{1}{2}
+$$
+
+Donc la médiane est :
+$$
+\boxed{m = \frac{1}{2}}.
+$$
+
+Une autre méthode pour déterminer la médiane consiste à remarquer que la fonction de densité admet la droite d'équation $x = \frac{1}{2}$ comme axe de symétrie.
+
+Pour ce faire, on peut soit tracer la fonction de densité : 
+
+```{python}
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define density on R, zero outside [0,1]
+def f(x):
+    return np.where((x>=0)&(x<=1), 6*x*(1-x), 0)
+
+# Real line range
+x = np.linspace(-5, 5, 800)
+y = f(x)
+
+plt.figure(figsize=(7,4))
+plt.plot(x, y, linewidth=2)
+plt.axvline(0.5, linewidth=2, color='red', linestyle='--', label='x=0.5 (médiane)')
+plt.legend()
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.title("Density f(x)=6x(1-x) on the whole real line (0 outside [0,1])")
+plt.grid(True)
+plt.show()
+
+```
+
+Lorsque que la droite d'équation $x = a$, est un axe de symétrie pour une fonction $f$, dérivable, alors $f'(a) = 0$.
+
+Et dans notre cas, on trouve bien $f'(\frac{1}{2}) = 0$.
+Et $a = \frac{1}{2}$ est la médiane recherchée.
+
+## Exercice 3
+
+Supposons que la fonction de répartition d’une variable aléatoire $X$, correspondant au temps en mois avant décès pour une personne atteinte de cancer, est donnée par
+
+$$
+F(x) =
+\begin{cases}
+0, & x \le 0, \\
+1 - e^{-0.03 x^{1.2}}, & x > 0.
+\end{cases}
+$$
+
+1) Vérifier que $F$ est bien une fonction de répartition.  
+
+2) Calculer la probabilité de survivre au moins 12 mois.  
+
+3) Donner une densité de $X$.
+
+## Correction Exercice 3
+
+1) La fonction $F$ est croissante, continue sur $\mathbb{R}$, avec  
+$\displaystyle \lim_{x \to -\infty} F(x) = 0$  
+et  
+$\displaystyle \lim_{x \to +\infty} F(x) = 1$.  
+
+C’est donc bien une fonction de répartition.
+
+---
+
+2) Nous avons
+
+$$
+\mathbb{P}(X \ge 12)
+= 1 - F(12)
+= 55.3\%.
+$$
+
+---
+
+3) Une densité, obtenue par dérivation, vaut
+
+$$
+f(x) =
+\begin{cases}
+0, & x \le 0, \\[6pt]
+0.03\, x^{0.2} e^{-0.03 x^{1.2}}, & x > 0.
+\end{cases}
+$$
+
+## Exercice 4
+
+Soit la fonction $F$ définie par $F(x) = 1 - \exp(-x/2)$ pour $x > 0$, et $0$ sinon.
+
+1) Justifier que $F$ est une fonction de répartition.  
+2) Déterminer les quantiles d’ordres 0.25 et 0.75.  
+3) Soit $X$ une variable aléatoire suivant cette loi, calculer $\mathbb{P}(1 < X \le 2)$.
+
+---
+
+## Correction Exercice 4
+
+1)  
+Une fonction de répartition doit être croissante, cadlag (continue à droite, limites à gauche), avec
+
+$$
+\lim_{x \to -\infty} F(x) = 0
+\quad\text{et}\quad
+\lim_{x \to +\infty} F(x) = 1.
+$$
+
+La fonction $F(\cdot)$ est nulle sur $]-\infty, 0]$.  
+Pour tout $x \in ]0, +\infty[$, $F(\cdot)$ est dérivable en $x$ avec
+
+$$
+F'(x) = \frac{1}{2} \exp\left(-\frac{x}{2}\right) > 0,
+$$
+
+donc la fonction $F(\cdot)$ est bien croissante.  
+Elle est continue sur $\mathbb{R}$, donc en particulier continue à droite et avec des limites à gauche.  
+
+Nous obtenons également facilement que
+
+$$
+\lim_{x \to -\infty} F(x) = 0
+\quad\text{et}\quad
+\lim_{x \to +\infty} F(x) = 1.
+$$
+
+---
+
+2) Quantiles
+
+On cherche $x = F^{-1}(0.25)$ :
+
+$$
+F(x) = 1 - \exp\left(-\frac{x}{2}\right) = \frac14
+\;\Longleftrightarrow\;
+\exp\left(-\frac{x}{2}\right) = \frac34
+\;\Longleftrightarrow\;
+x = -2 \ln\left(\frac34\right).
+$$
+
+Ensuite, pour $x = F^{-1}(0.75)$ :
+
+$$
+F(x) = 1 - \exp\left(-\frac{x}{2}\right) = \frac34
+\;\Longleftrightarrow\;
+\exp\left(-\frac{x}{2}\right) = \frac14
+\;\Longleftrightarrow\;
+x = -2 \ln\left(\frac14\right).
+$$
+
+---
+
+3) Probabilité
+
+Par définition de la fonction de répartition,
+
+$$
+\mathbb{P}(1 < X \le 2)
+= F(2) - F(1)
+= \exp\left(-\frac{1}{2}\right) - \exp(-1).
+= 0.238.
+$$
+
+## Exercice 5
+
+Soient $Y$ et $Z$ deux variables aléatoires réelles.  
+Soit $U$ une variable aléatoire indépendante de $Y$ et de $Z$, suivant une loi de Bernoulli de paramètre $\alpha > 0$.
+
+Soit $X$ la variable aléatoire définie par
+
+$$
+X =
+\begin{cases}
+Y & \text{si } U = 1,\\[4pt]
+Z & \text{si } U = 0.
+\end{cases}
+$$
+
+Autrement dit, $X = Y$ avec probabilité $\alpha$ et $X = Z$ avec probabilité $1 - \alpha$.  
+On dit que la loi de $X$ est un *mélange de deux distributions*, ce que l’on note
+
+$$
+\mathbb{P}_X = \alpha \mathbb{P}_Y + (1 - \alpha)\mathbb{P}_Z.
+$$
+
+---
+
+1) Montrer que
+
+$$
+F_X(x) = \alpha F_Y(x) + (1 - \alpha)F_Z(x).
+$$
+
+---
+
+Soit $X$ une variable aléatoire de fonction de répartition $F_X$ définie par
+
+$$
+F_X(x) =
+\begin{cases}
+0 & \text{si } x < 0,\\[4pt]
+\dfrac{1}{8} & \text{si } x \in [0,1[,\\[8pt]
+\dfrac{x + 1}{4} & \text{si } x \in [1,2[,\\[8pt]
+\dfrac{3}{4} & \text{si } x \in [2,5[,\\[8pt]
+1 & \text{si } x \ge 5.
+\end{cases}
+$$
+
+---
+
+2) Représenter graphiquement la fonction $F_X$.
+---
+
+3) Exprimer la loi de $X$ sous la forme
+
+$$
+\mathbb{P}_X = \alpha \mathbb{P}_{\text{dis}} + (1 - \alpha)\mathbb{P}_{\text{cont}},
+$$
+
+où $\alpha \in [0,1]$,  
+$\mathbb{P}_{\text{dis}}$ est une loi de probabilité discrète,  
+et $\mathbb{P}_{\text{cont}}$ est une loi de probabilité continue, qu’on déterminera.
+
+### Correction Exercice 5
+
+1) Montrons que $F_X(x) = \alpha F_Y(x) + (1 - \alpha)F_Z(x)$.
+
+Nous savons que si $U = 1$, alors $X = Y$, et si $U = 0$, alors $X = Z$. De ce fait, pour exprimer la fonction de répartition de $X$, en fonction de celles de $Y$ et $Z$, nous devons parvenir à conditionner la variable aléatoire $X$ en fonction de la variable aléatoire $U$. 
+
+Pour cela, nous utilisons la formule des probabilités totales, suivi par la formule de Bayes.
+
+$$
+F_X(x) = \mathbb{P}(X \le x)
+= \mathbb{P}(X \le x \cap \Omega)
+= \mathbb{P}(X \le x \cap \{U = 1\}) + \mathbb{P}(X \le x \cap \{U = 0\}).
+$$
+
+Nous utilisons ensuite la formule de Bayes pour chaque terme :
+
+$$
+F_X(x) = \mathbb{P}(X \le x \mid U = 1) \mathbb{P}(U = 1)
++ \mathbb{P}(X \le x \mid U = 0) \mathbb{P}(U = 0).
+$$
+
+Or, par définition de $X$ :
+$$
+\mathbb{P}(X \le x \mid U = 1) 
+= \mathbb{P}(Y \le x \mid U = 1)
+= \mathbb{P}(Y \le x) = F_Y(x),
+$$
+
+et
+$$
+\mathbb{P}(X \le x \mid U = 0) 
+= \mathbb{P}(Z \le x \mid U = 0)
+= \mathbb{P}(Z \le x) = F_Z(x).
+$$
+
+Car $U$ est indépendante de $Y$ et de $Z$.
+
+Donc,
+
+$$
+F_X(x) = F_Y(x) \mathbb{P}(U = 1)
++ F_Z(x) \mathbb{P}(U = 0).
+$$
+
+Comme $U$ suit une loi de Bernoulli de paramètre $\alpha$, nous avons :
+
+$$
+\mathbb{P}(U = 1) = \alpha
+\quad\text{et}\quad
+\mathbb{P}(U = 0) = 1 - \alpha.
+$$  
+
+Donc finalement :
+
+$$
+F_X(x) = \alpha F_Y(x) + (1 - \alpha) F_Z(x).
+$$
+
+2) Représentation graphique de la fonction $F_X$.
+
+```{python} 
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def F(x):
+    x = np.asarray(x)
+    return np.where(
+        x < 0, 0,
+        np.where(
+            x < 1, 1/8,
+            np.where(
+                x < 2, (x + 1)/4,
+                np.where(
+                    x < 5, 3/4,
+                    1
+                )
+            )
+        )
+    )
+
+# Segments de la fonction de répartition
+segments_horizontaux = [
+    (-10, 0, 0),     # de x=-10 à x=0 : F=0
+    (0, 1, 1/8),     # de x=0 à x=1 : F=1/8
+    (2, 5, 3/4),     # de x=2 à x=5 : F=3/4
+    (5, 10, 1)       # de x=5 à x=10 : F=1
+]
+
+plt.figure(figsize=(12, 5))
+
+# Tracé des segments horizontaux
+for x_start, x_end, y_val in segments_horizontaux:
+    plt.hlines(y_val, x_start, x_end, colors="blue", linewidth=2)
+
+# Tracé du segment linéaire entre x=1 et x=2 : F(x) = (x+1)/4
+x_linear = np.linspace(1, 2, 100)
+y_linear = (x_linear + 1) / 4
+plt.plot(x_linear, y_linear, 'b-', linewidth=2)
+
+# Points ouverts (limite à gauche non incluse)
+x_open = [0, 1, 5]
+y_open = [0, 1/8, 3/4]
+plt.scatter(x_open, y_open, facecolors="none", edgecolors="black", s=80, zorder=3, linewidths=2)
+
+# Points fermés (valeur incluse)
+x_closed = [0, 1, 2, 5]
+y_closed = [1/8, 2/4, 3/4, 1]
+plt.scatter(x_closed, y_closed, color="black", s=80, zorder=3)
+
+# Format graphique
+plt.xlabel("x", fontsize=12)
+plt.ylabel("$F_X(x)$", fontsize=12)
+plt.title("Fonction de répartition $F_X(x)$", fontsize=14)
+plt.grid(True, linestyle="--", alpha=0.4)
+plt.xlim(-10, 10)
+plt.ylim(-0.05, 1.05)
+
+# Définir les graduations sur l'axe des x
+plt.xticks([0, 1, 2, 3, 4, 5])
+
+# Ajout de repères pour les valeurs importantes
+plt.axhline(y=1/8, color='gray', linestyle=':', alpha=0.3)
+plt.axhline(y=1/2, color='gray', linestyle=':', alpha=0.3)
+plt.axhline(y=3/4, color='gray', linestyle=':', alpha=0.3)
+plt.axvline(x=0, color='gray', linestyle=':', alpha=0.3)
+plt.axvline(x=1, color='gray', linestyle=':', alpha=0.3)
+plt.axvline(x=2, color='gray', linestyle=':', alpha=0.3)
+plt.axvline(x=5, color='gray', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+Les points de discontinuité sont représentés par des cercles ouverts (limite à gauche non incluse) et des cercles pleins (valeur incluse) : 0, 1 et 5.
+
+3) Expression de la loi de $X$ sous la forme d’un mélange d'une loi discrète et d’une loi continue.
+
+Nous savons que si $P_{cont}$ est une loi de probabilité continue, alors $P_{cont}(X = x) = 0$ pour tout $x \in \mathbb{R}$.
+
+De ce fait, si nous devons écrire la loi de $X$ comme un mélange d'une loi discrète et d’une loi continue, ie 
+$$
+\mathbb{P}_X = \alpha \mathbb{P}_{dis} + (1 - \alpha)\mathbb{P}_{cont},
+$$
+
+alors aux points de discontinuité de la fonction de répartition $F_X$, la partie continue ne contribue pas à la probabilité. C'est-à-dire que pour tout $x \in {0,1,5}$, nous avons :
+
+$$
+\mathbb{P}_X(X = x) = \alpha \mathbb{P_{dis}(X = x)} + (1 - \alpha) \mathbb{P_{cont}(X = x)}
+= \alpha \mathbb{P_{dis}(X = x)} + 0
+= \alpha \mathbb{P_{dis}(X = x)}.
+$$
+
+Donc, nous avons les équations suivantes :
+
+$$
+\mathbb{P_X(X = 0)} = \alpha \mathbb{P_{dis}(X = 0)}
+$$
+
+$$
+\mathbb{P_X(X = 1)} = \alpha \mathbb{P_{dis}(X = 1)}
+$$
+
+$$
+\mathbb{P_X(X = 5)} = \alpha \mathbb{P_{dis}(X = 5)}.
+$$
+
+Ces trois équations ci-dessus nous permettent de déterminer la loi discrète $\mathbb{P_{dis}}$ et le paramètre $\alpha$.
+
+En effet, en sommant les probabilités aux points de discontinuité, nous avons :
+
+$$
+\mathbb{P_X(X = 0)} + \mathbb{P_X(X = 1)} + \mathbb{P_X(X = 5)}
+= \alpha \left( \mathbb{P_{dis}(X = 0)} + \mathbb{P_{dis}(X = 1)} + \mathbb{P_{dis}(X = 5)} \right).
+$$
+
+Donc si nous définissons la fonction discrète $\mathbb{P_{dis}}$ comme ayant 0, 1 et 5 comme seuls points de masse, nous avons :
+$$
+\mathbb{P_{dis}(X = 0)} + \mathbb{P_{dis}(X = 1)} + \mathbb{P_{dis}(X = 5)} = 1.
+$$
+
+Dans ce cas, nous obtenons :
+
+$$
+\alpha = \mathbb{P_X(X = 0)} + \mathbb{P_X(X = 1)} + \mathbb{P_X(X = 5)}.
+$$
+
+Calculons les probabilités aux points de discontinuité à l'aide de la fonction de répartition $F_X$.
+
+$$
+\mathbb{P_X(X = 0)} = F_X(0) - F_X(0^-) = \frac{1}{8} - 0 = \frac{1}{8}.
+$$
+
+$$
+\mathbb{P_X(X = 1)} = F_X(1) - F_X(1^-) = \frac{2}{4} - \frac{1}{8} = \frac{3}{8}.
+$$
+
+$$
+\mathbb{P_X(X = 5)} = F_X(5) - F_X(5^-) = 1 - \frac{3}{4} = \frac{1}{4}.
+$$
+
+Et nous obtenons la loi de $P_{dis}$ :
+
+$$
+\mathbb{P_{dis}(X = 0)} = \frac{\frac{1}{8}}{\alpha} = \frac{1}{6},
+\quad
+\mathbb{P_{dis}(X = 1)} = \frac{\frac{3}{8}}{\alpha} = \frac{1}{2},
+\quad
+\mathbb{P_{dis}(X = 5)} = \frac{\frac{1}{4}}{\alpha} = \frac{1}{3}.
+$$
+
+La fonction de répartition correspondante est donc :
+
+$$F_{dis}(x) =
+\begin{cases}
+0 & \text{si } x < 0,\\[4pt]
+\dfrac{1}{6} & \text{si } x \in [0,1[,\\[8pt]
+\dfrac{2}{3} & \text{si } x \in [1,5[,\\[8pt]
+1 & \text{si } x \ge 5.
+\end{cases}
+$$
+
+Ceci nous permet de trouver facilement la fonction de répartition de la partie continue.
+
+En effet, nous avons :
+
+$$
+F_X(x) = \alpha F_{dis}(x) + (1 - \alpha) F_{cont}(x).
+$$
+
+Donc,
+
+$$
+F_{cont}(x) = \frac{F_X(x) - \alpha F_{dis}(x)}{1 - \alpha}.
+$$
+
+Ce qui nous donne après calcul :
+
+$$
+F_{\text{cont}}(x) =
+\begin{cases}
+0 & \text{si } x < 1,\\[4pt]
+x - 1 & \text{si } x \in [1,2[,\\[8pt]
+1 & \text{si } x \ge 2.
+\end{cases}
+$$
+
+On peut vérifier que cette fonction est bien une fonction de répartition (croissante, continue, avec des limites 0 et 1 aux extrémités). Elle est dérivable sur $\mathbb{R}$ avec une densité associée donnée par :
+
+$$
+f_{\text{cont}}(x) =
+\begin{cases}
+0 & \text{si } x < 1,\\[4pt]
+1 & \text{si } x \in [1,2[,\\[8pt]
+0 & \text{si } x \ge 2.
+\end{cases}
+$$
+
+Ce qui correspond à la densité d'une variable aléatoire uniformément distribuée sur l'intervalle $[1,2]$.
+
+---
+
+## Exercice 6
+
+Soit $X$ une variable aléatoire suivant une loi uniforme sur $[0,1]$, et soit
+
+$$
+Y = -\theta \ln(1 - X)
+$$
+
+avec $\theta > 0$.  
+Déterminer la fonction de répartition et la densité de $Y$.
+
+## Correction Exercice 6
+
+L’objectif de l’exercice est que vous soyez capables de maîtriser les différentes techniques de calcul de la densité pour une fonction d’une v.a.  
+
+
+Notons tout d’abord que la fonction
+
+$$
+g : [0,1[ \longrightarrow \mathbb{R}, \qquad x \longmapsto -\theta \ln(1 - x)
+$$
+
+est dérivable sur $[0,1[$, à valeurs dans $\mathbb{R}^+$, avec
+
+$$
+g'(x) = \frac{\theta}{1 - x} > 0,
+$$
+
+donc la fonction $g$ est de plus croissante sur $[0,1[$.
+
+Nous pouvons obtenir la fonction de répartition de $Y$ par calcul direct, puis en déduire la densité de $Y$.  
+Nous pouvons également utiliser le résultat donnant la densité de la transformation d’une variable aléatoire par une fonction croissante.
+
+Le calcul direct donne, pour tout $x \in \mathbb{R}$ :
+
+$$
+F_Y(x) = \mathbb{P}(Y \le x)
+= \mathbb{P}\{\ln(1-X) \ge -x/\theta\}
+= \mathbb{P}\left\{ X \le 1 - \exp\!\left(-\frac{x}{\theta}\right) \right\}.
+$$
+
+Ainsi,
+
+$$
+F_Y(x) =
+\begin{cases}
+0, & \text{si } x < 0,\\[6pt]
+1 - \exp(-x/\theta), & \text{si } x \ge 0,
+\end{cases}
+$$
+
+en utilisant le fait que la fonction de répartition de la loi uniforme sur $[0,1]$ vaut :
+
+$$
+F_X(x) =
+\begin{cases}
+0, & x < 0,\\
+x, & 0 \le x < 1,\\
+1, & x \ge 1.
+\end{cases}
+$$
+
+Nous reconnaissons la fonction de répartition d’une loi exponentielle de paramètre $1/\theta$.
+Pour tout $x>0$, la densité de $Y$ vaut :
+
+$$
+f_Y(x) = \frac{1}{\theta}\exp\!\left(-\frac{x}{\theta}\right).
+$$
+
+---
+
+Par la méthode de la transformation d’une variable aléatoire
+
+En utilisant le résultat donnant la densité d’une variable transformée par une fonction croissante :
+
+$$
+f_Y(y) = \left|\frac{1}{g'(g^{-1}(y))}\right| \, f_X(g^{-1}(y)).
+$$
+
+La fonction réciproque est :
+
+$$
+y = g(x) = -\theta \ln(1-x)
+\quad\Longleftrightarrow\quad
+x = g^{-1}(y) = 1 - \exp\!\left(-\frac{y}{\theta}\right).
+$$
+
+On obtient alors :
+
+$$
+g'(x) = \frac{\theta}{1-x},
+\qquad
+g'(g^{-1}(y)) = \frac{\theta}{1 - (1-e^{-y/\theta})}
+= \theta e^{y/\theta}.
+$$
+
+Donc :
+
+$$
+f_Y(y)
+= \left|\frac{1}{g'(g^{-1}(y))}\right| f_X(g^{-1}(y))
+= \frac{1}{\theta e^{y/\theta}} \times 1
+= \frac{1}{\theta} e^{-y/\theta},
+\quad y \ge 0.
+$$
+
+---
+
+Par la méthode de la fonction muette
+
+Soit $\varphi$ une fonction continue bornée. Alors :
+
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \mathbb{E}\{\varphi(-\theta\ln(1-X))\}
+= \int_{\mathbb{R}} \varphi(-\theta\ln(1-x)) f_X(x)\, dx.
+$$
+
+Comme $X\sim \text{Unif}(0,1)$ :
+
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_0^1 \varphi(-\theta\ln(1-x))\, dx.
+$$
+
+Avec le changement de variable :
+
+$$
+y = -\theta\ln(1-x)
+\quad\Longleftrightarrow\quad
+x = 1 - e^{-y/\theta},
+\qquad
+dx = \frac{1}{\theta} e^{-y/\theta}\, dy,
+$$
+
+on obtient :
+
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_0^{+\infty} \varphi(y)\, \frac{1}{\theta} e^{-y/\theta}\, dy
+= \int_{\mathbb{R}} \varphi(y) f_Y(y)\, dy,
+$$
+
+avec
+
+$$
+f_Y(y) = \frac{1}{\theta} e^{-y/\theta},\qquad y\ge 0.
+$$
+
+
+## Exercice 7
+
+Soit $X$ une variable aléatoire de densité $f_X(x) = 2x$ pour $x \in [0,1]$ et $0$ sinon.
+
+1. Déterminer la fonction de répartition et la densité de $Y = 1/X$.
+
+2. Déterminer la fonction de répartition et la densité de $Z = \ln(1/X)$.
+
+## Correction Exercice 7
+
+1. Fonction de répartition et densité de $Y = 1/X$
+
+Avant de déteminer la fonction de répartition de $Y$, prenons une minute pour déterminer l'ensemble des valeurs que peut prendre $Y$ ou le *support* de $Y$.
+
+Comme le support de $X$ est $[0,1]$, et que $Y = 1/X$, on a :
+- lorsque $X$ tend vers $0$ par valeurs positives, $Y$ tend vers $+\infty$,
+- lorsque $X = 1$, $Y = 1$.
+Donc le support de $Y$ est $[1, +\infty[$.  
+Calculons la fonction de répartition de $Y$.
+
+La fonction de répartition se calcule toujours sur l'ensemble $\mathbb{R}$.
+
+soit $y \in \mathbb{R}$,
+
+$$
+F_Y(y) = \mathbb{P}(Y \le y)
+= \mathbb{P}\left(\frac{1}{X} \le y\right)
+= \mathbb{P}\left(X \ge \frac{1}{y}\right).
+$$
+
+$$
+F_Y(y) = 1 - \mathbb{P}\left(X < \frac{1}{y}\right)
+= 1 - F_X\left(\frac{1}{y}\right).
+$$
+
+Donc :
+
+si $y < 1$, alors $\frac{1}{y} > 1$ et donc $F_X\left(\frac{1}{y}\right) = 1$, donc
+$$
+F_Y(y) = 0.
+$$
+si $y \ge 1$, alors $\frac{1}{y} \in [0,1]$ et donc
+$$
+F_X\left(\frac{1}{y}\right) = \left(\frac{1}{y}\right)^2 = \frac{1}{y^2},
+$$
+donc
+$$
+F_Y(y) = 1 - \frac{1}{y^2}.
+$$
+
+Donc la fonction de répartition de $Y$ est donnée par :
+$$
+F_Y(y) =
+\begin{cases}
+0, & y < 1, \\[6pt]
+1 - \frac{1}{y^2}, & y \ge 1.
+\end{cases}
+$$
+
+Calculons la densité de $Y$.
+Pour $y < 1$, $F_Y(y) = 0$, donc $f_Y(y) = 0$.
+Pour $y \ge 1$,
+$$
+f_Y(y) = \frac{d}{dy} F_Y(y)
+= \frac{d}{dy} \left(1 - \frac{1}{y^2}\right)
+= \frac{2}{y^3}.
+$$  
+Donc la densité de $Y$ est donnée par :
+$$
+f_Y(y) =
+\begin{cases}
+0, & y < 1, \\[6pt]
+\frac{2}{y^3}, & y \ge 1.
+\end{cases}
+$$
+
+Nous pouvons vérifier que $f_Y$ est bien une densité, en appliquant la méthode de la fonction muette :
+Soit $\varphi$ une fonction continue bornée. Alors :
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \mathbb{E}\{\varphi(1/X)\}
+= \int_{\mathbb{R}} \varphi(1/x) f_X(x)\, dx.
+$$
+Comme $X$ a pour densité $f_X(x) = 2x$ pour $x \in [0,1]$ et $0$ sinon, on a :
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_0^1 \varphi(1/x) 2x\, dx.
+$$
+Avec le changement de variable :
+$$
+y = 1/x
+\quad\Longleftrightarrow\quad
+x = 1/y,
+\qquad
+dx = -\frac{1}{y^2}\, dy,
+$$
+on obtient :
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_1^{+\infty} \varphi(y) 2 \cdot \frac{1}{y} \cdot \left(-\frac{1}{y^2}\right) dy
+= \int_1^{+\infty} \varphi(y) \frac{2}{y^3}\, dy
+= \int_{\mathbb{R}} \varphi(y) f_Y(y)\, dy,
+$$
+avec
+$$
+f_Y(y) =
+\begin{cases}
+0, & y < 1, \\[6pt]
+\frac{2}{y^3}, & y \ge 1.
+\end{cases}
+$$
+---
+
+2. Fonction de répartition et densité de $Z = \ln(1/X)$
+
+Avant de déteminer la fonction de répartition de $Z$, prenons une autre minute pour déterminer l'ensemble des valeurs que peut prendre $Z$ ou le *support* de $Z$.
+
+Comme le support de $X$ est $[0,1]$, et que $Z = \ln(1/X)$, on a :
+- lorsque $X$ tend vers $0$ par valeurs positives, $1/X$ tend vers $+\infty$, donc $Z$ tend vers $+\infty$,
+- lorsque $X = 1$, $1/X = 1$, donc $Z = \ln(1) = 0$.
+Donc le support de $Z$ est $[0, +\infty[$.  
+
+Calculons la fonction de répartition de $Z$.
+
+La fonction de répartition se calcule toujours sur l'ensemble $\mathbb{R}$.
+soit $z \in \mathbb{R}$,
+
+$$
+F_Z(z) = \mathbb{P}(Z \le z)
+= \mathbb{P}(\ln(1/X) \le z)
+= \mathbb{P}\left(1/X \le e^z\right)
+= \mathbb{P}\left(X \ge e^{-z}\right).
+$$
+
+$$
+F_Z(z) = 1 - \mathbb{P}\left(X < e^{-z}\right)
+= 1 - F_X\left(e^{-z}\right).
+$$
+
+Donc :
+si $z < 0$, alors $e^{-z} > 1$ et donc $F_X\left(e^{-z}\right) = 1$, donc
+$$
+F_Z(z) = 0.
+$$
+si $z \ge 0$, alors $e^{-z} \in [0,1]$ et donc
+$$
+F_X\left(e^{-z}\right) = \left(e^{-z}\right)^2 = e^{-2z},
+$$
+donc
+$$
+F_Z(z) = 1 - e^{-2z}.
+$$
+Donc la fonction de répartition de $Z$ est donnée par :
+$$
+F_Z(z) =
+\begin{cases}
+0, & z < 0, \\[6pt]
+1 - e^{-2z}, & z \ge 0.
+\end{cases}
+$$
+
+Calculons la densité de $Z$.
+Pour $z < 0$, $F_Z(z) = 0$, donc $f_Z(z) = 0$.
+Pour $z \ge 0$,
+$$
+f_Z(z) = \frac{d}{dz} F_Z(z)
+= \frac{d}{dz} \left(1 - e^{-2z}\right)
+= 2 e^{-2z}.
+$$  
+Donc la densité de $Z$ est donnée par :
+$$
+f_Z(z) =
+\begin{cases}
+0, & z < 0, \\[6pt]
+2 e^{-2z}, & z \ge 0.
+\end{cases}
+$$
+
+Donc $Z$ suit une loi exponentielle de paramètre $2$.
+
+Nous pouvons confirmer que $f_Z$ est bien une densité, en appliquant la méthode de la fonction muette :
+Soit $\varphi$ une fonction continue bornée. Alors :
+$$
+\mathbb{E}\{\varphi(Z)\}
+= \mathbb{E}\{\varphi(\ln(1/X))\}
+= \int_{\mathbb{R}} \varphi(\ln(1/x)) f_X(x)\, dx.
+$$
+Comme $X$ a pour densité $f_X(x) = 2x$ pour $x \in [0,1]$ et $0$ sinon, on a :
+$$
+\mathbb{E}\{\varphi(Z)\}
+= \int_0^1 \varphi(\ln(1/x)) 2x\, dx.
+$$
+Avec le changement de variable :
+$$
+z = \ln(1/x)
+\quad\Longleftrightarrow\quad
+x = e^{-z},
+\qquad
+dx = -e^{-z}\, dz,
+$$
+on obtient :
+$$
+\mathbb{E}\{\varphi(Z)\}
+= \int_0^{+\infty} \varphi(z) 2 \cdot e^{-z} \cdot \left(-e^{-z}\right) dz
+= \int_0^{+\infty} \varphi(z) 2 e^{-2z}\, dz
+= \int_{\mathbb{R}} \varphi(z) f_Z(z)\, dz,
+$$
+avec
+$$
+f_Z(z) =
+\begin{cases}
+0, & z < 0, \\[6pt]
+2 e^{-2z}, & z \ge 0.
+\end{cases}
+$$
+
+## Exercice 8
+
+Soit $X$ une variable aléatoire suivant une loi normale centrée réduite.  
+Déterminer la loi, l’espérance et la variance des variables aléatoires $|X|$, $X^2$ et $e^X$.
+
+## Correction Exercice 8
+
+1) Loi, espérance et variance de $|X|$
+
+Nous savons que la densité de $X$ est donnée par :
+$$
+f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}, \quad x \in \mathbb{R}.
+$$
+
+La densité de $|X|$ caractérise la loi de $|X|$. Nous pouvons la déterminer en utilisant la méthode de la fonction muette.
+
+Soit $\varphi$ une fonction continue bornée. Alors :
+
+$$
+\mathbb{E}\{\varphi(|X|)\}
+= \int_{\mathbb{R}} \varphi(|x|) f_X(x)\, dx.
+= \int_{-\infty}^0 \varphi(-x) f_X(x)\, dx + \int_0^{+\infty} \varphi(x) f_X(x)\, dx.
+$$
+
+Nous effectuons le changement de variable $y = -x$ dans la première intégrale :
+$$
+\mathbb{E}\{\varphi(|X|)\}
+= \int_0^{+\infty} \varphi(y) f_X(-y)\, dy + \int_0^{+\infty} \varphi(x) f_X(x)\, dx.
+$$
+
+Or, la densité de $X$ est une fonction paire, ie $f_X(-y) = f_X(y)$ pour tout $y \in \mathbb{R}$. Donc,
+$$
+\mathbb{E}\{\varphi(|X|)\}
+= \int_0^{+\infty} \varphi(y) f_X(y)\, dy + \int_0^{+\infty} \varphi(x) f_X(x)\, dx
+= 2 \int_0^{+\infty} \varphi(t) f_X(t)\, dt.
+$$
+
+On en déduit que la densité de $|X|$ est donnée par :
+$$
+f_{|X|}(t) =
+\begin{cases}
+2 f_X(t) = \frac{2}{\sqrt{2\pi}} e^{-t^2/2}, & t \ge 0, \\[6pt]
+0, & t < 0.
+\end{cases}
+$$
+Calculons l’espérance de $|X|$ :
+$$
+\mathbb{E}\{|X|\}
+= \int_{\mathbb{R}} t f_{|X|}(t)\, dt
+= \int_0^{+\infty} t \cdot \frac{2}{\sqrt{2\pi}} e^{-t^2/2}\, dt.
+$$
+
+En effectuant le changement de variable $u = t^2/2$, on obtient :
+$$
+\mathbb{E}\{|X|\}
+= \frac{2}{\sqrt{2\pi}} \int_0^{+\infty} e^{-u}\, du
+= \frac{2}{\sqrt{2\pi}} = \sqrt{\frac{2}{\pi}}.
+$$  
+
+Pour calculer la variance de $|X|$, nous avons besoin de calculer $\mathbb{E}\{|X|^2\} = \mathbb{E}\{X^2\}$ 
+
+Nous savons que pour une variable aléatoire suivant une loi normale centrée réduite, $\mathbb{E}\{X^2\} = 1$.  
+Donc,
+$$
+\text{Var}(|X|) = \mathbb{E}\{|X|^2\} - (\mathbb{E}\{|X|\})^2
+= 1 - \frac{2}{\pi} 
+$$
+
+2) Loi, espérance et variance de $X^2$
+
+Nous utilisons à nouveau la méthode de la fonction muette pour déterminer la densité de $X^2$.
+
+Soit $\varphi$ une fonction continue bornée. Alors :
+
+$$
+\mathbb{E}\{\varphi(X^2)\}
+= \int_{\mathbb{R}} \varphi(x^2) f_X(x)\, dx
+$$
+
+La fonction $x \mapsto \varphi(x^2) f_X(x)$ est paire, donc :
+$$
+\mathbb{E}\{\varphi(X^2)\}
+= 2 \int_0^{+\infty} \varphi(t^2) f_X(t)\, dt.
+$$
+
+En effectuant le changement de variable $y = t^2$, on obtient :
+$$
+\mathbb{E}\{\varphi(X^2)\}
+= \int_0^{+\infty} \varphi(y) \frac{1}{\sqrt{2\pi y}} e^{-y/2}\, dy.
+$$  
+
+On en déduit que la densité de $X^2$ est donnée par :
+$$
+f_{X^2}(y) =
+\begin{cases}
+\frac{1}{\sqrt{2\pi y}} e^{-y/2}, & y \ge 0, \\[6pt]
+0, & y < 0.
+\end{cases}
+$$
+
+On peut reconnaitre que la variable aléatoire $X^2$ suit une de $\chi^2$ de paramètre $1$. Dans ce cas, nous savons que :
+$$
+\mathbb{E}\{X^2\} = 1,
+\quad
+\text{Var}(X^2) = 2.
+$$
+
+Sinon, nous pouvons calculer l’espérance et la variance de $X^2$ en utilisant en utilisant les propriétés de la loi normale centrée réduite.
+
+Calculons l’espérance de $X^2$ :
+$$
+\mathbb{E}\{X^2\} = 1.
+$$
+
+Calculons la variance de $X^2$ :
+
+Pour cela, nous avons besoin de calculer $\mathbb{E}\{X^4\}$.
+
+et
+$$
+\mathbb{E}\{X^4\} = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} x^4 e^{-x^2/2}\, dx.  
+$$
+
+
+Si nous posons $u = -\frac{x^2}{2}$,
+alors $du = -x\, dx$,
+
+Donc par une intégration par parties, nous obtenons :
+$$
+\mathbb{E}\{X^4\}
+= \left[ -\frac{1}{\sqrt{2\pi}} x^{3} e^{-x^{2}/2} \right]_{-\infty}^{+\infty}
+\;+\;
+\frac{3}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} x^{2} e^{-x^{2}/2} \, dx
+$$
+
+$$
+= 3 \mathbb{E}(X^{2}) = 3.
+$$
+
+Donc,
+$$
+\text{Var}(X^2) = \mathbb{E}\{X^4\} - (\mathbb{E}\{X^2\})^2
+= 3 - 1 = 2.
+$$
+
+3) Loi, espérance et variance de $e^X$  
+
+Nous utilisons encore une fois la méthode de la fonction muette pour déterminer la densité de $e^X$.
+
+Soit $\varphi$ une fonction continue bornée. Alors :
+
+$$
+\mathbb{E}\{\varphi(e^X)\}
+= \int_{\mathbb{R}} \varphi(e^x) f_X(x)\, dx
+= \int_{-\infty}^{+\infty} \varphi(e^x) \frac{1}{\sqrt{2\pi}} e^{-x^2/2}\, dx.
+$$
+
+En effectuant le changement de variable $y = e^x$, on obtient :
+$$
+\mathbb{E}\{\varphi(e^X)\}
+= \int_0^{+\infty} \varphi(y) \frac{1}{y \sqrt{2\pi}} e^{-(\ln y)^2/2}\, dy.
+$$
+
+On en déduit que la densité de $e^X$ est donnée par :
+
+$$
+f_{e^X}(y) =
+\begin{cases}
+\frac{1}{y \sqrt{2\pi}} e^{-(\ln y)^2/2}, & y > 0, \\[6pt]
+0, & y \le 0.
+\end{cases}
+$$
+
+Nous disons que $e^X$ suit une loi log-normale de paramètres $\mu = 0$ et $\sigma^2 = 1$.
+
+Calculons l’espérance de $e^X$ et la variance de $e^X$.:
+
+$$
+\mathbb{E}\{e^X\} = M_X(1),
+$$
+
+$$
+\mathbb{E}\{e^{2X}\} = M_X(2),
+$$
+
+où $M_X(t)$ est la fonction génératrice des moments de $X$.
+
+Donc il nous suffit de calculer $M_X(t)$.
+
+Nous avons :
+$$
+M_X(t) = \mathbb{E}\{e^{tX}\}
+= \int_{\mathbb{R}} e^{tx} f_X(x)\, dx
+= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{tx} e^{-x^2/2}\, dx.  
+$$
+
+$$
+= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{-\frac{1}{2}(x^2 - 2tx)}\, dx
+= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{-\frac{1}{2}(x - t)^2 + \frac{t^2}{2}}\, dx
+= e^{t^2/2} \cdot \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{-\frac{1}{2}(x - t)^2}\, dx.
+$$
+
+La dernière intégrale est égale à $1$ car c’est l’intégrale de la densité d’une loi normale centrée réduite. Donc,
+$$
+M_X(t) = e^{t^2/2}.
+$$
+Ainsi,
+$$
+\mathbb{E}\{e^X\} = M_X(1) = e^{1/2},
+$$
+$$
+\mathbb{E}\{e^{2X}\} = M_X(2) = e^{2}.
+$$
+Donc,
+$$
+\text{Var}(e^X) = \mathbb{E}\{e^{2X}\} - (\mathbb{E}\{e^X\})^2    
+= e^{2} - e^{1} = e(e - 1).
+$$
+
+
+## Exercice 9
+
+La loi Beta de paramètres $a, b > 0$ a pour densité
+
+$$
+f(x) = 
+\begin{cases}
+\dfrac{x^{a-1}(1-x)^{\,b-1}}{\displaystyle \int_{0}^{1} t^{a-1}(1-t)^{\,b-1} \, dt} & \text{si } x \in ]0,1[, \\[10pt]
+0 & \text{sinon}.
+\end{cases}
+$$
+
+Nous noterons 
+$$
+B(a,b) = \int_{0}^{1} t^{a-1}(1-t)^{\,b-1}\, dt.
+$$
+
+1) Soit $U$ une variable aléatoire de loi uniforme sur $[0,1]$.  
+Montrer que $U$ et $U^{2}$ suivent chacune une loi Beta, dont on précisera les paramètres.
+
+2) Montrer que, pour tous $a, b > 0$, on a
+
+$$
+B(a,b) = B(a+1,b) + B(a,b+1)
+\quad\text{et}\quad
+a\,B(a,b+1) = b\,B(a+1,b).
+$$
+
+En déduire que  
+$$
+(a+b)\,B(a+1,b) = a\,B(a,b).
+$$
+
+3) Soit $X$ une variable aléatoire suivant la loi Beta de paramètres $a,b > 0$.  
+Montrer que, pour tout entier $p \ge 1$, $X$ admet un moment d’ordre $p$, et donner une expression simple (ne dépendant pas de l’intégrale définissant la fonction Beta) de $\mathbb{E}(X^{p})$.
+
+4) En déduire l’espérance et la variance de $X$.
+
+## Correction Exercice 9
+
+ 1) Loi de $U$ et de $U^2$
+
+La variable aléatoire $U$ suit une loi uniforme sur $[0,1]$.  
+Sa densité vaut donc :
+
+$$
+f_U(x) = 1_{[0,1]}(x),
+$$
+
+ce qui correspond à une loi Beta de paramètres
+
+$$
+a = 1, \qquad b = 1.
+$$
+
+---
+
+**Loi de $Y = U^2$**
+
+Nous utilisons la méthode de la fonction muette pour déterminer la densité de $Y = U^2$.
+
+Pour toute fonction $\varphi$ continue bornée, on a :
+
+$$
+\mathbb{E}\{\varphi(U^2)\}
+  = \int_{0}^{1} \varphi(x^2)\, dx
+  = \int_{0}^{1} \varphi(y) \cdot \frac{1}{2\sqrt{y}}\, dy.
+$$
+
+Ainsi, la densité de $Y = U^2$ est :
+
+$$
+f_Y(y) = \frac{1}{2\sqrt{y}} \, 1_{]0,1]}(y).
+$$
+
+On reconnaît une loi Beta de paramètres :
+
+$$
+a = \frac12, \qquad b = 1.
+$$
+
+---
+
+2) Identités pour la fonction Beta
+
+On veut montrer :
+
+$$
+B(a,b) = B(a+1,b) + B(a,b+1).
+$$
+
+On écrit :
+
+$$
+B(a,b) - B(a+1,b) =
+\int_0^1 t^{a-1}(1-t)^{b-1} dt 
+- \int_0^1 t^{a}(1-t)^{b-1} dt
+$$
+
+soit :
+
+$$
+\int_0^1 t^{a-1}(1-t)^{b-1}(1-t)\, dt
+= \int_0^1 t^{a-1}(1-t)^{b}\, dt
+= B(a,b+1).
+$$
+
+D’où :
+
+$$
+B(a,b) = B(a+1,b) + B(a,b+1).
+$$
+
+---
+
+**Relation $aB(a,b+1) = b B(a+1,b)$**
+
+Par intégration par parties :
+
+$$
+B(a,b+1)
+= \int_0^1 t^{a-1}(1-t)^b dt
+= \left[ (1-t)^b \frac{t^a}{a} \right]_0^1
++ \frac{b}{a}\int_0^1 t^a (1-t)^{b-1} dt.
+$$
+
+Le terme de bord s’annule, donc :
+
+$$
+B(a,b+1)
+= \frac{b}{a} B(a+1,b).
+$$
+
+Ce qui est équivalent à :
+
+$$
+a B(a,b+1) = b B(a+1,b).
+$$
+
+---
+
+**Combinaison des identités**
+
+À partir de
+
+$$
+B(a,b) = B(a+1,b) + B(a,b+1)
+$$
+
+et
+
+$$
+B(a,b+1) = \frac{b}{a} B(a+1,b),
+$$
+
+on obtient :
+
+$$
+B(a,b) = \left(1 + \frac{b}{a}\right) B(a+1,b)
+= \frac{a+b}{a} B(a+1,b).
+$$
+
+Donc :
+
+$$
+(a+b) B(a+1,b) = a B(a,b).
+$$
+
+---
+
+3) Moments de la loi Beta
+
+Puisque $0 \le X \le 1$, tous les moments existent.
+
+Pour $p \ge 1$, on a :
+
+$$
+\mathbb{E}(X^p)
+= \int_0^1 x^p f_X(x)\, dx
+= \frac{\int_0^1 x^{a+p-1}(1-t)^{b-1} dt}{\int_0^1 t^{a-1}(1-t)^{b-1} dt}
+$$
+
+soit :
+
+$$
+\mathbb{E}(X^p)
+= \frac{B(a+p,b)}{B(a,b)}.
+$$
+
+En utilisant l’identité montrée précédemment :
+
+$$
+\frac{B(a+p,b)}{B(a,b)}
+= \frac{(a+p-1)!}{(a-1)!} \times \frac{(a+b-1)!}{(a+b+p-1)!}.
+$$
+
+---
+
+### 4) Espérance et variance
+
+#### Espérance
+
+$$
+\mathbb{E}(X)
+= \frac{B(a+1,b)}{B(a,b)}
+= \frac{a}{a+b}.
+$$
+
+#### Moment d’ordre 2
+
+$$
+\mathbb{E}(X^2)
+= \frac{B(a+2,b)}{B(a,b)}
+= \frac{a(a+1)}{(a+b)(a+b+1)}.
+$$
+
+#### Variance
+
+$$  
+\begin{aligned}
+\mathrm{Var}(X)
+&= \mathbb{E}(X^2) - \{\mathbb{E}(X)\}^2 \\[6pt]
+&= \frac{a(a+1)}{(a+b)(a+b+1)}
+  - \left(\frac{a}{a+b}\right)^2.
+\end{aligned}
+$$
+
+Simplification :
+
+$$
+\mathrm{Var}(X)
+= \frac{ab}{(a+b)^2 (a+b+1)}.
+$$
+
+
+## Exercice 10
+
+On dit qu’une variable aléatoire $X$ suit une loi de Weibull de paramètres $\alpha, \beta > 0$ lorsqu’elle a pour densité
+
+$$
+f_X(x) =
+\begin{cases}
+\alpha \beta x^{\beta - 1} e^{-\alpha x^\beta}, & x > 0, \\[4pt]
+0, & \text{sinon}.
+\end{cases}
+$$
+
+La loi de Weibull est utilisée en ingénierie pour l’analyse des défaillances (durée de vie d’un appareil) ou la variation de la contrainte à la rupture d’un matériau.
+
+Dans tout l’exercice, on notera :
+
+$$
+\Gamma(a) = \int_0^{+\infty} t^{a-1} e^{-t} \, dt
+$$
+
+la fonction Gamma d’Euler.
+
+1. Calculer la fonction de répartition $F_X$ de $X$.
+
+2. On appelle taux ou fonction de défaillance (hazard rate) de $X$ la fonction
+
+$$
+h_X(x) = \frac{f_X(x)}{1 - F_X(x)}
+\quad \text{pour } F_X(x) < 1.
+$$
+
+Déterminer l’expression de $h_X(x)$.
+
+3. Montrer que, pour tout entier $p \ge 1$, $X$ admet un moment d’ordre $p$, et donner une expression de $\mathbb{E}(X^p)$.
+
+4. En déduire l’espérance et la variance de $X$.
+
+## Correction Exercice 10
+
+1) Fonction de répartition
+
+Pour $x < 0$, $F_X(x) = 0$.
+
+Pour $x \ge 0$ :
+
+$$
+F_X(x)
+= \int_0^x f_X(t)\, dt
+= \int_0^x \alpha \beta t^{\beta - 1} e^{-\alpha t^\beta} \, dt.
+$$
+
+On reconnaît la dérivée :
+
+$$
+\frac{d}{dt}\left( - e^{-\alpha t^\beta} \right)
+= \alpha \beta t^{\beta - 1} e^{-\alpha t^\beta}.
+$$
+
+Donc :
+
+$$
+F_X(x)
+= \left[ - e^{-\alpha t^\beta} \right]_{0}^{x}
+= 1 - e^{-\alpha x^\beta}.
+$$
+
+---
+
+2) Fonction de défaillance (hazard rate)
+
+Pour $x < 0$, $h_X(x) = 0$.  
+Pour $x \ge 0$ :
+
+$$
+h_X(x)
+= \frac{f_X(x)}{1 - F_X(x)}
+= \frac{\alpha \beta x^{\beta - 1} e^{-\alpha x^\beta}}{e^{-\alpha x^\beta}}
+= \alpha \beta x^{\beta - 1}.
+$$
+
+---
+
+3) Moment d’ordre \(p\)
+
+On veut montrer que :
+
+$$
+\mathbb{E}(X^p)
+= \int_0^{+\infty} x^p f_X(x) \, dx
+= \alpha \beta \int_0^{+\infty} x^{p + \beta - 1} e^{-\alpha x^\beta} \, dx.
+$$
+
+La fonction est intégrable pour tout $p \ge 1$ car :
+
+$$
+e^{-\alpha x^\beta} = o\!\left( \frac{1}{x^{p+\beta+1}} \right),
+\quad x \to +\infty.
+$$
+
+---
+
+**Changement de variable**
+
+Posons :
+
+$$
+y = \alpha x^\beta,
+\qquad x = \left( \frac{y}{\alpha} \right)^{1/\beta},
+\qquad dx = \frac{1}{\beta} \alpha^{-1/\beta} y^{1/\beta - 1} dy.
+$$
+
+Alors :
+
+$$
+\mathbb{E}(X^p)
+= \alpha \beta \int_0^{+\infty}
+\left( \frac{y}{\alpha} \right)^{\frac{p+\beta}{\beta}}
+e^{-y}
+\cdot \frac{1}{\beta} \alpha^{-1/\beta} y^{1/\beta - 1}
+\, dy.
+$$
+
+Simplification :
+
+$$
+\mathbb{E}(X^p)
+= \alpha^{-p/\beta}
+\int_0^{+\infty} y^{\frac{p}{\beta}} e^{-y} \, dy
+= \alpha^{-p/\beta} \Gamma\!\left( 1 + \frac{p}{\beta} \right).
+$$
+
+Donc pour tout $p \ge 1$ :
+
+$$
+\boxed{\mathbb{E}(X^p)
+= \alpha^{-p/\beta} \Gamma\!\left( 1 + \frac{p}{\beta} \right)}.
+$$
+
+---
+
+4) Espérance et variance
+
+- Pour $p = 1$ :
+
+$$
+\mathbb{E}(X)
+= \alpha^{-1/\beta} \Gamma\!\left( 1 + \frac{1}{\beta} \right).
+$$
+
+- Pour $p = 2$ :
+
+$$
+\mathbb{E}(X^2)
+= \alpha^{-2/\beta} \Gamma\!\left( 1 + \frac{2}{\beta} \right).
+$$
+
+- Variance :
+
+$$
+\mathrm{Var}(X)
+= \mathbb{E}(X^2) - \mathbb{E}(X)^2
+= \alpha^{-2/\beta} \Gamma\!\left( 1 + \frac{2}{\beta} \right)
+- \alpha^{-2/\beta}
+\Gamma^2\!\left( 1 + \frac{1}{\beta} \right).
+$$
+
+## Exercice 11
+
+Soient $\theta > 0$ et $X$ une variable aléatoire à densité $f_\theta$ définie par
+
+$$
+f_\theta(x) =
+\begin{cases}
+c_\theta \, x, & \text{si } x \in [0,\theta], \\[4pt]
+0, & \text{sinon}.
+\end{cases}
+$$
+
+Soit également $n \ge 2$ et $X_1, \ldots, X_n$ des variables aléatoires indépendantes de même loi que $X$.
+
+1. Calculer la constante $c_\theta$ pour que $f_\theta$ soit une densité de probabilité, puis la fonction de répartition de $X$, et enfin $\mathbb{E}(X)$ et $V(X)$.
+
+2. Nous posons 
+   $$
+   \overline{X}_n = \frac{1}{n} \sum_{k=1}^n X_k.
+   $$
+   Calculer $\mathbb{E}(\overline{X}_n)$ et $V(\overline{X}_n)$.
+
+3. Nous posons $M_n = \max(X_1, \ldots, X_n)$. Déterminer la fonction de répartition de $M_n$.
+
+4. Montrer que la loi de $M_n$ est à densité et calculer cette densité.
+
+5. Calculer $\mathbb{E}(M_n)$ et $V(M_n)$.
+
+## Correction Exercice 11
+
+1) Constante de normalisation et loi de $X$
+
+La constante $c_\theta$ doit vérifier :
+
+$$
+\int_0^\theta c_\theta x \, dx = 1
+\quad \Longrightarrow \quad
+c_\theta \left[ \frac{x^2}{2} \right]_0^\theta
+= c_\theta \frac{\theta^2}{2} = 1.
+$$
+
+Donc :
+
+$$
+c_\theta = \frac{2}{\theta^2}.
+$$
+
+La fonction de répartition de $X$ est :
+
+$$
+F_X(x) =
+\begin{cases}
+0, & x < 0, \\[4pt]
+\displaystyle \int_0^x \frac{2}{\theta^2} t \, dt
+= \frac{x^2}{\theta^2},
+& 0 \le x \le \theta, \\[10pt]
+1, & x > \theta.
+\end{cases}
+$$
+
+Moments :
+
+$$
+\mathbb{E}(X)
+= \frac{2}{\theta^2} \int_0^\theta x^2 \, dx
+= \frac{2}{\theta^2} \cdot \frac{\theta^3}{3}
+= \frac{2\theta}{3}.
+$$
+
+$$
+\mathbb{E}(X^2)
+= \frac{2}{\theta^2} \int_0^\theta x^3 \, dx
+= \frac{2}{\theta^2} \cdot \frac{\theta^4}{4}
+= \frac{\theta^2}{2}.
+$$
+
+Variance :
+
+$$
+V(X)
+= \mathbb{E}(X^2) - \mathbb{E}(X)^2
+= \frac{\theta^2}{2} - \left( \frac{2\theta}{3} \right)^2
+= \frac{\theta^2}{18}.
+$$
+
+---
+
+2) Moments de la moyenne $\overline{X}_n$ 
+
+Par linéarité :
+
+$$
+\mathbb{E}(\overline{X}_n)
+= \mathbb{E}(X)
+= \frac{2\theta}{3}.
+$$
+
+Variance (indépendance) :
+
+$$
+V(\overline{X}_n)
+= \frac{1}{n^2} \sum_{k=1}^n V(X_k)
+= \frac{1}{n} V(X)
+= \frac{\theta^2}{18n}.
+$$
+
+---
+
+3) Fonction de répartition de $M_n = \max(X_1, \ldots, X_n)$
+
+Pour $x < 0$, $P(M_n \le x) = 0$.  
+Pour $x \ge \theta$, $P(M_n \le x) = 1$.
+
+Pour $x \in [0,\theta]$, on a :
+
+$$
+P(M_n \le x)
+= P(X_1 \le x, \ldots, X_n \le x)
+= \prod_{i=1}^n F_X(x)
+= \left( \frac{x^2}{\theta^2} \right)^n
+= \frac{x^{2n}}{\theta^{2n}}.
+$$
+
+Donc :
+
+$$
+F_{M_n}(x)
+= \frac{x^{2n}}{\theta^{2n}}, \qquad x \in [0,\theta].
+$$
+
+---
+
+4) Densité de $M_n$
+
+On dérive la fonction de répartition :
+
+$$
+f_{M_n}(x)
+= \frac{d}{dx} \left( \frac{x^{2n}}{\theta^{2n}} \right)
+= \frac{2n \, x^{2n-1}}{\theta^{2n}}, \qquad x \in [0,\theta].
+$$
+
+Sinon, $f_{M_n}(x) = 0$.
+
+---
+
+5) Moments de $M_n$
+
+Pour l’espérance :
+
+$$
+\mathbb{E}(M_n)
+= \int_0^\theta x \, f_{M_n}(x) \, dx
+= \int_0^\theta \frac{2n x^{2n}}{\theta^{2n}} \, dx.
+$$
+
+Donc :
+
+$$
+\mathbb{E}(M_n)
+= \frac{2n}{\theta^{2n}}
+\left[ \frac{x^{2n+1}}{2n+1} \right]_0^\theta
+= \frac{2n}{2n+1} \theta.
+$$
+
+Calcul de \(\mathbb{E}(M_n^2)\) :
+
+$$
+\mathbb{E}(M_n^2)
+= \int_0^\theta \frac{2n x^{2n+1}}{\theta^{2n}} \, dx
+= \frac{2n}{\theta^{2n}}
+\left[ \frac{x^{2n+2}}{2n+2} \right]_0^\theta
+= \frac{2n}{2n+2} \theta^2
+= \frac{n}{n+1} \theta^2.
+$$
+
+Variance :
+
+$$
+V(M_n)
+= \mathbb{E}(M_n^2) - \mathbb{E}(M_n)^2
+= \frac{n}{n+1} \theta^2
+- \left( \frac{2n}{2n+1} \theta \right)^2.
+$$
+
+On obtient :
+
+$$
+V(M_n)
+= \theta^2 \left( \frac{n}{n+1}
+- \left( \frac{2n}{2n+1} \right)^2 \right).
+$$
+
+
+## Exercice 15
+
+Soit $X$ une variable aléatoire suivant une loi normale centrée réduite.  
+On pose
+
+$$
+Y = \min(X, 0).
+$$
+
+1. Déterminer la loi de $Y$.
+
+2. Montrer que $Y$ admet un moment d’ordre 2, et calculer l’espérance et la variance de $Y$.
+
+3. En déduire que $Z = \max(X, 0)$ admet un moment d’ordre 2 et calculer son espérance et sa variance.
+
+## Correction Exercice 15
+
+1) Loi de $Y = \min(X, 0)$
+
+Nous utilisons la méthode de la fonction muette pour déterminer la densité de $Y$.
+
+Soit $\varphi$ une fonction continue bornée. Alors :
+
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_{\mathbb{R}} \varphi(\min(x, 0)) f_X(x)\, dx.
+$$
+On décompose l’intégrale en deux parties :
+
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_{-\infty}^0 \varphi(x) f_X(x)\, dx
++ \int_0^{+\infty} \varphi(0) f
+_X(x)\, dx.
+$$
+
+Donc,
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_{-\infty}^0 \varphi(y) f_X(y)\, dy
++ \varphi(0) \int_0^{+\infty} f_X(x)\, dx.
+$$
+
+Nous savons que $X$ suit une loi normale centrée réduite, donc :
+$$
+\int_0^{+\infty} f_X(x)\, dx = \frac{1}{2}.
+$$
+
+Ainsi,
+$$
+\mathbb{E}\{\varphi(Y)\}
+= \int_{-\infty}^0 \varphi(y) f_X(y)\, dy
++ \frac{1}{2} \varphi(0).
+$$
+On en déduit que la densité de $Y$ est donnée par :
+$$
+f_Y(y) =
+\begin{cases}
+f_X(y), & y < 0, \\[6pt]
+\frac{1}{2}, & y = 0, \\[6pt]
+0, & y > 0.
+\end{cases}
+$$
+
+On aurait aussi pu écrire la fonction de répartition de $Y$ :
+
+On sait que le support de $Y$ est $(-\infty, 0]$.
+
+Pour $y < 0$,
+$$
+F_Y(y)
+= P(Y \le y)
+= P(\min(X, 0) \le y)
+= P(X \le y). 
+= F_X(y).
+$$
+
+Car lorsque $y < 0$, l’événement $\{\min(X, 0) \le y\}$ est équivalent à l’événement $\{X \le y\}$.
+
+On peut aussi le voir ainsi :
+$$
+= P(\min(X, 0) \le y | X \le 0) P(X \le 0) + P(\min(X, 0) \le y | X > 0) P(X > 0)
+$$
+
+$$
+= P(X \le y | X \le 0) \cdot \frac{1}{2} + 0 \cdot \frac{1}{2}
+$$
+
+$$
+= \frac{1}{2} P(X \le y | X \le 0)
+= \frac{1}{2} \cdot \frac{P(X \le y)}{P(X \le 0)}
+= P(X \le y).
+$$
+
+Et
+
+pour $y >= 0$,
+$$
+F_Y(y)
+= P(Y \le y)
+= P(\min(X, 0) \le y)
+= 1.
+$$
+
+Donc la fonction de répartition de $Y$ est donnée par :
+$$
+F_Y(y) =
+\begin{cases}
+F_X(y), & y < 0, \\[6pt]
+1, & y \ge 0.
+\end{cases}
+$$
+
+Et la densité de $Y$ est la dérivée de $F_Y$ :
+$$
+f_Y(y) =
+\begin{cases}
+f_X(y), & y < 0, \\[6pt]
+0, & y > 0.
+\end{cases}
+$$
+
+Pour $y = 0$, 
+on a $P(Y = 0) = P(X > 0) = \frac{1}{2}$.
+
+Donc la densité de $Y$ est bien :
+
+$$
+f_Y(y) =
+\begin{cases}
+f_X(y), & y < 0, \\[6pt]
+\frac{1}{2}, & y = 0, \\[6pt]
+0, & y > 0.
+\end{cases}
+$$
+
+2) Montrer que $Y$ admet un moment d’ordre 2, et calculer l’espérance et la variance de $Y$.
+
+Nous savons que $|Y| = |\min(X, 0)| \le |X|$.
+
+Comme $X$ suit une loi normale centrée réduite, $X$ admet un moment d’ordre 2. Par conséquent, $Y$ admet également un moment d’ordre 2.
+Calculons l’espérance de $Y$ :
+Le support de $Y$ est $(-\infty, 0]$, donc :
+
+$$
+\mathbb{E}(Y)
+= \int_{-\infty}^0 y f_X(y)\, dy
++ 0 \cdot \frac{1}{2}
+= \int_{-\infty}^0 y \cdot \frac{1}{\sqrt{2\pi}} e^{-y^2/2}\, dy.
+$$
+
+En effectuant le changement de variable $u = -\frac{y^2}{2}$, on obtient :
+
+$$
+\mathbb{E}(Y)
+= -\frac{1}{\sqrt{2\pi}} \int_{-\infty}^0 e^{u}\, du
+= -\frac{1}{\sqrt{2\pi}}.
+$$
+
+Calculons $\mathbb{E}(Y^2)$ :
+
+$$
+\mathbb{E}(Y^2)
+= \int_{-\infty}^0 y^2 f_X(y)\, dy
++ 0^2 \cdot \frac{1}{2}
+= \int_{-\infty}^0 y^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-y^2/2}\, dy. 
+$$
+
+Par une intégration par parties, on obtient :
+$$
+\mathbb{E}(Y^2)
+= \left[ -\frac{1}{\sqrt{2\pi}} y e^{-y^2/2} \right]_{-\infty}^0
+\;+\;
+\frac{1}{\sqrt{2\pi}} \int_{-\infty}^0 e^{-y^2/2}\, dy
+= \frac{1}{\sqrt{2\pi}} \cdot \frac{\sqrt{2\pi}}{2}
+= \frac{1}{2}.
+$$
+
+Donc,
+$$
+\text{Var}(Y) = \mathbb{E}(Y^2) - (\mathbb{E}(Y))^2
+= \frac{1}{2} - \left(-\frac{1}{\sqrt{2\pi}}\right)^2
+= \frac{1}{2} - \frac{1}{2\pi}
+$$
+
+3) Loi, espérance et variance de $Z = \max(X, 0)$
+
+Nous savons que $X = Y + Z$.
+
+Donc, $Z = X - Y$.
+
+Comme $X$ et $Y$ admettent un moment d’ordre 2, $Z$ admet également un moment d’ordre 2.
+
+En effet, on a :
+$$
+|Z| = |X - Y| \le |X| + |Y| \le 2|X|.
+$$
+
+Et
+
+$$
+|Z|^2 \le 4|X|^2.
+$$
+
+
+Calculons l’espérance de $Z$ :
+
+$$
+\mathbb{E}(Z)
+= \mathbb{E}(X) - \mathbb{E}(Y)
+= 0 - \left(-\frac{1}{\sqrt{2\pi}}\right)
+= \frac{1}{\sqrt{2\pi}}.
+$$
+
+Calculons la  de $\mathbb{E}(Z^2)$ :
+
+$$
+\mathbb{E}(X^2)
+= \mathbb{E}((Y + Z)^2)
+= \mathbb{E}(Y^2) + 2\mathbb{E}(YZ) + \mathbb{E}(Z^2)
+= \mathbb{E}(Y^2) + \mathbb{E}(Z^2)
+$$
+
+Car $YZ = \min(X, 0) \cdot \max(X, 0) = 0$.
+
+Nous avons déjà calculé $\mathbb{E}(X^2) = 1$ et $\mathbb{E}(Y^2) = \frac{1}{2}$.
+
+$$
+\mathbb{E}(Z^2)
+= \mathbb{E}(X^2) - \mathbb{E}(Y^2)
+= 1 - \frac{1}{2}
+= \frac{1}{2}.
+$$
+
+Ainsi,
+$$
+\text{Var}(Z) = \mathbb{E}(Z^2) - (\mathbb{E}(Z))^2
+= \frac{1}{2} - \left(\frac{1}{\sqrt{2\pi}}\right)^2
+= \frac{1}{2} - \frac{1}{2\pi}.
+$$

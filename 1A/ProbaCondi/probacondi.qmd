@@ -1,0 +1,339 @@
+---
+title: "Exercices sur la probabilité conditionnelle et l'indépendance"
+---
+
+
+# 2. Probabilité conditionnelle et indépendance
+
+## Exercice 2
+
+Une classe contient un total de 108 étudiants. Parmi ceux-ci, 36 indiquent qu’ils pratiquent un sport de haut niveau, et 21 étudiants parmi ces 36 indiquent qu’ils préfèrent s’entraîner le matin plutôt que l’après-midi.  
+Parmi les étudiants qui ne pratiquent pas un sport de haut niveau, 24 indiquent qu’ils préfèrent pratiquer le sport le matin plutôt que l’après-midi.
+
+Pour un étudiant pris au hasard dans la classe, calculer les probabilités suivantes :
+
+- probabilité d’être un sportif de haut niveau sachant que l’on préfère s’entraîner le matin ;
+- probabilité de préférer s’entraîner le matin sachant qu’on ne pratique pas un sport de haut niveau ;
+- probabilité de ne pas pratiquer un sport de haut niveau sachant que l’on préfère s’entraîner l’après-midi.
+
+---
+
+## Correction Exercice 2
+
+On se place sur un espace probabilisé $(\Omega, \mathcal{F}, \mathbb{P})$, où  
+$\Omega = \{\text{ensemble des étudiants de la classe}\}$,  
+$\mathcal{F} = \mathcal{P}(\Omega)$ (toutes les parties de $\Omega$)  
+et $\mathbb{P}$ est la probabilité uniforme sur $\Omega$ (tous les étudiants sont équiprobables).
+
+Nous notons :
+
+- $H = \{\text{l’étudiant pratique un sport de haut niveau}\}$,
+- $M = \{\text{l’étudiant préfère s’entraîner le matin}\}$.
+
+D’après l’énoncé, nous avons
+$$
+\mathbb{P}(H) = \frac{36}{108} = \frac{1}{3},
+\qquad
+\mathbb{P}(M \mid H) = \frac{21}{36} = \frac{7}{12},
+\qquad
+\mathbb{P}(M \mid H^c) = \frac{24}{72} = \frac{1}{3}.
+$$
+
+---
+
+### 1 Probabilité d’être un sportif de haut niveau sachant que l’on préfère s’entraîner le matin
+
+On cherche $\mathbb{P}(H \mid M)$.
+
+En appliquant la formule de Bayes :
+$$
+\mathbb{P}(H \mid M) = \frac{\mathbb{P}(M \mid H)\mathbb{P}(H)}{\mathbb{P}(M \mid H)\mathbb{P}(H) + \mathbb{P}(M \mid H^c)\mathbb{P}(H^c)}.
+$$
+
+En remplaçant par les valeurs numériques :
+$$
+\mathbb{P}(H \mid M)
+= \frac{\frac{7}{12} \times \frac{1}{3}}
+{\frac{7}{12} \times \frac{1}{3} + \frac{1}{3} \times \frac{2}{3}}
+= \frac{\frac{7}{36}}{\frac{7}{36} + \frac{2}{9}}
+= \frac{7}{15}.
+$$
+
+---
+
+### 2 Probabilité de préférer s’entraîner le matin sachant qu’on ne pratique pas un sport de haut niveau
+
+Cette probabilité est directement donnée par l’énoncé :
+$$
+\mathbb{P}(M \mid H^c) = \frac{1}{3}.
+$$
+
+---
+
+### 3 Probabilité de ne pas pratiquer un sport de haut niveau sachant que l’on préfère s’entraîner l’après-midi
+
+On cherche $\mathbb{P}(H^c \mid M^c)$.
+
+On applique encore une fois la formule de Bayes :
+$$
+\mathbb{P}(H^c \mid M^c)
+= \frac{\mathbb{P}(M^c \mid H^c)\mathbb{P}(H^c)}
+{\mathbb{P}(M^c \mid H^c)\mathbb{P}(H^c) + \mathbb{P}(M^c \mid H)\mathbb{P}(H)}.
+$$
+
+Sachant que
+$$
+\mathbb{P}(M^c \mid H^c) = \frac{2}{3},
+\qquad
+\mathbb{P}(M^c \mid H) = \frac{5}{12},
+\qquad
+\mathbb{P}(H^c) = \frac{2}{3},
+\qquad
+\mathbb{P}(H) = \frac{1}{3},
+$$
+
+nous obtenons
+$$
+\mathbb{P}(H^c \mid M^c)
+= \frac{\frac{2}{3} \times \frac{2}{3}}
+{\frac{2}{3} \times \frac{2}{3} + \frac{5}{12} \times \frac{1}{3}}
+= \frac{\frac{4}{9}}{\frac{4}{9} + \frac{5}{36}}
+= \frac{16}{21}.
+$$
+
+---
+
+###  Résumé des résultats
+
+$$
+\boxed{\mathbb{P}(H \mid M) = \frac{7}{15}}
+$$
+$$
+\boxed{\mathbb{P}(M \mid H^c) = \frac{1}{3}}
+$$
+$$
+\boxed{\mathbb{P}(H^c \mid M^c) = \frac{16}{21}}
+$$
+
+## Exercice 3
+
+Pour chacune des deux affirmations suivantes, montrer qu’elle est vraie pour tous les événements $A$ et $B$ pour lesquels les probabilités conditionnelles sont calculables, ou donner un contre-exemple.
+
+$\mathbb{P}(A \mid B) + \mathbb{P}(A \mid B^c) = 1.$
+
+$\mathbb{P}(A \mid B) + \mathbb{P}(A^c \mid B) = 1.$
+
+## Correction Exercice 3
+
+1. Pour la première affirmation, nous avons en utilisant la formule de Bayes et en supposant que $\mathbb{P}(B) > 0$ et $\mathbb{P}(B^c) > 0$ :
+
+$$
+\mathbb{P}(A \mid B)  = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)},
+\qquad \text{et} \qquad
+\mathbb{P}(A \mid B^c)  = \frac{\mathbb{P}(A \cap B^c)}{\mathbb{P}(B^c)}.
+$$
+
+De ce fait, si nous additionnons les deux probabilités conditionnelles, nous obtenons :
+$$
+\mathbb{P}(A \mid B) + \mathbb{P}(A \mid B^c)
+= \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} + \frac{\mathbb{P}(A \cap B^c)}{\mathbb{P}(B^c)}.
+$$
+
+Si on se met dans une situation où $\mathbb{P}(B) = \mathbb{P}(B^c) = 0.5$, et en utilisant le fait que $\mathbb{P}(A \cap B) + \mathbb{P}(A \cap B^c) = \mathbb{P}(A)$, nous obtenons :
+$$
+\mathbb{P}(A \mid B) + \mathbb{P}(A \mid B^c) = 2 \mathbb{P}(A).
+$$
+
+Donc, cette affirmation est fausse dès que $\mathbb{P}(A) \neq 0.5$. Et il est facile de trouver un contre-exemple, c'est-à-dire une expérience aléatoire où cette condition n'est pas satisfaite.
+
+En effet, si nous considérons une expérience aléatoire consistant à lancer un dé équilibré à six faces, et nous définissons les événements suivants :
+- $A$ : l'événement que le résultat est un 6,
+- $B$ : l'événement que le résultat est un nombre pair.
+
+Nous avons :
+$$
+\mathbb{P}(B) = \frac{3}{6} = 0.5 = \mathbb{P}(B^c),
+$$
+et 
+$$
+\mathbb{P}(A) = \frac{1}{6} \neq 0.5.
+$$
+
+Et dans ce cas l'affirmation ne tient pas.
+
+2. La seconde affirmation est toujours vraie. On peut le démontrer en utilisant la formule de Bayes :
+$$
+\mathbb{P}(A \mid B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)},
+\qquad \text{et} \qquad
+\mathbb{P}(A^c \mid B) = \frac{\mathbb{P}(A^c \cap B)}{\mathbb{P}(B)}.
+$$
+
+En additionnant les deux probabilités conditionnelles, nous obtenons :
+$$
+\mathbb{P}(A \mid B) + \mathbb{P}(A^c \mid B)
+= \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} + \frac{\mathbb{P}(A^c \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}((A \cap B) \cup (A^c \cap B))}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(B)}{\mathbb{P}(B)} = 1.
+$$
+
+Ou tout simplement en remarquant que $P(.|B)$ définit une probabilité sur l'espace probabilisé restreint à l'événement B, et donc la somme des probabilités d'un événement et de son complément est égale à 1.
+
+## Exercice 4
+
+Un jeu de 32 cartes contient une carte manquante. Nous sélectionnons au hasard une carte parmi les 31 cartes restantes.  
+Calculer la probabilité que la carte tirée soit un cœur, en utilisant un conditionnement sur la carte manquante.
+
+---
+
+## Correction Exercice 4
+
+On se place sur un espace probabilisé $(\Omega,\mathcal{F},\mathbb{P})$ défini ainsi :
+
+- $\Omega$ est l’ensemble des couples
+  $$
+  \Omega = \{(c_{\text{manq}}, c_{\text{tirée}})\mid c_{\text{manq}}, c_{\text{tirée}} \text{ sont des cartes du jeu de 32, } c_{\text{tirée}}\neq c_{\text{manq}}\}.
+  $$
+  Autrement dit, on choisit d’abord la carte manquante, puis on tire une carte parmi les 31 restantes.
+- Chaque couple possible est supposé équiprobable, donc
+  $$
+  \mathbb{P}(\{(c_{\text{manq}}, c_{\text{tirée}})\}) = \frac{1}{32\times 31}.
+  $$
+
+On introduit les événements suivants :
+
+- $M = \{\text{la carte manquante est un cœur}\}$,
+- $T = \{\text{la carte tirée est un cœur}\}$.
+
+Dans un jeu de 32 cartes, il y a 8 cœurs au total.
+
+Si vous avez des difficultés pour définir l’espace probabilisé, je vous conseille de définir uniquement les événements $M$ et $T$ et de raisonner en termes de probabilités conditionnelles.
+---
+
+### 1 Probabilités conditionnelles
+
+- Si la carte manquante est un cœur (événement $M$), il reste $7$ cœurs parmi les $31$ cartes encore présentes, donc
+  $$
+  \mathbb{P}(T \mid M) = \frac{7}{31}.
+  $$
+
+- Si la carte manquante n’est **pas** un cœur (événement $M^c$), il reste toujours les $8$ cœurs dans les $31$ cartes présentes, donc
+  $$
+  \mathbb{P}(T \mid M^c) = \frac{8}{31}.
+  $$
+
+Par ailleurs, la carte manquante est choisie au hasard parmi les 32 cartes :
+
+- il y a 8 cœurs possibles pour la carte manquante, donc
+  $$
+  \mathbb{P}(M) = \frac{8}{32} = \frac{1}{4},
+  $$
+- et donc
+  $$
+  \mathbb{P}(M^c) = 1 - \mathbb{P}(M) = \frac{3}{4}.
+  $$
+
+---
+
+### 2 Application de la formule des probabilités totales
+
+On veut calculer $\mathbb{P}(T)$, la probabilité que la carte tirée soit un cœur.  
+On conditionne par l’événement $M$ (la carte manquante est un cœur ou non) :
+
+$$
+\mathbb{P}(T)
+= \mathbb{P}(T \mid M)\mathbb{P}(M)
++ \mathbb{P}(T \mid M^c)\mathbb{P}(M^c).
+$$
+
+En remplaçant par les valeurs trouvées :
+
+$$
+\mathbb{P}(T)
+= \frac{7}{31} \times \frac{1}{4}
++ \frac{8}{31} \times \frac{3}{4}
+= \frac{7}{124} + \frac{24}{124}
+= \frac{31}{124}
+= \frac{1}{4}.
+$$
+
+---
+
+### Résultat
+
+La probabilité que la carte tirée soit un cœur vaut
+$$
+\boxed{\mathbb{P}(T) = \frac{1}{4}}.
+$$
+
+On retrouve d’ailleurs un résultat intuitif : en moyenne, retirer une carte au hasard puis tirer parmi les restantes ne modifie pas la probabilité d’obtenir un cœur, qui reste $8/32 = 1/4$.
+
+
+::: {.byline}
+<span class="date">May 28, 2025</span>
+:::
+
+# Rappels de la séance précédente
+
+L'objectif de la prémière séance de TD était de consolider vos connaissances sur les espaces probabilisés et sur les probabilités conditionnelles.
+
+Vous devez actuellement être capable de :
+
+- Définir un espace probabilisé (Ω, F, P).
+
+- Utiliser les propriétés des probabilités pour calculer des probabilités d'événements simples et composés.
+
+- Vous devez maitriser les lois de Morgan :
+
+  - La loi de Morgan pour l'union : $\overline{A \cup B} = \overline{A} \cap \overline{B}$
+  - La loi de Morgan pour l'intersection : $\overline{A \cap B} = \overline{A} \cup \overline{B}$
+
+- Appliquer la formule d'inclusion-exclusion pour calculer la probabilité de l'union de deux événements :
+
+  $$
+  P(A \cup B) = P(A) + P(B) - P(A \cap B)
+  $$
+
+- Appliquer la formule d'inclusion-exclusion pour calculer la probabilité de l'union de plusieurs événements :
+
+  $$
+  \begin{aligned}
+  P\left(\bigcup_{i=1}^{n} A_i\right) &= \sum_{i=1}^{n} P(A_i) - \sum_{1 \leq i < j \leq n} P(A_i \cap A_j) \\
+  &\quad + \sum_{1 \leq i < j < k \leq n} P(A_i \cap A_j \cap A_k) - \ldots + (-1)^{n+1} P(A_1 \cap A_2 \cap \ldots \cap A_n)
+  \end{aligned}
+  $$
+- Calculer des probabilités conditionnelles en utilisant la formule de Bayes :
+
+$$
+  P(A|B) = \frac{P(A \cap B)}{P(B)}.
+$$
+
+ou bien encore :
+
+$$
+  P(A\cap B) = P(A|B) \cdot P(B).
+$$
+
+- Appliquer la loi des probabilités totales pour décomposer des probabilités complexes en utilisant des événements disjoints et exhaustifs :
+
+Par exemple, si $C_1, C_2$ sont deux événements disjoints et exhaustifs, c'est-à-dire que $C_1 \cap C_2 = \emptyset$ et $C_1 \cup C_2 = \Omega$, alors pour tout événement A, on a :
+
+$$
+P(A) = P(A|C_1) \cdot P(C_1) + P(A|C_2) \cdot P(C_2).
+$$
+
+Et finalement, cela nous permet de calculer la probabilité de $C_1$ sachant A en utilisant la formule de Bayes :
+
+$$
+P(C_1|A) = \frac{P(A|C_1) \cdot P(C_1)}{P(A|C_1) \cdot P(C_1) + P(A|C_2) \cdot P(C_2)}.
+$$
+
+
+```{mermaid}
+flowchart LR
+  A[Espaces probabilisés] --> B(Variable aléatoire X)
+  B --> C{type}
+  C --> D[Discrète]
+  C --> E[Continue]
+  D --> F[Caractérisation de la loi de X]
+  E --> G[Caractérisation de la loi de X]
+```

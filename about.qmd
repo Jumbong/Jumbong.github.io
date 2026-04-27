@@ -1,5 +1,25 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
+<div class="box">
+<h1 style="display: block;">Jumbong Junior</h1>
+
+<div class="container">
+<ul>
+    <li>  </li>
+    <li>  </li>
+    <br>
+    <li> </li>
+    <li> </li>
+</ul> 
+
+<img src="illust_graphics.jpg"  style="width: 250px; height: 250px;">
+</div>
+
+<h2> </h2>
+
+
+
+</div>
+

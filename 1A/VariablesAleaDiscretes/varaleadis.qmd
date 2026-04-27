@@ -1,0 +1,1196 @@
+---
+title: "Exercices sur les variables aléatoires discrètes"
+---
+
+# 4. Variables aléatoires discrètes
+
+## Exercice 1
+
+Dans chacune des situations, identifier si $X$ suit une loi binomiale. Si oui, donner les paramètres $n$ et $p$ correspondants. Sinon, expliquer pourquoi et proposer une modélisation alternative :
+
+- Chaque jour, Dean va déjeuner et il y a 25% de chances qu’il prenne une pizza. Soit $X$ le nombre de fois où il a pris une pizza la semaine dernière.
+
+- Jessica joue au basketball, et elle a 60% de chances de réussir un lancer franc. Soit $X$ le nombre de lancers francs réussis pendant le dernier match.
+
+- Une boîte contient 300 bonbons, dont 100 carambars et 200 chocolats. Sam prend un échantillon de 10 bonbons dans la boîte. Soit $X$ le nombre de carambars dans son échantillon.
+
+- Marie lit un livre de 600 pages. Sur les pages paires, il y a 1% de chances d’avoir une faute d’orthographe. Sur les pages impaires, il y a 2% de chances d’avoir une faute d’orthographe. Soit $X$ le nombre total de fautes d’orthographe dans le livre.
+
+- John lit un livre de 600 pages. Sur chaque page, le nombre de fautes d’orthographe est distribué selon une loi de Bernouilli de paramètre $0.01$. Soit $X$ le nombre total de fautes d’orthographe dans le livre.
+
+
+## Correction Exercice 1
+
+Dans chaque situation, on indique si $X$ suit une loi binomiale. Si oui, on précise les paramètres $n$ et $p$. Sinon, on propose une modélisation alternative.
+
+---
+
+1. **Dean et les pizzas**
+
+- Chaque jour, Dean prend une pizza avec probabilité $p = 0{,}25$, pendant une semaine ($n = 7$ jours). 
+- Ensuite, il faut se poser la question : la décision de prendre une pizza un jour est-elle indépendante des autres jours ? Si oui, alors :
+- Le nombre de jours $X$ où il prend une pizza suit donc une loi binomiale :
+
+$$X \sim \mathcal{B}(n = 7,\; p = 0{,}25).$$
+
+---
+
+2. **Jessica et les lancers francs**
+
+- Jessica réussit un lancer franc avec probabilité $p = 0{,}6$, mais le nombre de lancers tentés pendant le match **n’est pas fixé à l’avance**.
+- Il ne s’agit donc pas d’une loi binomiale (condition nécessaire : nombre d’essais fixé). Dans une modélisation binomiale, le nombre d’essais $n$ doit être fixé et connu à l’avance. 
+
+Une modélisation possible est :
+
+- On note $N$ le nombre de lancers francs tentés pendant le dernier match. Il y a plusieurs possibilités : Soit $N$ est une constante connue, soit $N$ est une variable aléatoire (par exemple, on peut modéliser $N$ par une loi de Poisson.). Ensuite, on considère le nombre de lancers réussis $X$ conditionnellement à $N$.
+
+- Conditionnellement à $N$, le nombre de lancers réussis suit une loi binomiale :
+
+$$X \mid N \sim \mathcal{B}(N,\; 0{,}6).$$
+
+si les lancers sont indépendants.
+
+---
+
+3. **Boîte de bonbons (carambars/chocolats)**
+
+- La boîte contient $300$ bonbons dont $100$ carambars et $200$ chocolats.
+- Sam tire un échantillon de $n = 10$ bonbons **sans remise**.
+- Les tirages ne sont pas indépendants (sans remise), donc $X$ **ne suit pas** une loi binomiale.
+
+La loi adaptée est l’hypergéométrique :
+
+- Taille de la population : $N = 300$.
+- Nombre de “succès” (carambars) : $K = 100$.
+- Taille de l’échantillon : $n = 10$.
+
+On a alors :
+
+$$X \sim \mathcal{H}(N = 300,\; K = 100,\; n = 10).$$
+
+---
+
+4. **Marie et les fautes d’orthographe (1 % / 2 %)**
+
+- Le livre a $600$ pages.
+- Sur les pages paires (300 pages), probabilité de faute $p_1 = 0{,}01$.
+- Sur les pages impaires (300 pages), probabilité de faute $p_2 = 0{,}02$.
+- La probabilité de “succès” (faute) **n’est pas la même** sur tous les essais (pages), donc $X$ **ne suit pas** une loi binomiale.
+
+Une modélisation naturelle est de décomposer :
+
+- On suppose l'indépendance entre les pages.
+- $X_{\text{paires}}$ : nombre de fautes sur les pages paires,
+- $X_{\text{impaires}}$ : nombre de fautes sur les pages impaires.
+
+On a :
+
+$$
+X_{\text{paires}} \sim \mathcal{B}(300,\; 0{,}01), \qquad
+X_{\text{impaires}} \sim \mathcal{B}(300,\; 0{,}02),
+$$
+
+et
+
+$$
+X = X_{\text{paires}} + X_{\text{impaires}}.
+$$
+
+---
+
+5. **John et les fautes d’orthographe (Bernoulli 0.01)**
+
+- Le livre a $600$ pages.
+- Sur chaque page, le nombre de fautes suit une loi de Bernoulli de paramètre $p = 0{,}01$ (on suppose indépendance entre pages).
+- Cette fois, la probabilité de faute est la même pour toutes les pages, et le nombre total de pages $n = 600$ est fixé.
+
+Ainsi, $X$ suit une loi binomiale :
+
+$$X \sim \mathcal{B}(n = 600,\; p = 0{,}01).$$
+
+
+## Exercice 2
+
+Soit $X_1, \dots, X_n$ une suite de variables aléatoires indépendantes telles que, pour tout $k = 1, \dots, n$,
+
+$$\mathbb{P}(X = \pm 1) = \frac{1}{2}.$$
+
+Soit
+$$S = \sum_{i=1}^n X_i.$$
+On parle de **marche aléatoire symétrique**, où le point de départ est $0$ avec un déplacement aléatoire à gauche ou à droite à chaque temps.
+
+1. Calculer $E(S)$ et $V(S)$.
+
+Nous supposons maintenant que
+
+$$\mathbb{P}(X = 1) = p \quad \text{et} \quad \mathbb{P}(X = -1) = 1 - p.$$
+
+Si $p > \dfrac{1}{2}$, on parle de **marche aléatoire à dérive positive**.
+
+2. Montrer qu’on peut réécrire $X = aY + b$, avec $Y \sim B(p)$, et $a$ et $b$ deux constantes à déterminer.  
+3. En déduire $E(S)$ et $V(S)$.
+
+
+## Correction — Exercice 2
+
+On considère une suite de variables aléatoires indépendantes $X_1, \dots, X_n$ telles que
+$$\mathbb{P}(X = \pm 1) = \frac{1}{2}.$$
+
+On pose :
+$$S = \sum_{i=1}^n X_i.$$
+
+---
+
+#### 1) Calculer $E(S)$ et $V(S)$ dans le cas symétrique
+
+Pour chaque $X_i$ :
+
+- $\mathbb{E}(X_i) = 1 \cdot \frac{1}{2} + (-1) \cdot \frac{1}{2} = 0$,
+
+- $\mathbb{E}(X_i^2) = 1^2 = 1$ d’où $\operatorname{Var}(X_i) = \mathbb{E}(X_i^2) - \mathbb{E}(X_i)^2 = 1$.
+
+
+Par linéarité de l’espérance :
+$$\mathbb{E}(S) = \sum_{i=1}^n \mathbb{E}(X_i) = 0,$$
+
+Comme les $X_i$ sont indépendantes :
+$$\operatorname{Var}(S) = \sum_{i=1}^n \operatorname{Var}(X_i) = n.$$
+
+---
+
+Nous supposons maintenant que
+$$\mathbb{P}(X = 1) = p \quad \text{et} \quad \mathbb{P}(X = -1) = 1 - p,$$
+avec $p > \frac{1}{2}$ (marche aléatoire à dérive positive).
+
+---
+
+#### 2) Montrer que l’on peut réécrire $X = aY + b$, avec $Y \sim B(p)$
+
+Il faut jouer ici avec le support des variables aléatoires. L'idée est de partir d'une variable de Bernoulli $Y$ qui prend les valeurs $0$ et $1$, et de la transformer linéairement pour obtenir une variable $X$ qui prend les valeurs $-1$ et $1$. Comme $P(X = 1) = p$ et $P(X = -1) = 1 - p$, on peut définir $Y$ comme une variable de Bernoulli telle que $P(Y = 1) = p$ et $P(Y = 0) = 1 - p$.
+
+On cherche $a$ et $b$ tels que :
+- si $Y = 1$, alors $X = 1$,
+- si $Y = 0$, alors $X = -1$.
+
+On résout :
+$$
+\begin{cases}
+a \cdot 1 + b = 1,\\
+a \cdot 0 + b = -1.
+\end{cases}
+$$
+
+D'où $b = -1$ et $a = 2$.
+
+Ainsi :
+$$X = 2Y - 1 \quad \text{avec} \quad Y \sim \text{Bernoulli}(p).$$
+
+---
+
+####  3) En déduire $E(S)$ et $V(S)$ dans le cas général
+
+Comme $S = \sum_{i=1}^n X_i$ et $X_i = 2Y_i - 1$ avec $Y_i \sim B(p)$ indépendantes :
+
+Par linéarité de l’espérance :
+
+$$
+\mathbb{E}(X_i) = \mathbb{E}{(2Y_i - 1)} =
+2\,\mathbb{E}(Y_i) - 1 = 2p - 1.
+$$
+
+Calculons la variance :
+
+On sait que pour toute variable aléatoire $X = aY + b$, on a $\operatorname{Var}(X) = a^2\,\operatorname{Var}(Y)$. Donc :
+$$
+\operatorname{Var}(X_i) = \operatorname{Var}(2Y_i - 1) = 2^2\,\operatorname{Var}(Y_i) =
+   4\,\operatorname{Var}(Y_i) = 4\,p(1 - p).
+$$
+Donc :
+
+$$
+\mathbb{E}(S) = \sum_{i=1}^n \mathbb{E}(X_i) = n(2p - 1),
+$$
+
+$$
+\operatorname{Var}(S) = \sum_{i=1}^n \operatorname{Var}(X_i) = 4n\,p(1 - p).
+$$
+
+---
+
+####  Résumé final
+
+| Type de marche | $\mathbb{E}(S)$ | $\operatorname{Var}(S)$ |
+|---------------|----------------|-------------------------|
+| Symétrique ($p = \tfrac12$) | $0$ | $n$ |
+| Dérive positive ($p > \tfrac12$) | $n(2p - 1)$ | $4n\,p(1 - p)$ |
+
+## Exercice 3
+
+Identifier les lois des variables aléatoires suivantes, en se basant sur leur fonction génératrice des moments :
+
+1. $M_X(t) = 0.8 e^t + 0.2$
+
+2. $M_Y(t) = \dfrac{0.1 e^t}{1 - 0.9 e^t}$
+
+3. $M_Z(t) = (0.3 e^t + 0.7)^{14}$
+
+## Correction — Exercice 3
+### Rappel : fonctions génératrices des moments
+
+1. **Loi de Bernoulli de paramètre $p$**
+
+On a
+$$
+\mathbb{P}(X = 1) = p, \qquad \mathbb{P}(X = 0) = 1 - p.
+$$
+
+Alors la fonction génératrice des moments est :
+$$
+M_X(t) = \mathbb{E}(e^{tX})
+= (1-p) e^{t \cdot 0} + p e^{t \cdot 1}
+= (1 - p) + p e^t.
+$$
+
+2. **Loi géométrique de paramètre $p$ sur $\{1,2,\dots\}$**
+
+On prend la convention
+$$
+\mathbb{P}(Y = k) = (1 - p)^{k-1} p, \quad k \ge 1.
+$$
+
+Alors
+$$
+M_Y(t) = \mathbb{E}(e^{tY})
+= \sum_{k=1}^{\infty} e^{tk} (1-p)^{k-1} p
+= p e^t \sum_{k=0}^{\infty} \big((1-p)e^t\big)^k.
+$$
+
+Pour $| (1-p)e^t | < 1$, c’est une série géométrique :
+$$
+\sum_{k=0}^{\infty} r^k = \frac{1}{1-r}.
+$$
+
+Donc
+$$
+M_Y(t) = \frac{p e^t}{1 - (1-p) e^t}.
+$$
+
+3. **Loi binomiale $\mathcal{B}(n,p)$**
+
+Soit $Z \sim \mathcal{B}(n,p)$. On peut écrire
+$$
+Z = X_1 + \cdots + X_n,
+$$
+où les $X_i$ sont indépendantes et suivent toutes une Bernoulli$(p)$.
+
+On sait que, pour une Bernoulli$(p)$,
+$$
+M_{X_i}(t) = (1-p) + p e^t.
+$$
+
+Par indépendance,
+$$
+M_Z(t) = \mathbb{E}(e^{tZ})
+= \mathbb{E}\big(e^{t(X_1 + \cdots + X_n)}\big)
+= \prod_{i=1}^n \mathbb{E}(e^{tX_i})
+= \big((1-p) + p e^t\big)^n.
+$$
+
+---
+
+### Identification des lois
+
+1. On a
+$$
+M_X(t) = 0.8 e^t + 0.2 = 0.2 + 0.8 e^t.
+$$
+
+En comparant avec $(1-p) + p e^t$, on obtient $p = 0.8$.
+
+> Donc $X$ suit une loi de Bernoulli de paramètre $0.8$ :
+> $$
+> X \sim \text{Bernoulli}(0.8).
+> $$
+
+2. On a
+$$
+M_Y(t) = \dfrac{0.1 e^t}{1 - 0.9 e^t}.
+$$
+
+En comparant avec
+$$
+M_Y(t) = \frac{p e^t}{1 - (1-p) e^t},
+$$
+on lit $p = 0.1$ et $1-p = 0.9$.
+
+> Donc $Y$ suit une loi géométrique de paramètre $p = 0.1$ (sur $\{1,2,\dots\}$) :
+> $$
+> Y \sim \text{Géométrique}(p = 0.1).
+> $$
+
+3. On a
+$$
+M_Z(t) = (0.3 e^t + 0.7)^{14}
+= \big( (1 - 0.3) + 0.3 e^t \big)^{14}.
+$$
+
+En comparant avec
+$$
+M_Z(t) = \big( (1-p) + p e^t \big)^n,
+$$
+on obtient $p = 0.3$ et $n = 14$.
+
+> Donc $Z$ suit une loi binomiale $\mathcal{B}(14, 0.3)$ :
+> $$
+> Z \sim \mathcal{B}(n = 14, p = 0.3).
+> $$
+
+## Exercice 4
+
+Soit $X$ une variable aléatoire telle que
+$$\mathbb{P}(X = k) = \frac{k}{10} \quad \text{pour } k = 1, 2, 3, 4.$$
+
+Soit $Y$ une variable aléatoire indépendante de $X$, et suivant la même distribution.
+
+Calculer la loi de probabilité de $X + Y$.
+
+## Correction — Exercice 4
+
+
+On a
+$$
+\mathbb{P}(X = k) = \frac{k}{10}, \quad k = 1,2,3,4,
+$$
+et $Y$ est indépendante de $X$ et de même loi.
+
+
+|       | Y = 1 | Y = 2 | Y = 3 | Y = 4 |
+| ----- | ----- | ----- | ----- | ----- |
+| X = 1 | 2     | 3     | 4     | 5     |
+| X = 2 | 3     | 4     | 5     | 6     |
+| X = 3 | 4     | 5     | 6     | 7     |
+| X = 4 | 5     | 6     | 7     | 8     |
+
+
+La variable $S = X + Y$ prend des valeurs entières de $2$ à $8$.
+
+
+La variable aléatoire $X + Y$ prend ses valeurs dans $\{2, \dots, 8\}$.  
+
+Pour $k \in \{2, \dots, 8\}$, nous avons en utilisant la formule des probabilités totales :
+
+$$
+\mathbb{P}(X + Y = k)
+= \sum_{l=1}^{4} \mathbb{P}(X + Y = k \mid Y = l)\,\mathbb{P}(Y = l)
+$$
+
+$$
+= \sum_{l=1}^{4} \mathbb{P}(Y = k - l \mid Y = l)\,\mathbb{P}(Y = l)
+$$
+
+$$
+= \sum_{l=1}^{4} \mathbb{P}(X = k - l)\,\mathbb{P}(Y = l) \quad \text{car $X$ et $Y$ sont indépendantes.}
+$$
+
+où la somme porte sur les $k$ tels que $1 \le k \le 4$ et $1 \le k- l \le 4$.
+
+On note
+$$
+p_1 = 0.1,\quad p_2 = 0.2,\quad p_3 = 0.3,\quad p_4 = 0.4.
+$$
+
+On calcule alors, cas par cas :
+
+- Pour $k = 2$  
+  $$(X,Y) = (1,1) \quad\Rightarrow\quad \mathbb{P}(S=2) = p_1 p_1 = 0.1\times 0.1 = 0.01.$$
+
+- Pour $k = 3$  
+  $$(X,Y) = (1,2),(2,1)$$
+  $$
+  \mathbb{P}(S=3) = p_1 p_2 + p_2 p_1 = 0.1\times 0.2 + 0.2\times 0.1 = 0.04.
+  $$
+
+- Pour $s = 4$  
+  $$(X,Y) = (1,3),(2,2),(3,1)$$
+  $$
+  \mathbb{P}(S=4) = p_1 p_3 + p_2 p_2 + p_3 p_1
+  = 0.1\times 0.3 + 0.2\times 0.2 + 0.3\times 0.1
+  = 0.10.
+  $$
+
+- Pour $k = 5$  
+  $$(X,Y) = (1,4),(2,3),(3,2),(4,1)$$
+  $$
+  \mathbb{P}(S=5) = p_1 p_4 + p_2 p_3 + p_3 p_2 + p_4 p_1
+  = 0.04 + 0.06 + 0.06 + 0.04 = 0.20.
+  $$
+
+- Pour $k = 6$  
+  $$(X,Y) = (2,4),(3,3),(4,2)$$
+  $$
+  \mathbb{P}(S=6) = p_2 p_4 + p_3 p_3 + p_4 p_2
+  = 0.2\times 0.4 + 0.3\times 0.3 + 0.4\times 0.2
+  = 0.08 + 0.09 + 0.08 = 0.25.
+  $$
+
+- Pour $k = 7$  
+  $$(X,Y) = (3,4),(4,3)$$
+  $$
+  \mathbb{P}(S=7) = p_3 p_4 + p_4 p_3
+  = 0.3\times 0.4 + 0.4\times 0.3
+  = 0.24.
+  $$
+
+- Pour $k = 8$  
+  $$(X,Y) = (4,4) \quad\Rightarrow\quad \mathbb{P}(S=8) = p_4 p_4 = 0.4\times 0.4 = 0.16.$$
+
+On obtient donc la loi de $S = X+Y$ :
+
+$$
+\begin{array}{c|ccccccc}
+s      & 2    & 3    & 4    & 5    & 6    & 7    & 8    \\ \hline
+\mathbb{P}(S=s) & 0.01 & 0.04 & 0.10 & 0.20 & 0.25 & 0.24 & 0.16
+\end{array}
+$$
+
+(On vérifie que la somme vaut bien $1$: $0.01 + 0.04 + 0.10 + 0.20 + 0.25 + 0.24 + 0.16 = 1$.)
+
+## Exercice 5
+
+Un statisticien a modélisé le nombre de mots d’une recherche sur internet en utilisant une loi de Poisson. Supposons que la longueur moyenne est de 3 mots, et soit $X$ le nombre de mots d’une recherche. Comme une recherche ne peut pas être vide, nous utilisons une modélisation par une loi de probabilité restreinte définie par
+
+$$\mathbb{P}(X = k) = \mathbb{P}(Y = k \mid Y \neq 0) \quad \text{où } Y \sim \text{Pois}(\lambda).$$
+
+1) Trouver la loi de $X$.  
+2) Donner la valeur de $\lambda$ correspondant à une longueur moyenne de 3 mots.  
+3) Quelle est la probabilité d’avoir une recherche de 6 mots ou plus ?
+
+## Correction — Exercice 5
+
+1) Trouver la loi de $X$
+
+Pour déterminer la loi d'une variable aléatoire $X$ , il faut d'abord définir son support, c'est-à-dire l'ensemble des valeurs que $X$ peut prendre avec une probabilité non nulle. Dans ce cas, le support de $X$ est l'ensemble des entiers naturels positifs, car une recherche ne peut pas être vide.
+
+Nous notons le support de $X$ par $\Omega_X = \{1, 2, 3, \ldots\}$ = $\mathbb{N}^*$.
+
+Une fois le support identifié, nous pouvons calculer la probabilité associée à chaque valeur du support de $X$. 
+
+Rappelons nous que l'ensemble ${X \in A} = {w \in \Omega : X(w) \in A} = X^-1(A)$.
+Pour tout $k \in \Omega_X$, nous avons :
+
+${X = k} = {w \in \Omega : X(w) = k} = X^{-1}(\{k\})$. où $\Omega$ est l'ensemble des issues possibles de l'expérience aléatoire.
+
+Donc, pour tout $k \in \Omega_X$, nous avons :
+
+On part de la définition de $X$ comme loi de Poisson **conditionnée à être non nulle** :
+
+1. **Définition de $X$ comme loi restreinte :**
+   $$
+   \mathbb{P}(X = k)
+   = \mathbb{P}(Y = k \mid Y \neq 0).
+   $$
+   C’est donné dans l’énoncé : $X$ est la loi de $Y$ sachant que $Y$ ne vaut pas 0.
+
+2. **Formule de probabilité conditionnelle :**
+   $$
+   \mathbb{P}(Y = k \mid Y \neq 0)
+   = \frac{\mathbb{P}(Y = k \cap Y \neq 0)}{\mathbb{P}(Y \neq 0)}.
+   $$
+   Par définition :  
+   $\displaystyle \mathbb{P}(A \mid B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}$.
+
+3. **Simplification de l'intersection :**
+   $$
+   \mathbb{P}(Y = k \cap Y \neq 0) = \mathbb{P}(Y = k)
+   $$
+   car si $k \ge 1$, alors l'événement « $Y = k$ » implique automatiquement « $Y \neq 0$ ».  
+   Donc l’intersection ne change rien.
+
+4. **Remplacement du dénominateur :**
+   $$
+   \mathbb{P}(Y \neq 0) = 1 - \mathbb{P}(Y = 0).
+   $$
+   C’est la propriété générale :  
+   $\displaystyle \mathbb{P}(B^c) = 1 - \mathbb{P}(B)$.
+
+5. **Utilisation de la formule de la loi de Poisson :**
+   $$
+   \mathbb{P}(Y = k) = e^{-\lambda} \frac{\lambda^k}{k!},
+   \qquad
+   \mathbb{P}(Y = 0) = e^{-\lambda}.
+   $$
+
+6. **Substitution dans la formule :**
+   $$
+   \mathbb{P}(X = k)
+   = \frac{e^{-\lambda} \frac{\lambda^k}{k!}}{1 - e^{-\lambda}}.
+   $$
+
+
+
+
+
+###  Résultat final :
+$$
+\boxed{\mathbb{P}(X = k) = \frac{e^{-\lambda} }{1 - e^{-\lambda}} \cdot \frac{\lambda^k}{k!}, \quad k = 1, 2, 3, \ldots}
+$$
+
+
+### 2) Calcul de l’espérance de $X$
+
+Nous avons la loi :
+$$
+\mathbb{P}(X = k)
+= \frac{e^{-\lambda} \lambda^k}{k!\,(1 - e^{-\lambda})}, \qquad k \ge 1.
+$$
+
+L’espérance vaut en utilisant le théorème de transfert :
+$$
+\mathbb{E}(X)
+= \sum_{k=1}^{+\infty} k \, \mathbb{P}(X = k)
+= \sum_{k=1}^{\infty} k \, \frac{e^{-\lambda} \lambda^k}{k!\,(1 - e^{-\lambda})}.
+$$
+
+**On factorise les constantes** :
+$$
+\mathbb{E}(X)
+= \frac{e^{-\lambda}}{1 - e^{-\lambda}}
+   \sum_{k=1}^{\infty} k \frac{\lambda^{k}}{k!}.
+$$
+
+---
+
+Justification du passage suivant
+
+On réécrit :
+$$
+k\frac{\lambda^{k}}{k!}
+= \lambda \frac{\lambda^{k-1}}{(k-1)!}.
+$$
+
+En effet :
+$$
+\frac{k}{k!} = \frac{1}{(k-1)!}.
+$$
+
+Donc :
+$$
+\sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}
+= \lambda \sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}.
+$$
+
+On effectue le **changement d’indice**  $j = k - 1$ :
+
+- quand $k = 1$, $j = 0$,
+- quand $k \to \infty$, $j \to \infty$.
+
+D’où :
+$$
+\sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}
+= \sum_{j=0}^{\infty} \frac{\lambda^{j}}{j!}.
+$$
+
+Or cette somme est la **série de Taylor de l’exponentielle** :
+$$
+\sum_{j=0}^{\infty} \frac{\lambda^{j}}{j!} = e^{\lambda}.
+$$
+
+
+
+On revient à l’expression de l’espérance
+
+On obtient donc :
+$$
+\mathbb{E}(X)
+= \frac{e^{-\lambda}}{1 - e^{-\lambda}} \cdot \lambda e^{\lambda}.
+$$
+Puis en simplifiant \( e^{-\lambda} e^{\lambda} = 1 \) :
+$$    
+\boxed{
+\mathbb{E}(X) = \frac{\lambda}{1 - e^{-\lambda}}.
+}
+$$    
+
+---
+
+### Détermination de $\lambda$ pour une espérance de 3
+
+En résolvant :
+$$
+\frac{\lambda}{1 - e^{-\lambda}} = 3,
+$$
+
+```{python}
+
+#Utilisons Newton-Raphson pour résoudre l'équation
+
+from scipy.optimize import newton
+import numpy as np
+
+# Définir la fonction
+def equation(lmbda):
+    return lmbda / (1 - np.exp(-lmbda)) - 3
+
+# Résoudre avec Newton-Raphson
+lambda_solution = newton(equation, x0=1.0)
+print(lambda_solution)
+
+```
+
+on obtient numériquement :
+$$
+\boxed{\lambda \approx 2.82}.
+$$
+
+3) Probabilité d’avoir une recherche de 6 mots ou plus
+
+On cherche :
+$$
+\mathbb{P}(X \ge 6).
+$$
+
+Or :
+$$
+\mathbb{P}(X \ge 6) = 1 - \mathbb{P}(X \le 5).
+$$
+
+Et comme \(X\) est la loi de Poisson tronquée :
+$$
+\mathbb{P}(X \le 5)
+= \sum_{k=1}^{5} \mathbb{P}(X = k)
+= \sum_{k=1}^{5}
+\frac{e^{-\lambda} \lambda^k}{k!\,(1 - e^{-\lambda})}.
+$$
+
+On factorise pour simplifier :
+$$  
+\mathbb{P}(X \le 5)
+= \frac{e^{-\lambda}}{1 - e^{-\lambda}}
+\sum_{k=1}^{5} \frac{\lambda^k}{k!}.
+$$
+
+Donc :
+
+$$
+\boxed{
+\mathbb{P}(X \ge 6)
+= 1 -
+\frac{e^{-\lambda}}{1 - e^{-\lambda}}
+\sum_{k=1}^{5} \frac{\lambda^k}{k!}
+}.
+$$
+
+---
+
+ Avec $\lambda \approx 2.82$, on calcule :
+
+Le calcul numérique donne :
+$$
+\boxed{\mathbb{P}(X \ge 6) \approx 0.07}
+$$
+
+soit **environ 7%**.
+
+## Exercice 6
+
+La loi de probabilité jointe de deux variables $X$ et $Y$ est définie par
+
+$$
+\mathbb{P}(X = x, Y = y)
+= \frac{1}{e^{2} \, y! \, (x - y)!}
+\qquad \text{pour } x \in \mathbb{N} \text{ et } y = 0, \ldots, x.
+$$
+
+1) Trouver la loi de probabilité de $X$.  
+2) En déduire la loi de probabilité de $Y$ sachant que $X = x$.
+
+## Correction — Exercice 6
+
+Avant de résoudre l’exercice, rappelons les formules de pascal :
+
+$$
+\binom{x}{y} = \frac{x!}{y! (x-y)!},
+$$
+et
+$$
+(a + b)^x = \sum_{y=0}^{x} \binom{x}{y} a^y b^{x-y}.
+$$
+
+Pour a = 1 et b = 1, on obtient :
+$$
+2^x = \sum_{y=0}^{x} \binom{x}{y}.
+$$
+
+1) Trouver la loi de probabilité de $X$
+
+Le support de X est $\mathbb{N}$.
+
+Pour tout $x \in \mathbb{N}$, on utilise la formule des probabilités totales :
+$$
+\mathbb{P}(X = x)
+= \mathbb{P}(X = x, \Omega)
+= \mathbb{P}(X = x, \bigcup_{y=0}^{x} \{Y = y\})
+= \sum_{y=0}^{x} \mathbb{P}(X = x, Y = y).
+$$
+
+- $\Omega$ est l’événement certain.
+- Les événements {Y=0}, \ldots, {Y=x} sont disjoints et forment une partition des valeurs possibles de Y quand X=x.
+- La formule générale de probabilité totale dit :
+  $$
+  \mathbb{P}(A) = \sum_i \mathbb{P}(A \cap B_i)
+  \quad \text{si les } B_i \text{ forment une partition}.
+  $$
+
+
+En théorie de probabilité, on écrit souvent $P(A, B)$ pour $P(A \cap B)$.
+
+On remplace par la loi jointe donnée :
+$$
+\mathbb{P}(X = x)
+= \sum_{y=0}^{x} \frac{1}{e^{2} \, y! \, (x - y)!}.
+$$
+
+On factorise :
+$$
+\mathbb{P}(X = x)
+= \frac{1}{e^{2}} \sum_{y=0}^{x} \frac{1}{y! \, (x - y)!}.
+$$
+
+On utilise la formule de pascal pour réécrire la somme :
+On utilise l’identité :
+$$
+\binom{x}{y} = \frac{x!}{y! (x-y)!}.
+$$
+
+D’où :
+$$
+\frac{1}{y!(x-y)!} = \frac{1}{x!}\binom{x}{y}.
+$$
+
+Ainsi :
+$$
+\sum_{y=0}^{x} \frac{1}{y!(x-y)!}
+= \frac{1}{x!} \sum_{y=0}^{x} \binom{x}{y}.
+$$
+
+Or :
+$$
+\sum_{y=0}^{x} \binom{x}{y} = 2^x,
+$$
+car c’est le développement de \((1+1)^x\).
+
+On obtient donc :
+On obtient :
+$$
+\mathbb{P}(X = x)
+= \frac{1}{e^{2}} \cdot \frac{2^x}{x!}
+= e^{-2} \frac{2^x}{x!}.
+$$
+
+
+Nous reconnaissons la loi de Poisson de paramètre $\lambda = 2$.
+
+
+$$
+\boxed{X \sim \text{Poisson}(2)}.
+$$
+
+2) Soient $x, y \in \mathbb{N}$. Nous avons
+
+$$
+\mathbb{P}(Y = y \mid X = x)
+= \frac{\mathbb{P}(X = x, Y = y)}{\mathbb{P}(X = x)},
+$$
+
+et cette probabilité est nulle si $y > x$.  
+Si $y \le x$, nous avons :
+
+$$
+\mathbb{P}(Y = y \mid X = x)
+= \frac{1}{e^{2} y! (x - y)!} \times \frac{e^{2} x!}{2^{x}}
+$$
+
+$$
+= \binom{x}{y} \left(\frac{1}{2}\right)^{y} \left(\frac{1}{2}\right)^{x - y}.
+$$
+
+Nous reconnaissons la densité d’une loi binomiale de paramètres $m = x$ et  
+$p = \frac{1}{2}$.
+
+Donc :
+$$
+\boxed{Y \mid X = x \sim \mathcal{B}\left(x, \frac{1}{2}\right)}.
+$$
+
+## Exercice 7
+
+Soient $X_1, \ldots, X_n$ une suite de variables aléatoires i.i.d. suivant une loi $\mathcal{L}$.
+Nous supposons que les paramètres de la loi $\mathcal{L}$ sont entièrement caractérisés
+par les moments $\mu_1 \equiv \mathbb{E}(X), \ldots, \mu_k \equiv \mathbb{E}(X^k)$.
+La *méthode des moments* consiste à estimer les paramètres de la loi $\mathcal{L}$
+en remplaçant les moments inconnus par leur estimateur empirique
+
+$$
+\hat{\mu}_k = \frac{1}{n} \sum_{i=1}^n (X_i)^k.
+$$
+
+Nous supposons que les variables aléatoires $X_1, \ldots, X_n$ suivent une loi de Bernoulli
+de paramètre $p$.
+
+1) Exprimer $p$ en fonction du premier moment de $X$.  
+2) En déduire une estimation de $p$ basée sur l’échantillon.
+
+Nous supposons que les variables aléatoires $X_1, \ldots, X_n$ suivent une loi binomiale
+de paramètres $m$ et $p$.
+
+3) Exprimer $m$ et $p$ en fonction des deux premiers moments de $X$.  
+4) En déduire une estimation de $m$ et de $p$ basée sur l’échantillon.
+
+### Correction Exercice 7
+
+1) Nous avons  
+$$
+p = \mathbb{E}(X) = \mu_1.
+$$
+
+2) Le paramètre \(p\) est donc estimé par
+$$
+\hat{p} = \hat{\mu}_1 = \frac{1}{n} \sum_{i=1}^n X_i.
+$$
+
+Notons que dans ce cas précis, il s’agit d’un estimateur sans biais.
+
+---
+
+3) Nous avons, pour une loi binomiale \(\mathcal{B}(m,p)\) :
+$$
+\mathbb{E}(X) = mp
+\qquad\text{et}\qquad
+\operatorname{Var}(X) = \mathbb{E}(X^2) - \{\mathbb{E}(X)\}^2 = mp(1 - p).
+$$
+
+Nous en déduisons que
+$$
+1 - p = \frac{\mu_2}{\mu_1} - \mu_1,
+$$
+
+puis
+$$
+p = 1 - \frac{\mu_2}{\mu_1} + \mu_1,
+$$
+
+et
+$$
+m = \frac{\mu_1}{1 - \frac{\mu_2}{\mu_1} + \mu_1}.
+$$
+
+---
+
+4) Nous obtenons les estimateurs par la méthode des moments :
+
+$$
+\hat{p} = 1 - \frac{\hat{\mu}_2}{\hat{\mu}_1} + \hat{\mu}_1,
+$$
+
+$$
+\hat{m} = 
+\frac{\hat{\mu}_1}{1 - \frac{\hat{\mu}_2}{\hat{\mu}_1} + \hat{\mu}_1}.
+$$
+
+À noter que ces estimateurs n’ont pas de raison particulière d’être sans biais.
+
+## Exercice 8
+
+Soit $X \sim \text{Pois}(\lambda)$.
+
+1) Donner la fonction génératrice des moments de $X$ et sa fonction caractéristique.  
+
+2) Calculer $\mathbb{E}(X^3)$.  
+3) Calculer la probabilité que $X$ soit impair.  
+   Utiliser un développement en série entière de $e^\lambda$ et $e^{-\lambda}$.  
+
+4) Calculer $\mathbb{E}(X!)$.
+
+## Correction — Exercice 8
+
+Avant de commencer, rappelons que :
+
+{X impair} qui s'écrit en latex $X \text{ impair}$ est l'ensemble des issues où la variable aléatoire $X$ prend des valeurs impaires. Cet ensemble peut être représenté comme l'union des événements disjoints {X = 1}, {X = 3}, {X = 5}, etc.
+
+On peut donc écrire :
+
+L’événement $X$ est impair s’écrit :
+
+$$
+\{X \text{ impair}\}
+= \{\omega \in \Omega : X(\omega) \text{ est impair}\}
+$$
+
+Par définition d’un entier impair :
+
+$$  
+\{X \text{ impair}\}
+= \{\omega : X(\omega) = 1\}
+  \cup \{\omega : X(\omega) = 3\}
+  \cup \{\omega : X(\omega) = 5\}
+  \cup \cdots
+$$
+
+C’est-à-dire :
+
+$$
+\{X \text{ impair}\}
+= \{\omega \in \Omega : \exists\, k \in \mathbb{N}, \; X(\omega) = 2k + 1\}.
+$$
+
+En notation abrégée :
+
+$$
+\{X \text{ impair}\}
+= \{X = 1\} \cup \{X = 3\} \cup \{X = 5\} \cup \cdots
+$$
+
+et de manière compacte :
+
+$$
+\boxed{
+\{X \text{ impair}\}
+= \bigcup_{k=0}^{\infty} \{X = 2k + 1\}.
+}
+$$
+
+
+1) Fonction génératrice des moments et fonction caractéristique
+
+$\textbf{1)}$ Soit $t > 0$. Nous avons
+
+$$
+M_X(t)
+= \mathbb{E}\{\exp(tX)\}
+= e^{-\lambda} \sum_{k=0}^{+\infty} \exp(tk)\, \frac{\lambda^k}{k!}
+$$
+
+$$ 
+= e^{-\lambda} \sum_{k=0}^{+\infty} \frac{\{\lambda \exp(t)\}^k}{k!}
+= e^{-\lambda} \times \exp\{\lambda \exp(t)\}
+$$
+
+$$
+= \exp\{\lambda(\exp(t) - 1)\}.
+$$
+
+On vérifie au passage que la fonction génératrice des moments est ici bien
+définie pour tout $t \in \mathbb{R}$.
+
+La fonction caractéristique se calcule de façon analogue :
+
+$$
+\varphi_X(t)
+= \mathbb{E}\{\exp(itX)\}
+= e^{-\lambda} \sum_{k=0}^{+\infty} \exp(itk)\, \frac{\lambda^k}{k!}
+$$
+
+$$
+= e^{-\lambda} \sum_{k=0}^{+\infty} \frac{\{\lambda \exp(it)\}^k}{k!}
+= e^{-\lambda} \times \exp\{\lambda \exp(it)\}
+$$
+
+$$
+= \exp\{\lambda(\exp(it) - 1)\}.
+$$
+
+2) Calcul de $\mathbb{E}(X^3)$
+
+Nous utilisons la fonction génératrice des moments, qui est ici indéfiniment dérivable.
+
+Rappel :
+$$
+M_X(t) = \exp\{\lambda(e^t - 1)\}.
+$$
+
+Nous calculons ses dérivées successives.
+
+#### Première dérivée
+
+$$
+M_X'(t)
+= \lambda e^t \exp\{\lambda(e^t - 1)\}.
+$$
+#### Deuxième dérivée
+
+$$
+M_X''(t)
+= \left(\lambda e^t + \lambda^2 e^{2t}\right)
+  \exp\{\lambda(e^t - 1)\}.
+$$
+#### Troisième dérivée
+
+$$
+M_X^{(3)}(t)
+= \left(\lambda e^t + 3\lambda^2 e^{2t} + \lambda^3 e^{3t}\right)
+  \exp\{\lambda(e^t - 1)\}.
+$$
+Nous pouvons maintenant obtenir le troisième moment.
+
+---
+
+### Calcul de  $\mathbb{E}(X^3)$
+
+Par définition :
+$$
+\mathbb{E}(X^3) = M_X^{(3)}(0).
+$$
+
+Comme $e^{0}=1$, nous obtenons :
+$$
+M_X^{(3)}(0)
+= \left(\lambda + 3\lambda^2 + \lambda^3\right)\exp\{0\}
+= \lambda^3 + 3\lambda^2 + \lambda.
+$$
+
+$$
+\boxed{\mathbb{E}(X^3)=\lambda^3 + 3\lambda^2 + \lambda.}
+$$
+
+3) Calcul de la probabilité que $X$ soit impair
+
+Nous avons
+
+$$
+\mathbb{P}(X \text{ impair})
+= \mathbb{P}\left(\bigcup_{k=0}^{\infty} \{X = 2k + 1\}\right)
+= \sum_{k=0}^{\infty} \mathbb{P}(X = 2k + 1)
+$$
+
+$$
+= \sum_{k=0}^{\infty} e^{-\lambda} \frac{\lambda^{2k + 1}}{(2k + 1)!}
+= e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^{2k + 1}}{(2k + 1)!}.
+$$ 
+
+
+D’autre part,
+$$
+e^\lambda = \sum_{k=0}^{+\infty} \frac{\lambda^k}{k!}
+= 1 + \lambda + \frac{\lambda^2}{2} + \frac{\lambda^3}{3!} + \frac{\lambda^4}{4!} + \cdots
+$$  
+
+et
+$$
+e^{-\lambda} = \sum_{k=0}^{+\infty} \frac{(-\lambda)^k}{k!}
+= 1 - \lambda + \frac{\lambda^2}{2} - \frac{\lambda^3}{3!} + \frac{\lambda^4}{4!} + \cdots
+$$
+
+Donc,
+$$
+e^\lambda - e^{-\lambda}
+= \sum_{k=0}^{+\infty} \frac{\lambda^k}{k!}
++ \sum_{k=0}^{+\infty} \frac{(-1)^{k+1}\lambda^k}{k!}
+= 2 \sum_{k=0}^{+\infty} \frac{\lambda^{2k+1}}{(2k+1)!}.
+$$
+
+Et finalement,
+$$
+\mathbb{P}(X \text{ impair})
+= \frac{e^{-\lambda}(e^\lambda - e^{-\lambda})}{2}
+= \frac{1 - e^{-2\lambda}}{2}.
+$$
+
+4) Nous avons
+
+$$
+E(X!) = \sum_{k=0}^{+\infty} e^{-\lambda} \frac{\lambda^k}{k!} \times k!
+$$
+
+$$
+= e^{-\lambda} \sum_{k=0}^{+\infty} \lambda^k
+= 
+\begin{cases}
+\dfrac{e^{-\lambda}}{1 - \lambda}, & \text{si } |\lambda| < 1, \\[6pt]
++\infty, & \text{si } |\lambda| \ge 1.
+\end{cases}
+$$
+
+## Exercice 9
+
+Soient \(X_1, \ldots, X_n\) une suite de variables aléatoires i.i.d. suivant une loi de Bernoulli de paramètre \(p\).  
+Trouver la loi de \(X_1\) sachant que \(X_1 + \cdots + X_n = k\).
+
+---
+
+## Correction Exercice 9
+
+Soit \(x \in \{0,1\}\). Nous avons, en utilisant la formule de Bayes :
+
+$$
+\mathbb{P}(X_1 = x \mid X_1 + \cdots + X_n = k)
+= \frac{\mathbb{P}(X_1 + \cdots + X_n = k \mid X_1 = x)\mathbb{P}(X_1 = x)}
+{\mathbb{P}(X_1 + \cdots + X_n = k)}.
+$$
+
+Or :
+
+$$
+\mathbb{P}(X_1 + \cdots + X_n = k) = \binom{n}{k} p^k (1-p)^{\,n-k},
+$$
+
+puisque \(X_1 + \cdots + X_n \sim \mathcal{B}(n,p)\).
+
+---
+
+Ensuite :
+
+$$
+X_2 + \cdots + X_n \sim \mathcal{B}(n-1,p),
+$$
+
+donc
+
+$$
+\mathbb{P}(X_2 + \cdots + X_n = k - x)
+= \binom{n-1}{k-x} p^{\,k-x} (1-p)^{\,n-1-k+x}.
+$$
+
+De plus :
+
+$$
+\mathbb{P}(X_1 = x) = p^x (1-p)^{\,1-x}.
+$$
+
+---
+
+Nous obtenons finalement :
+
+$$
+\mathbb{P}(X_1 = x \mid X_1 + \cdots + X_n = k)
+= \frac{\binom{n-1}{k-x} p^{\,k-x}(1-p)^{\,n-1-k+x} \, p^x (1-p)^{\,1-x}}
+{\binom{n}{k} p^k (1-p)^{\,n-k}}.
+$$
+
+En simplifiant, on trouve :
+
+$$
+\mathbb{P}(X_1 = x \mid X_1 + \cdots + X_n = k)
+= \frac{\binom{n-1}{k-x}}{\binom{n}{k}}.
+$$
+
+On calcule les deux cas :
+- Si $x = 0$ :
+  $$
+  \mathbb{P}(X_1 = 0 \mid X_1 + \cdots + X_n = k)
+  = \frac{\binom{n-1}{k}}{\binom{n}{k}}
+  = \frac{(n-1)! \, k! \, (n-k)!}{(n-k)! \, (n)! \, k!}
+  = \frac{n-k}{n}.
+  $$
+- Si $x = 1$ :
+  $$
+  \mathbb{P}(X_1 = 1 \mid X_1 + \cdots + X_n = k)
+  = \frac{\binom{n-1}{k-1}}{\binom{n}{k}}
+  = \frac{(n-1)! \, (k-1)! \, (n-k)!}{(n-k)! \, (n)! \, k!}
+  = \frac{k}{n}.
+  $$
+
+Donc 
+
+$$
+\boxed{X_1 \mid (X_1 + \cdots + X_n = k) \sim \mathcal{B}\left(1, \frac{k}{n}\right)}.
+$$

@@ -1,20 +1,51 @@
 project:
   type: website
   output-dir: docs
-
+  resources: img
+  render:
+    - "*.qmd" # Render all .qmd files
+    - "!ignored-dir/" # Ignore a specific directory
+execute:
+  cache: true
+  freeze: auto 
+  
 website:
-  title: " Jumbong.github.io"
+  title: ""
+  favicon: "flavicon.jpeg"
+  back-to-top-navigation: true
   navbar:
+    logo: "flavicon.jpeg"
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: Accueil
+      - text: ENSAI
+        menu:
+          - href: ensai1A.qmd
+            text: TD Ensai 1A 
+          #- href: index_gdr.qmd
+          #  text: Gestion des risques bancaires
+      - text: Autres
+        # menu:
+          # - href: index_stat.qmd
+          #   text: Statistiques - Ensai 2A 
+          # - href: index_gdr.qmd
+          #   text: Gestion des risques bancaires
+      - href: about.qmd
+        text: À propos
+
+
 
 format:
   html:
-    theme: cosmo
+    page-layout: full
+    code-fold: true
+    code-summary: "Show the code"
+    theme:
+      light: flat
     css: styles.css
     toc: true
-
-
-
+    toc-location: left
+    toc-title: "Sommaire"
+    df-print: kable    
+  # ipynb: default
+  # pdf: default

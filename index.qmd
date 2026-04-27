@@ -1,7 +1,14 @@
 ---
-title: " Jumbong.github.io"
+title: ""
+listing:
+  contents: 
+    - 3A/**/*.qmd
+    - 2A/**/*.qmd
+    - 1A/**/*.qmd
+  type: grid
+  sort: "date desc"
+  image-placeholder: img/placeholder.jpg
+  fields: [image, date, title, author, reading-time,description]
+  categories: false
+  page-size: 6
 ---
-
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

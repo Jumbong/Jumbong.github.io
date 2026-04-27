@@ -1,0 +1,94 @@
+---
+title: ""
+---
+
+
+<div class="postcard-grid">
+
+# Théorie des Probabilités Générale
+
+::: {.callout-tip}
+
+Vous trouverez ici certains exercices de la fiche de TD, qui vous permettront de mieux comprendre les concepts abordés par le professeur pendant les cours. N'hésitez pas à me contacter si vous avez des questions ou des suggestions. 
+
+:::
+
+
+
+::: {.postcard}
+## 1. Exercices sur les espaces probabilisés
+- [Exercice 2](1A/EspacesProbabilises/espaceproba.qmd#exercice-2)
+- [Exercice 3](1A/EspacesProbabilises/espaceproba.qmd#exercice-3)
+- [Exercice 4](1A/EspacesProbabilises/espaceproba.qmd#exercice-4)
+- [Exercice 5](1A/EspacesProbabilises/espaceproba.qmd#exercice-5)
+
+:::
+
+
+::: {.postcard}
+## 2. Exercices sur les probabilités conditionnelles et indépendance
+
+- [Exercice 2](1A/ProbaCondi/probacondi.qmd#exercice-2)
+- [Exercice 3](1A/ProbaCondi/probacondi.qmd#exercice-3)
+- [Exercice 4](1A/ProbaCondi/probacondi.qmd#exercice-4)
+:::
+
+::: {.postcard}
+## 3. Variables aléatoires générales
+- [Exercice 1](1A/VariablesAleaGen/varalegenerale.qmd#exercice-1)
+- [Exercice 2](1A/VariablesAleaGen/varalegenerale.qmd#exercice-2)
+- [Exercice 3](1A/VariablesAleaGen/varalegenerale.qmd#exercice-3)
+- [Exercice 4](1A/VariablesAleaGen/varalegenerale.qmd#exercice-4)
+
+:::
+
+::: {.postcard}
+## 4. Exercices sur les variables aléatoires discrètes
+- [Exercice 1](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-1)
+- [Exercice 2](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-2)
+- [Exercice 3](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-3)
+- [Exercice 4](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-4)
+- [Exercice 5](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-5)
+- [Exercice 6](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-6)
+- [Exercice 7](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-7)
+- [Exercice 8](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-8)
+- [Exercice 9](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-9)
+:::
+
+::: {.postcard}
+## 5. Variables aléatoires continues
+
+- [Exercice 1](1A/VariablesAleaContines/varaleacont.qmd#exercice-1)
+- [Exercice 2](1A/VariablesAleaContines/varaleacont.qmd#exercice-2)
+- [Exercice 3](1A/VariablesAleaContines/varaleacont.qmd#exercice-3)
+- [Exercice 4](1A/VariablesAleaContines/varaleacont.qmd#exercice-4)
+- [Exercice 5](1A/VariablesAleaContines/varaleacont.qmd#exercice-5)
+- [Exercice 6](1A/VariablesAleaContines/varaleacont.qmd#exercice-6)
+- [Exercice 7](1A/VariablesAleaContines/varaleacont.qmd#exercice-7)
+- [Exercice 8](1A/VariablesAleaContines/varaleacont.qmd#exercice-8)
+- [Exercice 9](1A/VariablesAleaContines/varaleacont.qmd#exercice-9)
+- [Exercice 10](1A/VariablesAleaContines/varaleacont.qmd#exercice-10)
+- [Exercice 11](1A/VariablesAleaContines/varaleacont.qmd#exercice-11)
+- [Exercice 15](1A/VariablesAleaContines/varaleacont.qmd#exercice-15)
+:::
+
+::: {.postcard}
+## 6. Vecteurs Aléatoires Discrets et continus
+- [Exercice 1](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-1)
+- [Exercice 2](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-2)
+- [Exercice 3](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-3)
+- [Exercice 4](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-4)
+- [Exercice 5](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-5)
+- [Exercice 6](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-6)
+- [Exercice 7](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-7)
+- [Exercice 8](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-8)
+- [Exercice 9](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-9)
+
+:::
+
+</div>
+
+
+
+
+
