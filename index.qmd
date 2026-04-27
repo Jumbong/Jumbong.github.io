@@ -7,7 +7,7 @@ listing:
     - 1A/**/*.qmd
   type: grid
   sort: "date desc"
-  image-placeholder: img/placeholder.jpg
+  image-placeholder: img/placeholder.png
   fields: [image, date, title, author, reading-time,description]
   categories: false
   page-size: 6
