@@ -11,6 +11,8 @@ title: ""
 
 Vous trouverez ici certains exercices de la fiche de TD, qui vous permettront de mieux comprendre les concepts abordés par le professeur pendant les cours. N'hésitez pas à me contacter si vous avez des questions ou des suggestions. 
 
+Les corrections sont mises en ligne progressivement après les séances de TD. Seuls les exercices avec un lien sont accessibles.
+
 :::
 
 

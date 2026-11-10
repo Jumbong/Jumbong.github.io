@@ -11,6 +11,15 @@ execute:
   
 website:
   title: ""
+  site-url: https://Jumbong.github.io/
+  # Chapitres en attente de leur séance de TD.
+  # Pour ouvrir un chapitre, retirer sa ligne puis lancer quarto render --no-clean.
+  draft-mode: gone
+  drafts:
+    - 1A/VariablesAleaGen/varalegenerale.qmd # Chapitre 3
+    - 1A/VariablesAleaDiscretes/varaleadis.qmd # Chapitre 4
+    - 1A/VariablesAleaContines/varaleacont.qmd # Chapitre 5
+    - 1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd # Chapitre 6
   favicon: "flavicon.jpeg"
   back-to-top-navigation: true
   navbar:
