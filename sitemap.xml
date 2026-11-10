@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://Jumbong.github.io/1A/VariablesAleaGen/varalegenerale.html</loc>
-    <lastmod>2026-04-27T18:42:52.764Z</lastmod>
-  </url>
-  <url>
     <loc>https://Jumbong.github.io/1A/ProbaCondi/probacondi.html</loc>
     <lastmod>2026-04-27T18:42:52.755Z</lastmod>
   </url>
   <url>
-    <loc>https://Jumbong.github.io/1A/VecteursAleatoiresDiscrests/VectAleaDis.html</loc>
-    <lastmod>2026-04-27T18:42:52.765Z</lastmod>
-  </url>
-  <url>
     <loc>https://Jumbong.github.io/index.html</loc>
-    <lastmod>2026-04-27T19:12:41.495Z</lastmod>
+    <lastmod>2026-11-10T15:45:23.745Z</lastmod>
   </url>
   <url>
     <loc>https://Jumbong.github.io/about.html</loc>
@@ -22,18 +14,10 @@
   </url>
   <url>
     <loc>https://Jumbong.github.io/ensai1A.html</loc>
-    <lastmod>2026-04-27T18:59:26.285Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Jumbong.github.io/1A/VariablesAleaDiscretes/varaleadis.html</loc>
-    <lastmod>2026-04-27T18:42:52.764Z</lastmod>
+    <lastmod>2026-11-10T15:30:30.218Z</lastmod>
   </url>
   <url>
     <loc>https://Jumbong.github.io/1A/EspacesProbabilises/espaceproba.html</loc>
     <lastmod>2026-04-27T18:50:40.119Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Jumbong.github.io/1A/VariablesAleaContines/varaleacont.html</loc>
-    <lastmod>2026-04-27T18:42:52.760Z</lastmod>
   </url>
 </urlset>
