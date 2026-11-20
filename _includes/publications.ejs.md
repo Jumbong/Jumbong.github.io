@@ -22,12 +22,16 @@ const formatDate = new Intl.DateTimeFormat("fr-FR", {
           <time datetime="<%- feature.published %>"><%- formatDate.format(new Date(feature.published)) %></time>
         </p>
         <h2 lang="en"><%- feature.title %></h2>
-        <p class="feature-description"><%- feature.summary %></p>
+        <% if (feature.summary) { %>
+          <p class="feature-description" lang="<%- feature["summary-lang"] || "fr" %>"><%- feature.summary %></p>
+        <% } %>
         <span class="feature-cta">Lire l’article <span aria-hidden="true">↗</span></span>
       </div>
-      <div class="feature-image">
-        <img src="<%- feature.cover %>" alt="" fetchpriority="high" referrerpolicy="no-referrer">
-      </div>
+      <% if (feature.cover) { %>
+        <div class="feature-image">
+          <img src="<%- feature.cover %>" alt="" fetchpriority="high" referrerpolicy="no-referrer">
+        </div>
+      <% } %>
     </a>
   </article>
   <div class="editorial-section-heading">
@@ -39,9 +43,11 @@ const formatDate = new Intl.DateTimeFormat("fr-FR", {
   <% for (const item of cards) { %>
     <article class="publication-card">
       <a href="<%- item.href %>">
-        <div class="publication-image">
-          <img src="<%- item.cover %>" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">
-        </div>
+        <% if (item.cover) { %>
+          <div class="publication-image">
+            <img src="<%- item.cover %>" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+          </div>
+        <% } %>
         <div class="publication-copy">
           <p class="publication-meta">
             <span class="publication-topic"><%- item.topic %></span>
@@ -49,7 +55,9 @@ const formatDate = new Intl.DateTimeFormat("fr-FR", {
             <time datetime="<%- item.published %>"><%- formatDate.format(new Date(item.published)) %></time>
           </p>
           <<%= heading %> lang="en"><%- item.title %></<%= heading %>>
-          <p><%- item.summary %></p>
+          <% if (item.summary) { %>
+            <p lang="<%- item["summary-lang"] || "fr" %>"><%- item.summary %></p>
+          <% } %>
         </div>
       </a>
     </article>

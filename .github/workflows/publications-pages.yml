@@ -1,0 +1,71 @@
+name: Publier le site et actualiser les articles
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '1.5.57'
+      - uses: actions/setup-python@v6
+        if: github.event_name != 'push'
+        with:
+          python-version: '3.13'
+      - name: Ajouter les nouvelles publications au catalogue
+        if: github.event_name != 'push'
+        run: |
+          python -m pip install PyYAML==6.0.3
+          curl --fail --silent --show-error --location --proto '=https' \
+            --retry 3 --max-time 45 --max-filesize 2097152 \
+            --output "$RUNNER_TEMP/towards-data-science.xml" \
+            'https://towardsdatascience.com/author/jumbongjunior1999/feed/'
+          python scripts/sync_towards_data_science.py "$RUNNER_TEMP/towards-data-science.xml"
+      - name: Générer les pages qui affichent le catalogue
+        run: |
+          quarto render index.qmd --no-clean
+          quarto render publications.qmd --no-clean
+          quarto render finance.qmd --no-clean
+      - name: Conserver les nouvelles entrées dans le dépôt
+        if: github.event_name != 'push'
+        run: |
+          if ! git diff --quiet -- publications.yml; then
+            git add -- publications.yml
+            git -c 'user.name=github-actions[bot]' \
+              -c user.email=41898282+github-actions[bot]@users.noreply.github.com \
+              commit -m "Ajouter les articles de Towards Data Science"
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Déployer sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

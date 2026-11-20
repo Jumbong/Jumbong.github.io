@@ -1,5 +1,22 @@
 # Jumbong.github.io
 
+## Publications Towards Data Science
+
+Sur GitHub, choisir **Settings → Pages → Source → GitHub Actions**. Une fois
+le workflow présent sur `main`, lancer **Publier le site et actualiser les
+articles** depuis l’onglet **Actions** pour effectuer la première synchronisation.
+
+Le workflow vérifie chaque jour le flux RSS du profil Towards Data Science. Il
+ajoute les titres, dates, extraits et liens des nouveaux articles à
+`publications.yml`. Le catalogue conserve les entrées et les résumés existants.
+GitHub Pages publie le dossier `docs/` après le rendu des pages qui utilisent
+le catalogue. Pour les autres pages, garder le rendu Quarto habituel avant
+d’envoyer le dossier `docs/` sur `main`.
+
+Le flux contient les 20 publications les plus récentes. Si le workflow est
+interrompu suffisamment longtemps pour qu’un article sorte du flux avant d’être
+importé, ajouter cet article directement dans `publications.yml`.
+
 ## Ouverture progressive des corrections de TD
 
 Les chapitres 3 à 6 sont temporairement désactivés dans la liste

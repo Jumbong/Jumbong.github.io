@@ -185,6 +185,10 @@ body:has(.editorial-content) {
   text-decoration: none;
 }
 
+.publication-featured > a:not(:has(.feature-image)) {
+  grid-template-columns: 1fr;
+}
+
 .feature-copy {
   align-self: center;
   min-width: 0;
