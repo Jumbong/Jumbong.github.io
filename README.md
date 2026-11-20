@@ -2,9 +2,9 @@
 
 ## Publications Towards Data Science
 
-Sur GitHub, choisir **Settings → Pages → Source → GitHub Actions**. Une fois
-le workflow présent sur `main`, lancer **Publier le site et actualiser les
-articles** depuis l’onglet **Actions** pour effectuer la première synchronisation.
+Dans l’onglet **Actions** du dépôt, **Publier le site et actualiser les
+articles** permet de consulter les exécutions ou de lancer une synchronisation
+manuelle avec **Run workflow**.
 
 Le workflow vérifie chaque jour le flux RSS du profil Towards Data Science. Il
 ajoute les titres, dates, extraits et liens des nouveaux articles à
@@ -13,9 +13,11 @@ GitHub Pages publie le dossier `docs/` après le rendu des pages qui utilisent
 le catalogue. Pour les autres pages, garder le rendu Quarto habituel avant
 d’envoyer le dossier `docs/` sur `main`.
 
-Le flux contient les 20 publications les plus récentes. Si le workflow est
-interrompu suffisamment longtemps pour qu’un article sorte du flux avant d’être
-importé, ajouter cet article directement dans `publications.yml`.
+Lorsque le flux RSS direct est inaccessible, le workflow lit le même flux
+public via RSS2JSON, qui transmet les dix entrées les plus récentes. Si un
+article sort du flux avant d’être importé, l’ajouter dans `publications.yml`.
+GitHub désactive aussi les exécutions planifiées après 60 jours d’inactivité
+du dépôt public. Le workflow peut être réactivé dans l’onglet **Actions**.
 
 ## Ouverture progressive des corrections de TD
 

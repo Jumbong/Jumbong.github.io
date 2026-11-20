@@ -1,4 +1,6 @@
 import argparse
+import json
+from datetime import datetime
 from email.utils import parsedate_to_datetime
 from html import unescape
 from html.parser import HTMLParser
@@ -10,6 +12,7 @@ import yaml
 
 
 AUTHOR_URL = "https://towardsdatascience.com/author/jumbongjunior1999/"
+FEED_URL = AUTHOR_URL + "feed/"
 
 
 class ArticleExcerpt(HTMLParser):
@@ -40,31 +43,59 @@ def article_url(link):
     return urlunsplit(("https", "towardsdatascience.com", url.path.rstrip("/") + "/", "", ""))
 
 
-def sync_publications(feed_path, catalog_path):
+def read_feed(feed_path):
+    if feed_path.suffix == ".json":
+        feed_data = json.loads(feed_path.read_text(encoding="utf-8"))
+        feed = feed_data.get("feed", {})
+        if feed_data.get("status") != "ok" or feed.get("url") != FEED_URL or feed.get("link") != AUTHOR_URL:
+            raise ValueError("RSS2JSON did not return the expected author feed.")
+        return [
+            {
+                "link": item["link"],
+                "title": item["title"],
+                "date": datetime.fromisoformat(item["pubDate"]),
+                "topic": next(iter(item.get("categories", [])), ""),
+                "description": item.get("description", ""),
+            }
+            for item in feed_data["items"]
+        ]
+
     channel = ElementTree.parse(feed_path).find("channel")
     if channel is None or channel.findtext("link", "").strip() != AUTHOR_URL:
         raise ValueError("The RSS feed does not belong to the expected author.")
+    return [
+        {
+            "link": item.findtext("link", ""),
+            "title": item.findtext("title", ""),
+            "date": parsedate_to_datetime(item.findtext("pubDate", "")),
+            "topic": item.findtext("category", ""),
+            "description": item.findtext("description", ""),
+        }
+        for item in channel.findall("item")
+    ]
 
+
+def sync_publications(feed_path, catalog_path):
     catalog_text = catalog_path.read_text(encoding="utf-8")
     catalog = yaml.safe_load(catalog_text)
     known_links = {article_url(article["href"]) for article in catalog}
     new_articles = []
 
-    for item in channel.findall("item"):
-        link = article_url(item.findtext("link", ""))
+    for item in read_feed(feed_path):
+        link = article_url(item["link"])
         if link in known_links:
             continue
-        title = " ".join(unescape(item.findtext("title", "")).split())
+        title = " ".join(unescape(item["title"]).split())
         if not title:
             raise ValueError(f"The RSS entry has no title: {link}")
 
         excerpt = ArticleExcerpt()
-        excerpt.feed(item.findtext("description", ""))
+        excerpt.feed(item["description"])
         excerpt.close()
         new_articles.append({
             "title": title,
-            "published": parsedate_to_datetime(item.findtext("pubDate", "")).date().isoformat(),
-            "topic": item.findtext("category", "").strip() or "Towards Data Science",
+            "published": item["date"].date().isoformat(),
+            "topic": item["topic"].strip() or "Towards Data Science",
             "summary": " ".join("".join(excerpt.parts).split()),
             "summary-lang": "en",
             "href": link,
