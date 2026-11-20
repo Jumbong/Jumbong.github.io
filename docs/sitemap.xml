@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://Jumbong.github.io/1A/VariablesAleaGen/varalegenerale.html</loc>
+    <lastmod>2026-04-27T18:42:52.764Z</lastmod>
+  </url>
+  <url>
     <loc>https://Jumbong.github.io/1A/ProbaCondi/probacondi.html</loc>
     <lastmod>2026-04-27T18:42:52.755Z</lastmod>
   </url>
   <url>
-    <loc>https://Jumbong.github.io/index.html</loc>
-    <lastmod>2026-04-27T19:12:41.495Z</lastmod>
+    <loc>https://Jumbong.github.io/risques-esg.html</loc>
+    <lastmod>2026-11-20T15:21:01.480Z</lastmod>
   </url>
   <url>
-    <loc>https://Jumbong.github.io/about.html</loc>
-    <lastmod>2026-04-27T19:01:33.513Z</lastmod>
+    <loc>https://Jumbong.github.io/index.html</loc>
+    <lastmod>2026-11-20T15:26:05.245Z</lastmod>
   </url>
   <url>
     <loc>https://Jumbong.github.io/ensai1A.html</loc>
-    <lastmod>2026-11-10T15:30:30.218Z</lastmod>
+    <lastmod>2026-11-20T15:21:01.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Jumbong.github.io/about.html</loc>
+    <lastmod>2026-11-20T15:21:01.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Jumbong.github.io/finance.html</loc>
+    <lastmod>2026-11-20T15:29:33.398Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Jumbong.github.io/publications.html</loc>
+    <lastmod>2026-11-20T15:21:01.479Z</lastmod>
   </url>
   <url>
     <loc>https://Jumbong.github.io/1A/EspacesProbabilises/espaceproba.html</loc>

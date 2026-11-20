@@ -10,13 +10,13 @@ execute:
   freeze: auto 
   
 website:
-  title: ""
+  title: "Junior Jumbong"
   site-url: https://Jumbong.github.io/
   # Chapitres en attente de leur séance de TD.
   # Pour ouvrir un chapitre, retirer sa ligne puis lancer quarto render --no-clean.
   draft-mode: gone
   drafts:
-    - 1A/VariablesAleaGen/varalegenerale.qmd # Chapitre 3
+    #- 1A/VariablesAleaGen/varalegenerale.qmd # Chapitre 3
     - 1A/VariablesAleaDiscretes/varaleadis.qmd # Chapitre 4
     - 1A/VariablesAleaContines/varaleacont.qmd # Chapitre 5
     - 1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd # Chapitre 6
@@ -27,22 +27,27 @@ website:
     left:
       - href: index.qmd
         text: Accueil
-      - text: ENSAI
-        menu:
-          - href: ensai1A.qmd
-            text: TD Ensai 1A 
-          #- href: index_gdr.qmd
-          #  text: Gestion des risques bancaires
-      - text: Autres
-        # menu:
-          # - href: index_stat.qmd
-          #   text: Statistiques - Ensai 2A 
-          # - href: index_gdr.qmd
-          #   text: Gestion des risques bancaires
+      - href: ensai1A.qmd
+        text: Enseignement
+      - href: publications.qmd
+        text: Publications
+      - href: risques-esg.qmd
+        text: Risques ESG
+      - href: finance.qmd
+        text: Finance
       - href: about.qmd
-        text: À propos
+        text: About
+  page-footer:
+    left: "Junior Jumbong"
+    right:
+      - text: "Towards Data Science"
+        href: https://towardsdatascience.com/author/jumbongjunior1999/
+      - text: "LinkedIn"
+        href: https://www.linkedin.com/in/junior-jumbong-258330211/
 
 
+
+lang: fr
 
 format:
   html:
@@ -51,7 +56,7 @@ format:
     code-summary: "Show the code"
     theme:
       light: flat
-    css: styles.css
+    css: [styles.css, editorial.css]
     toc: true
     toc-location: left
     toc-title: "Sommaire"

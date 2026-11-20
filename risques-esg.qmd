@@ -1,0 +1,32 @@
+---
+pagetitle: Risques ESG
+anchor-sections: false
+toc: false
+---
+
+::: {.editorial-content}
+::: {.editorial-intro}
+# Risques ESG
+
+Les facteurs environnementaux, sociaux et de gouvernance peuvent influer sur la solidité financière des entreprises. Cette rubrique présente trois façons d’aborder leur analyse.
+:::
+
+::: {.esg-grid}
+::: {.theme-card}
+## Environnement
+Évaluer l’exposition aux aléas physiques, comme les inondations, et aux changements liés à la transition, comme l’évolution du mix énergétique d’un secteur.
+:::
+
+::: {.theme-card}
+## Social
+Examiner les conditions de travail et les pratiques des fournisseurs lorsque des ruptures d’activité ou des litiges peuvent fragiliser l’entreprise.
+:::
+
+::: {.theme-card}
+## Gouvernance
+Étudier la qualité des contrôles internes, l’indépendance de la supervision et la fiabilité des informations communiquées.
+:::
+:::
+
+[Explorer la modélisation du risque de crédit](finance.qmd){.editorial-link}
+:::

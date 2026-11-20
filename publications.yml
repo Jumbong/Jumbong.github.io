@@ -1,0 +1,121 @@
+# Catalogue du profil Towards Data Science. Les dates correspondent à l’édition originale.
+- title: How to Prepare for a Credit Risk Internship Interview in Nine Steps
+  published: "2026-11-20"
+  topic: Risque de crédit
+  summary: Préparer un entretien en risque de crédit en construisant pas à pas un modèle de scoring.
+  href: https://towardsdatascience.com/how-to-prepare-for-a-credit-risk-internship-interview-in-nine-steps/
+  cover: https://assets.insightmediagroup.io/media/1795127210670_174fei.jpg
+- title: "Credit Risk: What Are We Actually Measuring?"
+  published: "2026-11-02"
+  topic: Risque de crédit
+  summary: "Partir d’un prêt pour comprendre la probabilité de défaut, les pertes et le capital bancaire."
+  href: https://towardsdatascience.com/credit-risk-what-are-we-actually-measuring/
+  cover: https://assets.insightmediagroup.io/media/1793307973358_vkio56.jpg
+- title: How to Build a Credit Scoring Grid From a Logistic Regression Model
+  published: "2026-06-24"
+  topic: Risque de crédit
+  summary: Passer d’une régression logistique à une grille de points et à des classes de risque.
+  href: https://towardsdatascience.com/how-to-build-a-credit-scoring-grid-from-a-logistic-regression-model/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/06/credit_score_grid.jpg
+- title: How to Train a Scoring Model in the Age of Artificial Intelligence
+  published: "2026-06-10"
+  topic: Risque de crédit
+  summary: Comparer des modèles de scoring et tenir compte de leur stabilité pour choisir le modèle final.
+  href: https://towardsdatascience.com/how-to-train-a-scoring-model-in-the-age-of-artificial-intelligence/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/06/ChatGPT-Image-6-juin-2026-22_45_01.jpg
+- title: Can AI Write Your Code?
+  published: "2026-05-19"
+  topic: Intelligence artificielle
+  summary: Ce que révèle une étude de la programmation assistée par IA pour l’inférence causale.
+  href: https://towardsdatascience.com/can-ai-write-your-code/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/05/ChatGPT-Image-22-mai-2026-00_25_05.jpg
+- title: From Raw Data to Risk Classes
+  published: "2026-05-15"
+  topic: Risque de crédit
+  summary: Transformer les données des emprunteurs en catégories exploitables dans un modèle de scoring.
+  href: https://towardsdatascience.com/from-raw-data-to-risk-classes/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/05/ChatGPT-Image-14-mai-2026-18_43_08.jpg
+- title: "Learning Word Vectors for Sentiment Analysis: A Python Reproduction"
+  published: "2026-05-11"
+  topic: Apprentissage automatique
+  summary: Construire des représentations de mots et les utiliser pour classer des critiques de films.
+  href: https://towardsdatascience.com/learning-word-vectors-for-sentiment-analysis-a-python-reproduction/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/05/ChatGPT-Image-5-mai-2026-02_58_40.jpg
+- title: How to Study the Monotonicity and Stability of Variables in a Scoring Model using Python
+  published: "2026-04-30"
+  topic: Risque de crédit
+  summary: Vérifier comment les variables d’un score évoluent avec le risque et si cette relation se maintient dans le temps.
+  href: https://towardsdatascience.com/how-to-study-the-monotonicity-and-stability-of-variables-in-a-scoring-model-using-python/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/04/ChatGPT-Image-26-avr.-2026-01_52_23.png
+- title: How to Select Variables Robustly in a Scoring Model
+  published: "2026-04-24"
+  topic: Risque de crédit
+  summary: Sélectionner des variables interprétables dont la contribution reste stable d’un échantillon à l’autre.
+  href: https://towardsdatascience.com/how-to-select-variables-robustly-in-a-scoring-model/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/04/ChatGPT-Image-18-avr.-2026-00_15_40.jpg
+- title: Building Robust Credit Scoring Models with Python
+  published: "2026-04-04"
+  topic: Risque de crédit
+  summary: Mesurer les relations entre variables pour guider leur sélection dans un score de crédit.
+  href: https://towardsdatascience.com/building-robust-credit-scoring-models-with-python/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/04/image_by_autor.jpg
+- title: Building Robust Credit Scoring Models (Part 3)
+  published: "2026-03-20"
+  topic: Risque de crédit
+  summary: Traiter les valeurs atypiques et manquantes dans les données sur les emprunteurs avec Python.
+  href: https://towardsdatascience.com/building-robust-credit-scoring-models-part-3/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/03/outlier_scoring_en_clean.jpg
+- title: Exploratory Data Analysis for Credit Scoring with Python
+  published: "2026-03-12"
+  topic: Risque de crédit
+  summary: Explorer les caractéristiques des prêts et des emprunteurs associées au défaut de paiement.
+  href: https://towardsdatascience.com/exploratory-data-analysis-for-credit-scoring-with-python/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/03/ChatGPT-Image-8-mars-2026-01_27_11.jpg
+- title: How to Define the Modeling Scope of an Internal Credit Risk Model
+  published: "2026-02-25"
+  topic: Risque de crédit
+  summary: Définir le périmètre des données avant d’estimer une probabilité de défaut dans le cadre IRB.
+  href: https://towardsdatascience.com/how-to-define-the-modeling-scope-of-an-internal-credit-risk-model/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2026/02/credit_score_v2.jpg
+- title: "Implementing the Fourier Transform Numerically in Python: A Step-by-Step Guide"
+  published: "2025-10-21"
+  topic: Mathématiques
+  summary: Calculer la transformée de Fourier d’une fonction continue par quadrature numérique et par FFT.
+  href: https://towardsdatascience.com/implementing-the-fourier-transform-numerically-in-python-a-step-by-step-guide/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/10/ChatGPT-Image-14-oct.-2025-08_10_18.jpg
+- title: "Why MissForest Fails in Prediction Tasks: A Key Limitation You Need to Keep in Mind"
+  published: "2025-09-26"
+  topic: Apprentissage automatique
+  summary: Appliquer l’imputation à de nouvelles données avec MissForestPredict et éviter les fuites de données.
+  href: https://towardsdatascience.com/why-missforest-fails-in-prediction-tasks-a-key-limitation-you-need-to-know/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/09/ChatGPT-Image-24-sept.-2025-11_23_56.jpg
+- title: Is Your Training Data Representative? A Guide to Checking with PSI in Python
+  published: "2025-09-10"
+  topic: Statistique
+  summary: Comparer deux populations avec le Population Stability Index et le V de Cramér.
+  href: https://towardsdatascience.com/assessment-of-representativeness-between-two-populations-to-ensure-valid-performance-2/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/09/ChatGPT-Image-7-sept.-2025-15_30_15.jpg
+- title: "Stepwise Selection Made Simple: Improve Your Regression Models in Python"
+  published: "2025-08-28"
+  topic: Statistique
+  summary: Mettre en pratique les méthodes pas à pas de sélection de variables dans une régression linéaire.
+  href: https://towardsdatascience.com/model-selection-in-linear-regression/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/08/image-273.png
+- title: Exploring the Proportional Odds Model for Ordinal Logistic Regression
+  published: "2025-06-11"
+  topic: Statistique
+  summary: Vérifier l’hypothèse des rapports de cotes proportionnels à l’aide du test de Brant en Python.
+  href: https://towardsdatascience.com/proportional-odds-model-for-ordinal-logistic-regression/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/06/ChatGPT-Image-11-juin-2025-21_55_10.png
+- title: Multiple Linear Regression Analysis
+  published: "2025-05-22"
+  topic: Statistique
+  summary: Ajuster une régression linéaire multiple sur des données réelles, vérifier ses hypothèses et interpréter ses résultats.
+  href: https://towardsdatascience.com/multiple-linear-regression-analysis/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/05/ChatGPT-Image-20-mai-2025-00_31_15.png
+- title: "Linear Regression in Time Series: Sources of Spurious Regression"
+  published: "2025-03-10"
+  topic: Séries temporelles
+  summary: Comprendre comment l’autocorrélation des erreurs contribue aux régressions fallacieuses.
+  href: https://towardsdatascience.com/linear-regression-in-time-series-sources-of-spurious-regression/
+  cover: https://assets.insightmediagroup.io/media/wp-content/uploads/2025/03/Spurious-regression.png

@@ -1,0 +1,28 @@
+---
+pagetitle: Finance
+anchor-sections: false
+toc: false
+listing:
+  id: articles-finance
+  contents: publications.yml
+  template: _includes/publications.ejs.md
+  sort: "published desc"
+  template-params:
+    topic: Risque de crédit
+    limit: 6
+---
+
+::: {.editorial-content}
+::: {.editorial-intro}
+# Finance
+
+Du portefeuille de prêts au modèle de défaut, j’aborde le risque de crédit par les données, la construction des scores et leur validation.
+:::
+
+## Articles sur le risque de crédit
+
+::: {#articles-finance}
+:::
+
+[Voir toutes les publications](publications.qmd){.editorial-link}
+:::

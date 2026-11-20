@@ -1,14 +1,53 @@
 ---
-title: ""
+pagetitle: Accueil
+anchor-sections: false
+toc: false
 listing:
-  contents: 
-    - 3A/**/*.qmd
-    - 2A/**/*.qmd
-    - 1A/**/*.qmd
-  type: grid
-  sort: "date desc"
-  image-placeholder: img/placeholder.png
-  fields: [image, date, title, author, reading-time,description]
-  categories: false
-  page-size: 6
+  id: une
+  contents: publications.yml
+  template: _includes/publications.ejs.md
+  sort: "published desc"
+  max-items: 4
+  template-params:
+    featured: true
 ---
+
+::: {.editorial-masthead}
+# Junior Jumbong
+
+Statistique, finance quantitative et enseignement.
+:::
+
+::: {#une .editorial-content}
+:::
+
+::: {.editorial-content .home-rubriques}
+## Explorer par thème
+
+::: {.theme-grid}
+::: {.theme-card}
+### [Enseignement](ensai1A.qmd)
+Théorie des probabilités générales et exercices corrigés pour l’ENSAI.
+:::
+
+::: {.theme-card}
+### [Publications](publications.qmd)
+Mes articles parus dans Towards Data Science.
+:::
+
+::: {.theme-card}
+### [Risques ESG](risques-esg.qmd)
+Risques climatiques, facteurs sociaux et gouvernance.
+:::
+
+::: {.theme-card}
+### [Finance](finance.qmd)
+Modélisation du risque de crédit et scoring bancaire.
+:::
+
+::: {.theme-card}
+### [About](about.qmd)
+Mon parcours d’analyste quantitatif et de statisticien.
+:::
+:::
+:::

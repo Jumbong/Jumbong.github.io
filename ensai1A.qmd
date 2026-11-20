@@ -1,33 +1,32 @@
 ---
-title: ""
+pagetitle: Enseignement
+anchor-sections: false
+toc: false
+filters:
+  - _includes/exercise-availability.lua
 ---
 
+::::: {.editorial-content}
+::: {.editorial-intro}
+[Enseignement · ENSAI, 1re année]{.editorial-kicker}
 
-<div class="postcard-grid">
+# Théorie des probabilités générales {#théorie-des-probabilités-générale}
 
-# Théorie des Probabilités Générale
-
-::: {.callout-tip}
-
-Vous trouverez ici certains exercices de la fiche de TD, qui vous permettront de mieux comprendre les concepts abordés par le professeur pendant les cours. N'hésitez pas à me contacter si vous avez des questions ou des suggestions. 
-
-Les corrections sont mises en ligne progressivement après les séances de TD. Seuls les exercices avec un lien sont accessibles.
-
+Exercices corrigés des travaux dirigés. Les corrections sont mises en ligne après les séances de TD.
 :::
 
-
-
-::: {.postcard}
+:::: {.teaching-grid}
+::: {.teaching-chapter}
 ## 1. Exercices sur les espaces probabilisés
 - [Exercice 2](1A/EspacesProbabilises/espaceproba.qmd#exercice-2)
 - [Exercice 3](1A/EspacesProbabilises/espaceproba.qmd#exercice-3)
 - [Exercice 4](1A/EspacesProbabilises/espaceproba.qmd#exercice-4)
-- [Exercice 5](1A/EspacesProbabilises/espaceproba.qmd#exercice-5)
+- [Exercice 5](1A/EspacesProbabilises/espaceproba.qmd#correction-de-lexercice-5)
 
 :::
 
 
-::: {.postcard}
+::: {.teaching-chapter}
 ## 2. Exercices sur les probabilités conditionnelles et indépendance
 
 - [Exercice 2](1A/ProbaCondi/probacondi.qmd#exercice-2)
@@ -35,7 +34,7 @@ Les corrections sont mises en ligne progressivement après les séances de TD. S
 - [Exercice 4](1A/ProbaCondi/probacondi.qmd#exercice-4)
 :::
 
-::: {.postcard}
+::: {.teaching-chapter}
 ## 3. Variables aléatoires générales
 - [Exercice 1](1A/VariablesAleaGen/varalegenerale.qmd#exercice-1)
 - [Exercice 2](1A/VariablesAleaGen/varalegenerale.qmd#exercice-2)
@@ -44,7 +43,7 @@ Les corrections sont mises en ligne progressivement après les séances de TD. S
 
 :::
 
-::: {.postcard}
+::: {.teaching-chapter}
 ## 4. Exercices sur les variables aléatoires discrètes
 - [Exercice 1](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-1)
 - [Exercice 2](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-2)
@@ -57,7 +56,7 @@ Les corrections sont mises en ligne progressivement après les séances de TD. S
 - [Exercice 9](1A/VariablesAleaDiscretes/varaleadis.qmd#exercice-9)
 :::
 
-::: {.postcard}
+::: {.teaching-chapter}
 ## 5. Variables aléatoires continues
 
 - [Exercice 1](1A/VariablesAleaContines/varaleacont.qmd#exercice-1)
@@ -74,7 +73,7 @@ Les corrections sont mises en ligne progressivement après les séances de TD. S
 - [Exercice 15](1A/VariablesAleaContines/varaleacont.qmd#exercice-15)
 :::
 
-::: {.postcard}
+::: {.teaching-chapter}
 ## 6. Vecteurs Aléatoires Discrets et continus
 - [Exercice 1](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-1)
 - [Exercice 2](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-2)
@@ -87,10 +86,5 @@ Les corrections sont mises en ligne progressivement après les séances de TD. S
 - [Exercice 9](1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd#exercice-9)
 
 :::
-
-</div>
-
-
-
-
-
+::::
+:::::

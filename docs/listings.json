@@ -1,9 +1,14 @@
 [
   {
     "listing": "/index.html",
-    "items": [
-      "/1A/EspacesProbabilises/espaceproba.html",
-      "/1A/ProbaCondi/probacondi.html"
-    ]
+    "items": []
+  },
+  {
+    "listing": "/finance.html",
+    "items": []
+  },
+  {
+    "listing": "/publications.html",
+    "items": []
   }
 ]

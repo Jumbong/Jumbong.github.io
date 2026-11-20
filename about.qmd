@@ -1,25 +1,21 @@
 ---
-title: "About Me"
+pagetitle: About
+anchor-sections: false
+toc: false
 ---
 
-<div class="box">
-<h1 style="display: block;">Jumbong Junior</h1>
+::: {.editorial-content .about-layout}
+::: {.editorial-intro}
+[About]{.editorial-kicker}
 
-<div class="container">
-<ul>
-    <li>  </li>
-    <li>  </li>
-    <br>
-    <li> </li>
-    <li> </li>
-</ul> 
+# Junior Jumbong
 
-<img src="illust_graphics.jpg"  style="width: 250px; height: 250px;">
-</div>
+Je suis analyste quantitatif et statisticien. J’écris sur la statistique et la finance, avec un intérêt particulier pour le risque de crédit et les méthodes de modélisation.
 
-<h2> </h2>
+Je rassemble ici mes articles publiés dans Towards Data Science et les exercices corrigés que je mets à disposition des étudiants de première année à l’ENSAI.
 
+[LinkedIn](https://www.linkedin.com/in/junior-jumbong-258330211/){.editorial-link} · [Towards Data Science](https://towardsdatascience.com/author/jumbongjunior1999/){.editorial-link}
+:::
 
-
-</div>
-
+![Courbes et histogrammes représentant des distributions de probabilité](illust_graphics.jpg){.about-illustration fig-alt="Courbes et histogrammes représentant des distributions de probabilité"}
+:::

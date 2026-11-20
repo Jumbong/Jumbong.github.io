@@ -1,0 +1,25 @@
+---
+pagetitle: Publications
+anchor-sections: false
+toc: false
+listing:
+  id: articles
+  contents: publications.yml
+  template: _includes/publications.ejs.md
+  sort: "published desc"
+---
+
+::: {.editorial-content}
+::: {.editorial-intro}
+[Towards Data Science]{.editorial-kicker}
+
+# Publications
+
+Des articles en anglais sur le risque de crédit, la statistique appliquée et l’apprentissage automatique.
+
+[Voir mon profil Towards Data Science](https://towardsdatascience.com/author/jumbongjunior1999/){.editorial-link}
+:::
+
+::: {#articles}
+:::
+:::
