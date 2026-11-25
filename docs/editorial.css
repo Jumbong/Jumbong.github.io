@@ -185,6 +185,10 @@ body:has(.editorial-content) {
   text-decoration: none;
 }
 
+.publication-featured > a:not(:has(.feature-image)) {
+  grid-template-columns: 1fr;
+}
+
 .feature-copy {
   align-self: center;
   min-width: 0;
@@ -416,6 +420,68 @@ body:has(.editorial-content) {
 #quarto-header a:focus-visible {
   outline: 2px solid var(--editorial-accent);
   outline-offset: 3px;
+}
+
+/* Quarto switches to the collapsible menu below Bootstrap's lg breakpoint. */
+@media (max-width: 991.98px) {
+  #quarto-header .navbar {
+    padding-inline: 0;
+  }
+
+  #quarto-header .navbar-container {
+    width: calc(100% - 1.5rem);
+    padding-inline: 0;
+    column-gap: .4rem;
+  }
+
+  #quarto-header .navbar-brand-container {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+
+  #quarto-header .navbar-brand {
+    margin-right: 0;
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+  }
+
+  #quarto-header .navbar-brand-logo {
+    flex: none;
+    margin-right: .35rem;
+  }
+
+  #quarto-header .navbar-logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    max-height: none;
+    padding: 0;
+  }
+
+  #quarto-header .navbar-toggler,
+  #quarto-header #quarto-search .aa-DetachedSearchButton {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    margin: 0;
+  }
+
+  #quarto-header .navbar #quarto-search,
+  #quarto-header .navbar #quarto-search.type-overlay .aa-Autocomplete {
+    width: 44px;
+    margin-left: 0;
+  }
+
+  #quarto-header .navbar-collapse.show {
+    max-height: calc(100dvh - 4rem);
+    overflow-y: auto;
+  }
+
+  #quarto-header .navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: .5rem;
+  }
 }
 
 @media (max-width: 56rem) {
