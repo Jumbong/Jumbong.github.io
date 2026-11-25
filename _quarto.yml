@@ -17,7 +17,6 @@ website:
   draft-mode: gone
   drafts:
     #- 1A/VariablesAleaGen/varalegenerale.qmd # Chapitre 3
-    - 1A/VariablesAleaDiscretes/varaleadis.qmd # Chapitre 4
     - 1A/VariablesAleaContines/varaleacont.qmd # Chapitre 5
     - 1A/VecteursAleatoiresDiscrests/VectAleaDis.qmd # Chapitre 6
   favicon: "flavicon.jpeg"

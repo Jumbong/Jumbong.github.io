@@ -613,33 +613,47 @@ $$
 
 ---
 
-### Détermination de $\lambda$ pour une espérance de 3
+### Détermination de $\lambda$ par le théorème du point fixe {#determination-de-lambda}
 
-En résolvant :
+Pour une longueur moyenne de 3 mots, on cherche $\lambda>0$ tel que
 $$
-\frac{\lambda}{1 - e^{-\lambda}} = 3,
+\frac{\lambda}{1-e^{-\lambda}}=3.
 $$
+Sur ce domaine, l’équation est équivalente à $\lambda=g(\lambda)$, où
+$g(t)=3(1-e^{-t})$. On appelle **point fixe** de $g$ un nombre que $g$ renvoie sur lui-même.
+
+::: {.callout-note}
+#### Théorème du point fixe (Banach)
+
+Soit $I$ un intervalle fermé non vide de $\mathbb{R}$. Si $g$ envoie $I$ dans $I$ et s’il existe $0\le q<1$ tel que $|g(x)-g(y)|\le q|x-y|$ pour tous $x,y\in I$, alors $g$ admet un unique point fixe dans $I$. Pour tout point de départ $\lambda_0\in I$, la suite définie par $\lambda_{n+1}=g(\lambda_n)$ converge vers ce point fixe.
+:::
+
+**Choix de l’intervalle.** Pour $\lambda>0$, on a $e^\lambda>1+\lambda$ et donc $1-e^{-\lambda}>\lambda/(1+\lambda)$. Comme $1-e^{-\lambda}<1$, il vient
+$$
+\lambda < \frac{\lambda}{1-e^{-\lambda}} < \lambda+1.
+$$
+L’égalité à $3$ impose donc $2<\lambda<3$. On prend $I=[2,3]$. Le point fixe $0$ de $g$ est exclu du problème, car le conditionnement par $Y\ne 0$ exige $\lambda>0$.
+
+**Vérification des hypothèses sur $I$.**
+
+- $g$ est croissante, $g(2)=3(1-e^{-2})\approx 2{,}594$ et $g(3)=3(1-e^{-3})\approx 2{,}851$. Ainsi, $g([2,3])\subset[2,3]$.
+- Pour tout $t\in I$, $0<g'(t)=3e^{-t}\le 3e^{-2}<1$. D’après le théorème des accroissements finis, $g$ est contractante sur $I$ avec $q=3e^{-2}$.
+
+Le théorème assure ainsi l’existence et l’unicité du paramètre recherché. Pour le calculer, on part de $\lambda_0=3$ et on répète $\lambda_{n+1}=3(1-e^{-\lambda_n})$.
 
 ```{python}
+from math import exp
 
-#Utilisons Newton-Raphson pour résoudre l'équation
+lambda_n = 3.0
+for _ in range(20):
+    lambda_n = 3 * (1 - exp(-lambda_n))
 
-from scipy.optimize import newton
-import numpy as np
-
-# Définir la fonction
-def equation(lmbda):
-    return lmbda / (1 - np.exp(-lmbda)) - 3
-
-# Résoudre avec Newton-Raphson
-lambda_solution = newton(equation, x0=1.0)
-print(lambda_solution)
-
+print(f"{lambda_n:.6f}")
 ```
 
-on obtient numériquement :
+Puisque le point fixe et le point de départ sont tous les deux dans $[2,3]$, l’erreur après 20 itérations est au plus $q^{20}<1{,}5\times 10^{-8}$. On obtient
 $$
-\boxed{\lambda \approx 2.82}.
+\boxed{\lambda \approx 2{,}821439}.
 $$
 
 3) Probabilité d’avoir une recherche de 6 mots ou plus
@@ -682,14 +696,11 @@ $$
 
 ---
 
- Avec $\lambda \approx 2.82$, on calcule :
-
-Le calcul numérique donne :
+Avec $\lambda\approx 2{,}821439$, le calcul numérique donne
 $$
-\boxed{\mathbb{P}(X \ge 6) \approx 0.07}
+\boxed{\mathbb{P}(X \ge 6) \approx 0{,}07124},
 $$
-
-soit **environ 7%**.
+soit **environ 7,12 %**.
 
 ## Exercice 6
 

@@ -21,7 +21,7 @@ du dépôt public. Le workflow peut être réactivé dans l’onglet **Actions**
 
 ## Ouverture progressive des corrections de TD
 
-Les chapitres 3 à 6 sont temporairement désactivés dans la liste
+Les chapitres en attente de leur séance de TD figurent dans la liste
 `website.drafts` du fichier `_quarto.yml`. Avec `draft-mode: gone`, Quarto
 produit des pages vides, désactive leurs liens et les retire des listes de
 l'accueil, de la recherche et du plan du site. Les fichiers sources sont conservés.
